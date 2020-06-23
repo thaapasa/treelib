@@ -1,0 +1,7 @@
+*.aux
+*.dvi
+*.tex
+*.eps
+*.txt
+*.log
+work

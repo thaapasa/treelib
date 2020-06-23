@@ -1,0 +1,94 @@
+<project name="Test runner for TreeLib" basedir="..">
+
+  <import file="build.xml" />
+  <taskdef resource="net/sf/antcontrib/antcontrib.properties">
+    <classpath>
+      <pathelement location="lib/ant-contrib.jar" />
+    </classpath>
+  </taskdef>
+
+  <target name="init-test">
+    <antcall target="copy-test-log4j-config" />
+  </target>
+
+  <target name="copy-test-log4j-config">
+    <copy file="src/main/resources/log4j.test.properties" tofile="target/classes/log4j.properties" overwrite="true" />
+  </target>
+
+  <!-- Targets -->
+
+  <!-- Test runner -->
+  <target name="testrunner-init" description="Initialize test cases" depends="init-test">
+    <property name="operation" value="initialize" />
+    <echo message="Initializing test cases" />
+    <java classpathref="treelib.classpath" classname="fi.hut.cs.treelib.test.TestRunner" fork="true" output="test-init.log" append="false" logError="true" failonerror="true">
+      <jvmarg value="-ea" />
+      <arg value="init" />
+    </java>
+  </target>
+
+  <target name="testrunner-run" description="Run tests" depends="init-test">
+    <property name="operation" value="run" />
+    <echo message="Execute test runner" />
+    <java classpathref="treelib.classpath" classname="fi.hut.cs.treelib.test.TestRunner" fork="true" output="test-run.log" append="false" logError="true" failonerror="true">
+      <jvmarg value="-ea" />
+      <arg value="run" />
+    </java>
+  </target>
+
+  <target name="testrunner-clear" description="Clear all files used for tests" depends="init-test">
+    <property name="operation" value="clear" />
+    <delete>
+      <fileset dir="." includes="test-*.log" />
+      <fileset dir="db" includes="*.db,*.db.*,*.log" />
+      <fileset dir="material/workloads" includes="*.wl" />
+      <fileset dir="results" includes="test-results.sql" />
+    </delete>
+  </target>
+
+  <!-- Test results db -->
+  <target name="db-delete" description="Clear test result database" depends="init-test">
+    <echo message="Deleting test result database" />
+    <delete includeemptydirs="true">
+      <fileset dir="results/db" includes="**/*" />
+    </delete>
+  </target>
+
+  <target name="db-clear" description="Clear test result database" depends="init-test">
+    <echo message="Clearing test result database" />
+    <java classpathref="treelib.classpath" classname="fi.tuska.util.db.DB" fork="true" failonerror="true" input="material/clear-test.sql">
+      <jvmarg value="-ea" />
+    </java>
+  </target>
+
+  <target name="db-init" description="Initialize test results DB" depends="db-delete">
+    <echo message="Initializing default tables" />
+    <java classpathref="treelib.classpath" classname="fi.tuska.util.db.DB" fork="true" failonerror="true" input="material/init-test.sql">
+      <jvmarg value="-ea" />
+      <arg value="--create=true" />
+    </java>
+  </target>
+
+  <target name="db-load-results" description="Load test results into DB from result file" depends="db-clear">
+    <property name="resultFile" value="results/test-results.sql" />
+    <echo message="Loading results from ${resultFile}" />
+    <java classpathref="treelib.classpath" classname="fi.tuska.util.db.DB" fork="true" failonerror="true" input="${resultFile}">
+      <jvmarg value="-ea" />
+    </java>
+  </target>
+
+  <target name="graph-create" description="Creates the graphs based on DB contents" depends="init-test">
+    <echo message="Creating graphs" />
+    <java classpathref="treelib.classpath" classname="fi.tuska.util.db.graph.GraphRunner" fork="true" failonerror="true">
+      <jvmarg value="-ea" />
+    </java>
+  </target>
+
+  <target name="graph-clear" description="Delete created graphs" depends="init-test">
+    <echo message="Deleting graphs" />
+    <delete>
+      <fileset dir="results/graph" includes="*.data,*.eps,*.plt,*.pdf" />
+    </delete>
+  </target>
+
+</project>

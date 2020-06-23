@@ -1,0 +1,252 @@
+INSERT
+======================================
+
+start-time:2009-05-18 14:59:04
+end-time:2009-05-18 14:59:48
+database:cmvbt
+buffer-size:200
+page-size:4096
+operation-count:84123
+time-measurement:44,666000
+size: 3735552    912
+action_insert            	count:84123
+op_object_inserted       	avg:1,000000	min:1	max:1
+op_spacemap_allocate     	avg:0,016179	min:0	max:34
+op_spacemap_free         	avg:0,005385	min:0	max:9
+op_buffer_fix            	avg:2,387777	min:1	max:1365
+op_buffer_read           	avg:0,201087	min:0	max:431
+op_buffer_write          	avg:0,214377	min:0	max:439
+
+start-time:2009-05-18 14:53:59
+end-time:2009-05-18 14:54:47
+database:tsbt
+buffer-size:200
+page-size:4096
+operation-count:84123
+time-measurement:47,939000
+size: 1495040    365
+action_insert            	count:84123
+op_object_inserted       	avg:1,000000	min:1	max:1
+op_spacemap_allocate     	avg:0,004303	min:0	max:3
+op_buffer_fix            	avg:2,479904	min:1	max:8
+op_buffer_read           	avg:0,122452	min:0	max:2
+op_buffer_write          	avg:0,124413	min:0	max:3
+
+
+
+RANGE QUERIES (all versions)
+======================================
+
+start-time:2009-05-18 15:17:54
+end-time:2009-05-18 15:18:03
+database:cmvbt
+buffer-size:200
+page-size:4096
+operation-count:50
+time-measurement:8,606000
+action_range_query       	count:50
+op_query_found_object    	avg:39664,420000	min:2396	max:81113
+op_buffer_fix            	avg:234,000000	min:16	max:453
+op_buffer_read           	avg:226,240000	min:3	max:451
+op_version_stable        	avg:1,000000	min:1	max:1
+
+
+start-time:2009-05-18 15:18:38
+end-time:2009-05-18 15:19:01
+database:tsbt
+buffer-size:200
+page-size:4096
+operation-count:50
+time-measurement:22,950000
+action_range_query       	count:50
+op_query_found_object    	avg:39664,420000	min:2396	max:81113
+op_buffer_fix            	avg:362,040000	min:361	max:365
+op_buffer_read           	avg:360,980000	min:360	max:361
+op_buffer_write          	avg:1,000000	min:1	max:1
+
+
+
+LATEST RANGE QUERY
+======================================
+
+start-time:2009-05-18 15:39:18
+end-time:2009-05-18 15:39:18
+database:cmvbt
+buffer-size:200
+page-size:4096
+operation-count:1
+time-measurement:0,344000
+action_range_query       	count:1
+op_query_found_object    	avg:83774,000000	min:83774	max:83774
+op_buffer_fix            	avg:456,000000	min:456	max:456
+op_buffer_read           	avg:455,000000	min:455	max:455
+op_version_stable        	avg:1,000000	min:1	max:1
+
+start-time:2009-05-18 15:39:30
+end-time:2009-05-18 15:39:30
+database:tsbt
+buffer-size:200
+page-size:4096
+operation-count:1
+time-measurement:0,694000
+action_range_query       	count:1
+op_query_found_object    	avg:83774,000000	min:83774	max:83774
+op_buffer_fix            	avg:364,000000	min:364	max:364
+op_buffer_read           	avg:360,000000	min:360	max:360
+op_buffer_write          	avg:1,000000	min:1	max:1
+
+
+
+DELETE (1172 deletions each)
+======================================
+
+start-time:2009-05-18 15:42:02
+end-time:2009-05-18 15:42:19
+database:cmvbt
+buffer-size:200
+page-size:4096
+operation-count:58651
+time-measurement:16,845000
+action_delete            	count:58600
+action_range_query       	count:51
+op_query_found_object    	avg:2,427478	min:0	max:83774
+op_object_deleted        	avg:0,999130	min:0	max:1
+op_spacemap_allocate     	avg:0,015516	min:0	max:15
+op_spacemap_free         	avg:0,014305	min:0	max:21
+op_buffer_fix            	avg:1,829466	min:1	max:456
+op_buffer_read           	avg:0,013180	min:0	max:455
+op_buffer_write          	avg:0,017579	min:0	max:23
+op_keys_processed        	avg:0,999130	min:0	max:1172
+op_version_stable        	avg:0,000017	min:0	max:1
+op_version_transient     	avg:0,000853	min:0	max:1
+
+
+start-time:2009-05-18 15:43:12
+end-time:2009-05-18 15:43:43
+database:tsbt
+buffer-size:200
+page-size:4096
+operation-count:58651
+time-measurement:30,878000
+action_delete            	count:58600
+action_range_query       	count:51
+op_query_found_object    	avg:2,427478	min:0	max:83774
+op_object_deleted        	avg:0,999130	min:0	max:1
+op_spacemap_allocate     	avg:0,009463	min:0	max:3
+op_buffer_fix            	avg:3,247583	min:3	max:527
+op_buffer_read           	avg:0,207805	min:0	max:525
+op_buffer_write          	avg:0,015788	min:0	max:192
+
+
+
+LATEST RANGE QUERY
+======================================
+
+start-time:2009-05-18 15:44:58
+end-time:2009-05-18 15:44:58
+database:cmvbt
+buffer-size:200
+page-size:4096
+operation-count:1
+time-measurement:0,123000
+action_range_query       	count:1
+op_query_found_object    	avg:25174,000000	min:25174	max:25174
+op_buffer_fix            	avg:144,000000	min:144	max:144
+op_buffer_read           	avg:143,000000	min:143	max:143
+op_version_stable        	avg:1,000000	min:1	max:1
+
+start-time:2009-05-18 15:44:44
+end-time:2009-05-18 15:44:44
+database:tsbt
+buffer-size:200
+page-size:4096
+operation-count:1
+time-measurement:0,824000
+action_range_query       	count:1
+op_query_found_object    	avg:25174,000000	min:25174	max:25174
+op_buffer_fix            	avg:645,000000	min:645	max:645
+op_buffer_read           	avg:641,000000	min:641	max:641
+op_buffer_write          	avg:1,000000	min:1	max:1
+
+
+
+
+RANGE QUERIES (last 40 versions)
+======================================
+
+start-time:2009-05-18 15:49:16
+end-time:2009-05-18 15:49:25
+database:cmvbt
+buffer-size:200
+page-size:4096
+operation-count:50
+time-measurement:8,680000
+action_range_query       	count:50
+op_query_found_object    	avg:48491,900000	min:1856	max:82602
+op_buffer_fix            	avg:274,120000	min:15	max:451
+op_buffer_read           	avg:263,560000	min:3	max:449
+op_version_stable        	avg:1,000000	min:1	max:1
+
+start-time:2009-05-18 15:50:06
+end-time:2009-05-18 15:50:32
+database:tsbt
+buffer-size:200
+page-size:4096
+operation-count:50
+time-measurement:26,213000
+action_range_query       	count:50
+op_query_found_object    	avg:48491,900000	min:1856	max:82602
+op_buffer_fix            	avg:498,120000	min:467	max:638
+op_buffer_read           	avg:497,060000	min:466	max:637
+op_buffer_write          	avg:1,000000	min:1	max:1
+
+
+
+
+
+INSPECT OPERATION
+======================================
+
+TSBT database
+Last page ID: PageID 919
+Total page count: 920
+Leaf pages: 907
+Parent pages: 8
+Entries: 25174 alive / 83774 total
+Root page:
+Page: (([-?,?), [0,?)), I208), height: 3, entries: 8/203 (3,9 %), (not leaf)
+Page height: 3 (page is not a leaf page)
+Page contents: 8/203 entries, page size 4096 bytes
+Page that contains min key:
+Page: (([-?,16634), [0,?)), L4), height: 1, entries: 292/335 (87,2 %), (leaf)
+Page height: 1 (page is a leaf page)
+Page contents: 292/335 entries, page size 4096 bytes
+Page that contains max key:
+Page: (([9963780,?), [0,?)), L217), height: 1, entries: 309/335 (92,2 %), (leaf)
+Page height: 1 (page is a leaf page)
+Page contents: 309/335 entries, page size 4096 bytes
+Buffer fixes: 2
+Buffer fix summary: PageID 3:1, PageID 208:1
+
+
+2009-05-18 16:36:52,687 INFO  fi.hut.cs.treelib.operations.InspectOperation - Executing inspect...
+CMVBT database
+Last page ID: PageID 983
+Total page count: 983
+Leaf pages: 962
+Parent pages: 15
+Entries: 25174 alive / 83774 total
+Root page:
+Page: (([-?,?), [35,?)), I369), height: 3, entries: 12/203 (5,9 %), (not leaf)
+Page height: 3 (page is not a leaf page)
+Page contents: 12/203 entries, page size 4096 bytes
+Page that contains min key:
+Page: (([-?,7002745), [150,?)), L982), height: 1, entries: 170/254 (66,9 %), (leaf)
+Page height: 1 (page is a leaf page)
+Page contents: 170/254 entries, page size 4096 bytes
+Page that contains max key:
+Page: (([9977391,?), [61,?)), L549), height: 1, entries: 211/254 (83,1 %), (leaf)
+Page height: 1 (page is a leaf page)
+Page contents: 211/254 entries, page size 4096 bytes
+Buffer fixes: 2
+Buffer fix summary: PageID 5:1, PageID 369:1

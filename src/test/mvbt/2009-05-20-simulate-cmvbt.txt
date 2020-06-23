@@ -1,0 +1,118 @@
+--- exec-cmvbt.xml;simulate;simulator --------------------------------
+title: insert
+start-time:2009-05-20 14:56:05
+end-time:2009-05-20 14:57:00
+database:cmvbt
+buffer-size:200
+page-size:4096
+database-size:1174
+operation-count:97601
+time-measurement:54,117000
+go_new_transaction       	100
+action_insert            	count:97601
+op_object_inserted       	avg:1,000000	min:1	max:1
+op_spacemap_allocate     	avg:0,017367	min:0	max:44
+op_spacemap_free         	avg:0,005379	min:0	max:9
+op_buffer_fix            	avg:2,436143	min:1	max:1726
+op_buffer_read           	avg:0,202191	min:0	max:527
+op_buffer_write          	avg:0,217016	min:0	max:568
+
+title: range-query-all
+start-time:2009-05-20 14:57:00
+end-time:2009-05-20 14:57:08
+database:cmvbt
+buffer-size:200
+page-size:4096
+database-size:1174
+operation-count:40
+time-measurement:8,798000
+go_new_transaction       	40
+action_range_query       	count:40
+op_query_found_object    	avg:50226,225000	min:1477	max:91396
+op_buffer_fix            	avg:281,775000	min:10	max:536
+op_buffer_read           	avg:270,850000	min:4	max:534
+op_buffer_write          	avg:4,900000	min:0	max:183
+op_version_stable        	avg:1,000000	min:1	max:1
+
+title: range-query-latest
+start-time:2009-05-20 14:57:08
+end-time:2009-05-20 14:57:09
+database:cmvbt
+buffer-size:200
+page-size:4096
+database-size:1174
+operation-count:1
+time-measurement:0,421000
+go_new_transaction       	1
+action_range_query       	count:1
+op_query_found_object    	avg:97094,000000	min:97094	max:97094
+op_buffer_fix            	avg:588,000000	min:588	max:588
+op_buffer_read           	avg:587,000000	min:587	max:587
+op_version_stable        	avg:1,000000	min:1	max:1
+
+title: delete
+start-time:2009-05-20 14:57:09
+end-time:2009-05-20 14:57:27
+database:cmvbt
+buffer-size:200
+page-size:4096
+database-size:1236
+operation-count:67851
+time-measurement:18,159000
+go_new_transaction       	51
+action_delete            	count:67800
+action_range_query       	count:51
+op_query_found_object    	avg:2,430237	min:0	max:97094
+op_object_deleted        	avg:0,999248	min:0	max:1
+op_spacemap_allocate     	avg:0,014296	min:0	max:16
+op_spacemap_free         	avg:0,013382	min:0	max:23
+op_buffer_fix            	avg:1,870039	min:1	max:588
+op_buffer_read           	avg:0,014871	min:0	max:587
+op_buffer_write          	avg:0,017612	min:0	max:25
+op_keys_processed        	avg:0,999248	min:0	max:1356
+op_version_stable        	avg:0,000015	min:0	max:1
+op_version_transient     	avg:0,000737	min:0	max:1
+
+title: range-query-some
+start-time:2009-05-20 14:57:27
+end-time:2009-05-20 14:57:35
+database:cmvbt
+buffer-size:200
+page-size:4096
+database-size:1236
+operation-count:40
+time-measurement:7,878000
+go_new_transaction       	40
+action_range_query       	count:40
+op_query_found_object    	avg:54922,400000	min:29294	max:80822
+op_buffer_fix            	avg:331,075000	min:173	max:490
+op_buffer_read           	avg:317,350000	min:3	max:488
+op_buffer_write          	avg:4,925000	min:0	max:167
+op_version_stable        	avg:1,000000	min:1	max:1
+
+title: range-query-latest
+start-time:2009-05-20 14:57:35
+end-time:2009-05-20 14:57:35
+database:cmvbt
+buffer-size:200
+page-size:4096
+database-size:1236
+operation-count:1
+time-measurement:0,015000
+go_new_transaction       	1
+action_range_query       	count:1
+op_query_found_object    	avg:29294,000000	min:29294	max:29294
+op_buffer_fix            	avg:173,000000	min:173	max:173
+op_buffer_read           	avg:3,000000	min:3	max:3
+op_version_stable        	avg:1,000000	min:1	max:1
+
+title: simulator
+start-time:2009-05-20 14:57:35
+end-time:2009-05-20 14:57:35
+database:cmvbt
+buffer-size:200
+page-size:4096
+database-size:1236
+operation-count:0
+time-measurement:0,000000
+

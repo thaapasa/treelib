@@ -1,0 +1,652 @@
+Buildfile: build-rtree.xml
+
+all-rtree-tests:
+
+init-exec:
+
+copy-exec-log4j-config:
+     [copy] Copying 1 file to C:\Work\workspace\TreeLib\target\classes
+
+init-pjtree:
+
+pjtree-tests:
+
+generic-rtree-tests:
+
+generic-tree-clear:
+   [delete] Deleting: C:\Work\workspace\TreeLib\db\pjtree-exec.db
+
+generic-tree-bulk-load:
+     [echo] Bulk-load data, config: exec-pjtree.xml, dataset: mbr-large-initial.txt
+     [java] 2009-02-09 19:03:34,927 INFO  fi.hut.cs.treelib.operations.OperationExecutor - Initializing application context
+     [java] 2009-02-09 19:03:35,317 INFO  fi.hut.cs.treelib.operations.OperationExecutor - Initializing Operation Executor
+     [java] 2009-02-09 19:03:35,317 INFO  fi.hut.cs.treelib.operations.OperationExecutor - Starting execution
+     [java] 2009-02-09 19:03:35,317 INFO  fi.hut.cs.treelib.operations.OperationExecutor - Database is Packed J-tree database, roots: J-tree (h: 0), root: none, extents: null
+     [java] 2009-02-09 19:03:35,317 INFO  fi.hut.cs.treelib.operations.OperationExecutor - Buffer is Pagebuffer, size: 200 (page size: 4096), fixes: 0, free: 199
+     [java] 2009-02-09 19:03:35,348 INFO  fi.hut.cs.treelib.operations.BulkLoadOperation - Executing bulk load
+     [java] 2009-02-09 19:03:35,348 INFO  fi.hut.cs.treelib.operations.BulkLoadOperation - Bulk-loading to a bulk-loadable db
+     [java] 2009-02-09 19:04:38,450 INFO  fi.hut.cs.treelib.mdtree.PackedJTreeDatabase - Bulk-loading 2018980 keys to Packed J-tree
+     [java] 2009-02-09 19:04:38,465 INFO  fi.hut.cs.treelib.mdtree.AbstractMDDatabase - Creating 100 slices from 2018980 entries (203 entries per page); slice size is 20190
+     [java] 2009-02-09 19:04:38,465 INFO  fi.hut.cs.treelib.mdtree.AbstractMDDatabase - Creating slice from 0 (<{(-117.064,32.5399):(-117.063,32.5403)},2007798>) to 20199(<{(-116.347,32.7112):(-116.336,32.7246)},859139>) (20200 entries)
+     [java] 2009-02-09 19:04:38,855 INFO  fi.hut.cs.treelib.mdtree.PackedJTreeDatabase - Created a subtree of height 2; subtree is J-tree (h: 2), root: ((?,?):{(-117.25,32.5399):(-114.91,32.7516)}, P2), extents: {(-117.25,32.5399):(-114.91,32.7516)}
+     [java] 2009-02-09 19:04:38,855 INFO  fi.hut.cs.treelib.mdtree.AbstractMDDatabase - Creating slice from 20200 (<{(-117.123,32.7113):(-117.123,32.7113)},866038>) to 40388(<{(-115.798,32.7695):(-115.773,32.7731)},336246>) (20189 entries)
+     [java] 2009-02-09 19:04:39,370 INFO  fi.hut.cs.treelib.mdtree.PackedJTreeDatabase - Created a subtree of height 2; subtree is J-tree (h: 2), root: ((?,?):{(-117.257,32.7113):(-114.528,32.809)}, P136), extents: {(-117.257,32.7113):(-114.528,32.809)}
+     [java] 2009-02-09 19:04:39,370 INFO  fi.hut.cs.treelib.mdtree.AbstractMDDatabase - Creating slice from 40389 (<{(-117.117,32.7696):(-117.115,32.7696)},583947>) to 60569(<{(-117.253,32.8262):(-117.252,32.8306)},1651799>) (20181 entries)
+     [java] 2009-02-09 19:04:39,760 INFO  fi.hut.cs.treelib.mdtree.PackedJTreeDatabase - Created a subtree of height 2; subtree is J-tree (h: 2), root: ((?,?):{(-118.448,32.7696):(-114.491,32.8578)}, P270), extents: {(-118.448,32.7696):(-114.491,32.8578)}
+     [java] 2009-02-09 19:04:39,760 INFO  fi.hut.cs.treelib.mdtree.AbstractMDDatabase - Creating slice from 60570 (<{(-116.952,32.8263):(-116.951,32.8263)},1547418>) to 80763(<{(-116.176,32.9627):(-116.155,32.9768)},373104>) (20194 entries)
+     [java] 2009-02-09 19:04:40,072 INFO  fi.hut.cs.treelib.mdtree.PackedJTreeDatabase - Created a subtree of height 2; subtree is J-tree (h: 2), root: ((?,?):{(-118.565,32.8263):(-114.466,33.0285)}, P404), extents: {(-118.565,32.8263):(-114.466,33.0285)}
+     [java] 2009-02-09 19:04:40,072 INFO  fi.hut.cs.treelib.mdtree.AbstractMDDatabase - Creating slice from 80764 (<{(-117.047,32.9628):(-117.047,32.9629)},83547>) to 100951(<{(-115.549,33.1102):(-115.548,33.1131)},1973467>) (20188 entries)
+     [java] 2009-02-09 19:04:40,447 INFO  fi.hut.cs.treelib.mdtree.PackedJTreeDatabase - Created a subtree of height 2; subtree is J-tree (h: 2), root: ((?,?):{(-118.605,32.9628):(-114.498,33.1282)}, P538), extents: {(-118.605,32.9628):(-114.498,33.1282)}
+     [java] 2009-02-09 19:04:40,447 INFO  fi.hut.cs.treelib.mdtree.AbstractMDDatabase - Creating slice from 100952 (<{(-117.309,33.1103):(-117.308,33.1103)},1598908>) to 121152(<{(-115.031,33.2298):(-114.998,33.2438)},1841527>) (20201 entries)
+     [java] 2009-02-09 19:04:40,837 INFO  fi.hut.cs.treelib.mdtree.PackedJTreeDatabase - Created a subtree of height 2; subtree is J-tree (h: 2), root: ((?,?):{(-119.514,33.1103):(-114.678,33.2454)}, P672), extents: {(-119.514,33.1103):(-114.678,33.2454)}
+     [java] 2009-02-09 19:04:40,837 INFO  fi.hut.cs.treelib.mdtree.AbstractMDDatabase - Creating slice from 121153 (<{(-117.327,33.2299):(-117.327,33.2299)},1371855>) to 141339(<{(-117.132,33.4508):(-117.13,33.4547)},2000218>) (20187 entries)
+     [java] 2009-02-09 19:04:41,180 INFO  fi.hut.cs.treelib.mdtree.PackedJTreeDatabase - Created a subtree of height 2; subtree is J-tree (h: 2), root: ((?,?):{(-119.568,33.2299):(-114.624,33.4884)}, P806), extents: {(-119.568,33.2299):(-114.624,33.4884)}
+     [java] 2009-02-09 19:04:41,180 INFO  fi.hut.cs.treelib.mdtree.AbstractMDDatabase - Creating slice from 141340 (<{(-116.629,33.4509):(-116.627,33.4509)},211651>) to 161537(<{(-117.265,33.5619):(-117.26,33.5748)},2005966>) (20198 entries)
+     [java] 2009-02-09 19:04:41,539 INFO  fi.hut.cs.treelib.mdtree.PackedJTreeDatabase - Created a subtree of height 2; subtree is J-tree (h: 2), root: ((?,?):{(-118.592,33.4509):(-114.526,33.6168)}, P940), extents: {(-118.592,33.4509):(-114.526,33.6168)}
+     [java] 2009-02-09 19:04:41,539 INFO  fi.hut.cs.treelib.mdtree.AbstractMDDatabase - Creating slice from 161538 (<{(-117.703,33.562):(-117.701,33.5621)},1786220>) to 181715(<{(-117.226,33.6355):(-117.225,33.6371)},269183>) (20178 entries)
+     [java] 2009-02-09 19:04:41,866 INFO  fi.hut.cs.treelib.mdtree.PackedJTreeDatabase - Created a subtree of height 2; subtree is J-tree (h: 2), root: ((?,?):{(-117.971,33.562):(-114.527,33.7068)}, P1074), extents: {(-117.971,33.562):(-114.527,33.7068)}
+     [java] 2009-02-09 19:04:41,882 INFO  fi.hut.cs.treelib.mdtree.AbstractMDDatabase - Creating slice from 181716 (<{(-117.666,33.6356):(-117.666,33.6356)},1619800>) to 201927(<{(-117.931,33.6813):(-117.93,33.6839)},255595>) (20212 entries)
+     [java] 2009-02-09 19:04:42,178 INFO  fi.hut.cs.treelib.mdtree.PackedJTreeDatabase - Created a subtree of height 2; subtree is J-tree (h: 2), root: ((?,?):{(-118.054,33.6356):(-114.518,33.7145)}, P1208), extents: {(-118.054,33.6356):(-114.518,33.7145)}
+     [java] 2009-02-09 19:04:42,178 INFO  fi.hut.cs.treelib.mdtree.AbstractMDDatabase - Creating slice from 201928 (<{(-117.962,33.6814):(-117.961,33.6814)},1671399>) to 222135(<{(-117.198,33.7212):(-117.198,33.7287)},1800277>) (20208 entries)
+     [java] 2009-02-09 19:04:42,506 INFO  fi.hut.cs.treelib.mdtree.PackedJTreeDatabase - Created a subtree of height 2; subtree is J-tree (h: 2), root: ((?,?):{(-118.332,33.6814):(-114.495,33.7968)}, P1342), extents: {(-118.332,33.6814):(-114.495,33.7968)}
+     [java] 2009-02-09 19:04:42,506 INFO  fi.hut.cs.treelib.mdtree.AbstractMDDatabase - Creating slice from 222136 (<{(-118.025,33.7213):(-118.024,33.7213)},1720946>) to 242309(<{(-117.456,33.7491):(-117.452,33.7525)},720053>) (20174 entries)
+     [java] 2009-02-09 19:04:42,802 INFO  fi.hut.cs.treelib.mdtree.PackedJTreeDatabase - Created a subtree of height 2; subtree is J-tree (h: 2), root: ((?,?):{(-118.409,33.7213):(-114.511,33.7855)}, P1476), extents: {(-118.409,33.7213):(-114.511,33.7855)}
+     [java] 2009-02-09 19:04:42,802 INFO  fi.hut.cs.treelib.mdtree.AbstractMDDatabase - Creating slice from 242310 (<{(-118.326,33.7492):(-118.325,33.7492)},570319>) to 262472(<{(-117.084,33.7743):(-117.083,33.7792)},865245>) (20163 entries)
+     [java] 2009-02-09 19:04:43,145 INFO  fi.hut.cs.treelib.mdtree.PackedJTreeDatabase - Created a subtree of height 2; subtree is J-tree (h: 2), root: ((?,?):{(-118.427,33.7492):(-114.508,33.798)}, P1610), extents: {(-118.427,33.7492):(-114.508,33.798)}
+     [java] 2009-02-09 19:04:43,145 INFO  fi.hut.cs.treelib.mdtree.AbstractMDDatabase - Creating slice from 262473 (<{(-118.172,33.7744):(-118.17,33.7744)},42072>) to 282675(<{(-117.899,33.7966):(-117.896,33.8001)},1876735>) (20203 entries)
+     [java] 2009-02-09 19:04:43,520 INFO  fi.hut.cs.treelib.mdtree.PackedJTreeDatabase - Created a subtree of height 2; subtree is J-tree (h: 2), root: ((?,?):{(-118.427,33.7744):(-114.512,33.8215)}, P1744), extents: {(-118.427,33.7744):(-114.512,33.8215)}
+     [java] 2009-02-09 19:04:43,520 INFO  fi.hut.cs.treelib.mdtree.AbstractMDDatabase - Creating slice from 282676 (<{(-118.357,33.7967):(-118.357,33.7967)},905652>) to 302876(<{(-116.894,33.8227):(-116.891,33.8286)},1571296>) (20201 entries)
+     [java] 2009-02-09 19:04:43,816 INFO  fi.hut.cs.treelib.mdtree.PackedJTreeDatabase - Created a subtree of height 2; subtree is J-tree (h: 2), root: ((?,?):{(-118.405,33.7967):(-114.521,33.8525)}, P1878), extents: {(-118.405,33.7967):(-114.521,33.8525)}
+     [java] 2009-02-09 19:04:43,816 INFO  fi.hut.cs.treelib.mdtree.AbstractMDDatabase - Creating slice from 302877 (<{(-118.225,33.8228):(-118.222,33.8228)},973953>) to 323068(<{(-117.063,33.8506):(-117.056,33.8587)},1169957>) (20192 entries)
+     [java] 2009-02-09 19:04:44,113 INFO  fi.hut.cs.treelib.mdtree.PackedJTreeDatabase - Created a subtree of height 2; subtree is J-tree (h: 2), root: ((?,?):{(-118.397,33.8228):(-114.522,33.8739)}, P2012), extents: {(-118.397,33.8228):(-114.522,33.8739)}
+     [java] 2009-02-09 19:04:44,113 INFO  fi.hut.cs.treelib.mdtree.AbstractMDDatabase - Creating slice from 323069 (<{(-118.131,33.8507):(-118.13,33.8507)},1081625>) to 343256(<{(-117.929,33.8769):(-117.929,33.8786)},50145>) (20188 entries)
+     [java] 2009-02-09 19:04:44,456 INFO  fi.hut.cs.treelib.mdtree.PackedJTreeDatabase - Created a subtree of height 2; subtree is J-tree (h: 2), root: ((?,?):{(-118.408,33.8507):(-114.525,33.9216)}, P2146), extents: {(-118.408,33.8507):(-114.525,33.9216)}
+     [java] 2009-02-09 19:04:44,456 INFO  fi.hut.cs.treelib.mdtree.AbstractMDDatabase - Creating slice from 343257 (<{(-118.392,33.877):(-118.39,33.877)},817816>) to 363437(<{(-117.928,33.9001):(-117.927,33.9032)},570418>) (20181 entries)
+     [java] 2009-02-09 19:04:44,783 INFO  fi.hut.cs.treelib.mdtree.PackedJTreeDatabase - Created a subtree of height 2; subtree is J-tree (h: 2), root: ((?,?):{(-118.42,33.877):(-114.513,33.9251)}, P2280), extents: {(-118.42,33.877):(-114.513,33.9251)}
+     [java] 2009-02-09 19:04:44,783 INFO  fi.hut.cs.treelib.mdtree.AbstractMDDatabase - Creating slice from 363438 (<{(-118.42,33.9002):(-118.42,33.9002)},1420406>) to 383644(<{(-116.601,33.9259):(-116.599,33.9319)},442551>) (20207 entries)
+     [java] 2009-02-09 19:04:45,095 INFO  fi.hut.cs.treelib.mdtree.PackedJTreeDatabase - Created a subtree of height 2; subtree is J-tree (h: 2), root: ((?,?):{(-120.146,33.9002):(-114.517,33.9643)}, P2414), extents: {(-120.146,33.9002):(-114.517,33.9643)}
+     [java] 2009-02-09 19:04:45,095 INFO  fi.hut.cs.treelib.mdtree.AbstractMDDatabase - Creating slice from 383645 (<{(-118.333,33.926):(-118.332,33.926)},979645>) to 403820(<{(-117.062,33.9492):(-117.054,33.956)},432944>) (20176 entries)
+     [java] 2009-02-09 19:04:45,392 INFO  fi.hut.cs.treelib.mdtree.PackedJTreeDatabase - Created a subtree of height 2; subtree is J-tree (h: 2), root: ((?,?):{(-120.125,33.926):(-114.524,33.9761)}, P2548), extents: {(-120.125,33.926):(-114.524,33.9761)}
+     [java] 2009-02-09 19:04:45,392 INFO  fi.hut.cs.treelib.mdtree.AbstractMDDatabase - Creating slice from 403821 (<{(-118.384,33.9493):(-118.383,33.9493)},1976882>) to 423996(<{(-115.24,33.9782):(-115.239,33.9896)},451496>) (20176 entries)
+     [java] 2009-02-09 19:04:45,751 INFO  fi.hut.cs.treelib.mdtree.PackedJTreeDatabase - Created a subtree of height 2; subtree is J-tree (h: 2), root: ((?,?):{(-120.077,33.9493):(-114.494,34.0)}, P2682), extents: {(-120.077,33.9493):(-114.494,34.0)}
+     [java] 2009-02-09 19:04:45,751 INFO  fi.hut.cs.treelib.mdtree.AbstractMDDatabase - Creating slice from 423997 (<{(-118.316,33.9783):(-118.313,33.9783)},1178655>) to 444252(<{(-117.602,34.0046):(-117.602,34.0118)},1291917>) (20256 entries)
+     [java] 2009-02-09 19:04:46,094 INFO  fi.hut.cs.treelib.mdtree.PackedJTreeDatabase - Created a subtree of height 2; subtree is J-tree (h: 2), root: ((?,?):{(-120.142,33.9783):(-114.462,34.0401)}, P2816), extents: {(-120.142,33.9783):(-114.462,34.0401)}
+     [java] 2009-02-09 19:04:46,094 INFO  fi.hut.cs.treelib.mdtree.AbstractMDDatabase - Creating slice from 444253 (<{(-118.39,34.0047):(-118.39,34.0047)},723594>) to 464440(<{(-116.35,34.0265):(-116.339,34.0304)},797904>) (20188 entries)
+     [java] 2009-02-09 19:04:46,453 INFO  fi.hut.cs.treelib.mdtree.PackedJTreeDatabase - Created a subtree of height 2; subtree is J-tree (h: 2), root: ((?,?):{(-120.107,34.0047):(-114.47,34.0677)}, P2950), extents: {(-120.107,34.0047):(-114.47,34.0677)}
+     [java] 2009-02-09 19:04:46,453 INFO  fi.hut.cs.treelib.mdtree.AbstractMDDatabase - Creating slice from 464441 (<{(-118.321,34.0266):(-118.32,34.0266)},1569855>) to 484649(<{(-117.159,34.0446):(-117.156,34.0486)},1241173>) (20209 entries)
+     [java] 2009-02-09 19:04:46,780 INFO  fi.hut.cs.treelib.mdtree.PackedJTreeDatabase - Created a subtree of height 2; subtree is J-tree (h: 2), root: ((?,?):{(-118.945,34.0266):(-114.436,34.0747)}, P3084), extents: {(-118.945,34.0266):(-114.436,34.0747)}
+     [java] 2009-02-09 19:04:46,780 INFO  fi.hut.cs.treelib.mdtree.AbstractMDDatabase - Creating slice from 484650 (<{(-118.679,34.0447):(-118.679,34.0447)},114329>) to 504800(<{(-118.112,34.0626):(-118.112,34.0663)},296772>) (20151 entries)
+     [java] 2009-02-09 19:04:47,108 INFO  fi.hut.cs.treelib.mdtree.PackedJTreeDatabase - Created a subtree of height 2; subtree is J-tree (h: 2), root: ((?,?):{(-119.58,34.0447):(-114.44,34.0921)}, P3218), extents: {(-119.58,34.0447):(-114.44,34.0921)}
+     [java] 2009-02-09 19:04:47,108 INFO  fi.hut.cs.treelib.mdtree.AbstractMDDatabase - Creating slice from 504801 (<{(-118.411,34.0627):(-118.41,34.0627)},60589>) to 524969(<{(-119.032,34.0795):(-119.013,34.1102)},1669450>) (20169 entries)
+     [java] 2009-02-09 19:04:47,435 INFO  fi.hut.cs.treelib.mdtree.PackedJTreeDatabase - Created a subtree of height 2; subtree is J-tree (h: 2), root: ((?,?):{(-119.059,34.0627):(-114.437,34.1298)}, P3352), extents: {(-119.059,34.0627):(-114.437,34.1298)}
+     [java] 2009-02-09 19:04:47,435 INFO  fi.hut.cs.treelib.mdtree.AbstractMDDatabase - Creating slice from 524970 (<{(-118.602,34.0796):(-118.602,34.0796)},279848>) to 545145(<{(-118.255,34.0977):(-118.254,34.1027)},751728>) (20176 entries)
+     [java] 2009-02-09 19:04:47,779 INFO  fi.hut.cs.treelib.mdtree.PackedJTreeDatabase - Created a subtree of height 2; subtree is J-tree (h: 2), root: ((?,?):{(-119.114,34.0796):(-114.423,34.1291)}, P3486), extents: {(-119.114,34.0796):(-114.423,34.1291)}
+     [java] 2009-02-09 19:04:47,779 INFO  fi.hut.cs.treelib.mdtree.AbstractMDDatabase - Creating slice from 545146 (<{(-118.723,34.0978):(-118.722,34.0978)},736016>) to 565475(<{(-115.849,34.1143):(-115.848,34.1223)},1053588>) (20330 entries)
+     [java] 2009-02-09 19:04:48,106 INFO  fi.hut.cs.treelib.mdtree.PackedJTreeDatabase - Created a subtree of height 2; subtree is J-tree (h: 2), root: ((?,?):{(-119.153,34.0978):(-114.359,34.15)}, P3620), extents: {(-119.153,34.0978):(-114.359,34.15)}
+     [java] 2009-02-09 19:04:48,106 INFO  fi.hut.cs.treelib.mdtree.AbstractMDDatabase - Creating slice from 565476 (<{(-118.78,34.1144):(-118.779,34.1144)},1109831>) to 585611(<{(-115.967,34.1307):(-115.967,34.1367)},1766151>) (20136 entries)
+     [java] 2009-02-09 19:04:48,434 INFO  fi.hut.cs.treelib.mdtree.PackedJTreeDatabase - Created a subtree of height 2; subtree is J-tree (h: 2), root: ((?,?):{(-119.16,34.1144):(-114.357,34.1628)}, P3755), extents: {(-119.16,34.1144):(-114.357,34.1628)}
+     [java] 2009-02-09 19:04:48,434 INFO  fi.hut.cs.treelib.mdtree.AbstractMDDatabase - Creating slice from 585612 (<{(-118.385,34.1308):(-118.385,34.1308)},1158644>) to 605788(<{(-117.932,34.1479):(-117.931,34.1504)},1596692>) (20177 entries)
+     [java] 2009-02-09 19:04:48,793 INFO  fi.hut.cs.treelib.mdtree.PackedJTreeDatabase - Created a subtree of height 2; subtree is J-tree (h: 2), root: ((?,?):{(-119.216,34.1308):(-114.31,34.1954)}, P3888), extents: {(-119.216,34.1308):(-114.31,34.1954)}
+     [java] 2009-02-09 19:04:48,793 INFO  fi.hut.cs.treelib.mdtree.AbstractMDDatabase - Creating slice from 605789 (<{(-118.847,34.148):(-118.845,34.148)},151984>) to 625974(<{(-115.921,34.1658):(-115.921,34.1759)},1756565>) (20186 entries)
+     [java] 2009-02-09 19:04:49,167 INFO  fi.hut.cs.treelib.mdtree.PackedJTreeDatabase - Created a subtree of height 2; subtree is J-tree (h: 2), root: ((?,?):{(-119.23,34.148):(-114.295,34.2166)}, P4022), extents: {(-119.23,34.148):(-114.295,34.2166)}
+     [java] 2009-02-09 19:04:49,167 INFO  fi.hut.cs.treelib.mdtree.AbstractMDDatabase - Creating slice from 625975 (<{(-119.187,34.1659):(-119.186,34.1659)},1971822>) to 646097(<{(-118.035,34.189):(-118.03,34.1984)},939048>) (20123 entries)
+     [java] 2009-02-09 19:04:49,495 INFO  fi.hut.cs.treelib.mdtree.PackedJTreeDatabase - Created a subtree of height 2; subtree is J-tree (h: 2), root: ((?,?):{(-119.243,34.1659):(-114.23,34.3375)}, P4156), extents: {(-119.243,34.1659):(-114.23,34.3375)}
+     [java] 2009-02-09 19:04:49,495 INFO  fi.hut.cs.treelib.mdtree.AbstractMDDatabase - Creating slice from 646098 (<{(-118.884,34.1891):(-118.884,34.1891)},1009616>) to 666315(<{(-114.271,34.2187):(-114.265,34.2296)},880666>) (20218 entries)
+     [java] 2009-02-09 19:04:49,853 INFO  fi.hut.cs.treelib.mdtree.PackedJTreeDatabase - Created a subtree of height 2; subtree is J-tree (h: 2), root: ((?,?):{(-119.254,34.1891):(-114.206,34.2399)}, P4289), extents: {(-119.254,34.1891):(-114.206,34.2399)}
+     [java] 2009-02-09 19:04:49,853 INFO  fi.hut.cs.treelib.mdtree.AbstractMDDatabase - Creating slice from 666316 (<{(-119.202,34.2188):(-119.201,34.2188)},1992551>) to 686543(<{(-117.177,34.2478):(-117.175,34.2528)},1974726>) (20228 entries)
+     [java] 2009-02-09 19:04:50,228 INFO  fi.hut.cs.treelib.mdtree.PackedJTreeDatabase - Created a subtree of height 2; subtree is J-tree (h: 2), root: ((?,?):{(-119.267,34.2188):(-114.175,34.3443)}, P4423), extents: {(-119.267,34.2188):(-114.175,34.3443)}
+     [java] 2009-02-09 19:04:50,228 INFO  fi.hut.cs.treelib.mdtree.AbstractMDDatabase - Creating slice from 686544 (<{(-118.82,34.2479):(-118.819,34.2479)},1897356>) to 706683(<{(-116.606,34.2774):(-116.599,34.2834)},1290519>) (20140 entries)
+     [java] 2009-02-09 19:04:50,555 INFO  fi.hut.cs.treelib.mdtree.PackedJTreeDatabase - Created a subtree of height 2; subtree is J-tree (h: 2), root: ((?,?):{(-119.306,34.2479):(-114.134,34.3635)}, P4557), extents: {(-119.306,34.2479):(-114.134,34.3635)}
+     [java] 2009-02-09 19:04:50,555 INFO  fi.hut.cs.treelib.mdtree.AbstractMDDatabase - Creating slice from 706684 (<{(-119.261,34.2775):(-119.261,34.2775)},754087>) to 726841(<{(-114.981,34.3677):(-114.979,34.3771)},1302165>) (20158 entries)
+     [java] 2009-02-09 19:04:50,945 INFO  fi.hut.cs.treelib.mdtree.PackedJTreeDatabase - Created a subtree of height 2; subtree is J-tree (h: 2), root: ((?,?):{(-119.472,34.2775):(-114.137,34.4352)}, P4690), extents: {(-119.472,34.2775):(-114.137,34.4352)}
+     [java] 2009-02-09 19:04:50,945 INFO  fi.hut.cs.treelib.mdtree.AbstractMDDatabase - Creating slice from 726842 (<{(-118.92,34.3678):(-118.92,34.3678)},510548>) to 747043(<{(-117.391,34.4287):(-117.386,34.4331)},1579760>) (20202 entries)
+     [java] 2009-02-09 19:04:51,242 INFO  fi.hut.cs.treelib.mdtree.PackedJTreeDatabase - Created a subtree of height 2; subtree is J-tree (h: 2), root: ((?,?):{(-119.9,34.3678):(-114.269,34.468)}, P4823), extents: {(-119.9,34.3678):(-114.269,34.468)}
+     [java] 2009-02-09 19:04:51,242 INFO  fi.hut.cs.treelib.mdtree.AbstractMDDatabase - Creating slice from 747044 (<{(-119.674,34.4288):(-119.674,34.4288)},1156991>) to 767254(<{(-119.2,34.4774):(-119.199,34.4862)},1761581>) (20211 entries)
+     [java] 2009-02-09 19:04:51,585 INFO  fi.hut.cs.treelib.mdtree.PackedJTreeDatabase - Created a subtree of height 2; subtree is J-tree (h: 2), root: ((?,?):{(-120.474,34.4288):(-114.343,34.5336)}, P4957), extents: {(-120.474,34.4288):(-114.343,34.5336)}
+     [java] 2009-02-09 19:04:51,585 INFO  fi.hut.cs.treelib.mdtree.AbstractMDDatabase - Creating slice from 767255 (<{(-117.456,34.4775):(-117.454,34.4775)},554489>) to 787428(<{(-117.382,34.572):(-117.382,34.5795)},843346>) (20174 entries)
+     [java] 2009-02-09 19:04:51,975 INFO  fi.hut.cs.treelib.mdtree.PackedJTreeDatabase - Created a subtree of height 2; subtree is J-tree (h: 2), root: ((?,?):{(-120.635,34.4775):(-114.389,34.6183)}, P5091), extents: {(-120.635,34.4775):(-114.389,34.6183)}
+     [java] 2009-02-09 19:04:51,975 INFO  fi.hut.cs.treelib.mdtree.AbstractMDDatabase - Creating slice from 787429 (<{(-118.077,34.5721):(-118.076,34.5721)},307112>) to 807605(<{(-117.61,34.6824):(-117.61,34.6858)},1837934>) (20177 entries)
+     [java] 2009-02-09 19:04:52,303 INFO  fi.hut.cs.treelib.mdtree.PackedJTreeDatabase - Created a subtree of height 2; subtree is J-tree (h: 2), root: ((?,?):{(-120.647,34.5721):(-114.439,34.7327)}, P5224), extents: {(-120.647,34.5721):(-114.439,34.7327)}
+     [java] 2009-02-09 19:04:52,303 INFO  fi.hut.cs.treelib.mdtree.AbstractMDDatabase - Creating slice from 807606 (<{(-118.223,34.6825):(-118.221,34.6825)},134374>) to 827793(<{(-119.018,34.8416):(-119.012,34.8601)},1648265>) (20188 entries)
+     [java] 2009-02-09 19:04:52,630 INFO  fi.hut.cs.treelib.mdtree.PackedJTreeDatabase - Created a subtree of height 2; subtree is J-tree (h: 2), root: ((?,?):{(-120.633,34.6825):(-114.488,34.9085)}, P5358), extents: {(-120.633,34.6825):(-114.488,34.9085)}
+     [java] 2009-02-09 19:04:52,630 INFO  fi.hut.cs.treelib.mdtree.AbstractMDDatabase - Creating slice from 827794 (<{(-119.164,34.8417):(-119.163,34.8417)},133599>) to 848000(<{(-116.697,34.9416):(-116.697,34.9563)},462233>) (20207 entries)
+     [java] 2009-02-09 19:04:53,051 INFO  fi.hut.cs.treelib.mdtree.PackedJTreeDatabase - Created a subtree of height 2; subtree is J-tree (h: 2), root: ((?,?):{(-120.655,34.8417):(-114.596,34.9955)}, P5492), extents: {(-120.655,34.8417):(-114.596,34.9955)}
+     [java] 2009-02-09 19:04:53,051 INFO  fi.hut.cs.treelib.mdtree.AbstractMDDatabase - Creating slice from 848001 (<{(-120.436,34.9417):(-120.434,34.9417)},1006913>) to 868169(<{(-117.553,35.0671):(-117.553,35.0719)},6014>) (20169 entries)
+     [java] 2009-02-09 19:04:53,363 INFO  fi.hut.cs.treelib.mdtree.PackedJTreeDatabase - Created a subtree of height 2; subtree is J-tree (h: 2), root: ((?,?):{(-120.648,34.9417):(-114.631,35.1032)}, P5626), extents: {(-120.648,34.9417):(-114.631,35.1032)}
+     [java] 2009-02-09 19:04:53,363 INFO  fi.hut.cs.treelib.mdtree.AbstractMDDatabase - Creating slice from 868170 (<{(-118.917,35.0672):(-118.909,35.0672)},1634004>) to 888360(<{(-119.967,35.1554):(-119.967,35.1633)},428594>) (20191 entries)
+     [java] 2009-02-09 19:04:53,707 INFO  fi.hut.cs.treelib.mdtree.PackedJTreeDatabase - Created a subtree of height 2; subtree is J-tree (h: 2), root: ((?,?):{(-120.684,35.0672):(-114.734,35.2087)}, P5759), extents: {(-120.684,35.0672):(-114.734,35.2087)}
+     [java] 2009-02-09 19:04:53,707 INFO  fi.hut.cs.treelib.mdtree.AbstractMDDatabase - Creating slice from 888361 (<{(-119.861,35.1555):(-119.86,35.1555)},2127>) to 908564(<{(-119.867,35.2782):(-119.867,35.2855)},183748>) (20204 entries)
+     [java] 2009-02-09 19:04:54,065 INFO  fi.hut.cs.treelib.mdtree.PackedJTreeDatabase - Created a subtree of height 2; subtree is J-tree (h: 2), root: ((?,?):{(-120.895,35.1555):(-114.836,35.3547)}, P5893), extents: {(-120.895,35.1555):(-114.836,35.3547)}
+     [java] 2009-02-09 19:04:54,065 INFO  fi.hut.cs.treelib.mdtree.AbstractMDDatabase - Creating slice from 908565 (<{(-119.972,35.2783):(-119.97,35.2783)},1345646>) to 928748(<{(-119.474,35.3622):(-119.47,35.3686)},45768>) (20184 entries)
+     [java] 2009-02-09 19:04:54,409 INFO  fi.hut.cs.treelib.mdtree.PackedJTreeDatabase - Created a subtree of height 2; subtree is J-tree (h: 2), root: ((?,?):{(-120.883,35.2783):(-115.073,35.4049)}, P6027), extents: {(-120.883,35.2783):(-115.073,35.4049)}
+     [java] 2009-02-09 19:04:54,409 INFO  fi.hut.cs.treelib.mdtree.AbstractMDDatabase - Creating slice from 928749 (<{(-118.952,35.3623):(-118.952,35.3623)},1706882>) to 948941(<{(-119.638,35.4413):(-119.62,35.4702)},487434>) (20193 entries)
+     [java] 2009-02-09 19:04:54,799 INFO  fi.hut.cs.treelib.mdtree.PackedJTreeDatabase - Created a subtree of height 2; subtree is J-tree (h: 2), root: ((?,?):{(-120.895,35.3623):(-115.085,35.4702)}, P6161), extents: {(-120.895,35.3623):(-115.085,35.4702)}
+     [java] 2009-02-09 19:04:54,799 INFO  fi.hut.cs.treelib.mdtree.AbstractMDDatabase - Creating slice from 948942 (<{(-119.719,35.4414):(-119.719,35.4414)},1991005>) to 969121(<{(-119.64,35.5725):(-119.635,35.5978)},431671>) (20180 entries)
+     [java] 2009-02-09 19:04:55,220 INFO  fi.hut.cs.treelib.mdtree.PackedJTreeDatabase - Created a subtree of height 2; subtree is J-tree (h: 2), root: ((?,?):{(-121.113,35.4414):(-115.199,35.6126)}, P6295), extents: {(-121.113,35.4414):(-115.199,35.6126)}
+     [java] 2009-02-09 19:04:55,220 INFO  fi.hut.cs.treelib.mdtree.AbstractMDDatabase - Creating slice from 969122 (<{(-119.664,35.5726):(-119.654,35.5726)},1438451>) to 989320(<{(-119.205,35.689):(-119.205,35.7033)},1531145>) (20199 entries)
+     [java] 2009-02-09 19:04:55,610 INFO  fi.hut.cs.treelib.mdtree.PackedJTreeDatabase - Created a subtree of height 2; subtree is J-tree (h: 2), root: ((?,?):{(-121.291,35.5726):(-115.372,35.7496)}, P6428), extents: {(-121.291,35.5726):(-115.372,35.7496)}
+     [java] 2009-02-09 19:04:55,610 INFO  fi.hut.cs.treelib.mdtree.AbstractMDDatabase - Creating slice from 989321 (<{(-119.195,35.6891):(-119.195,35.6891)},469677>) to 1009499(<{(-119.609,35.8916):(-119.609,35.9052)},1846857>) (20179 entries)
+     [java] 2009-02-09 19:04:55,984 INFO  fi.hut.cs.treelib.mdtree.PackedJTreeDatabase - Created a subtree of height 2; subtree is J-tree (h: 2), root: ((?,?):{(-121.461,35.6891):(-115.506,35.9342)}, P6562), extents: {(-121.461,35.6891):(-115.506,35.9342)}
+     [java] 2009-02-09 19:04:55,984 INFO  fi.hut.cs.treelib.mdtree.AbstractMDDatabase - Creating slice from 1009500 (<{(-119.385,35.8917):(-119.382,35.8917)},1592391>) to 1029701(<{(-120.899,36.0858):(-120.891,36.0903)},1920550>) (20202 entries)
+     [java] 2009-02-09 19:04:56,374 INFO  fi.hut.cs.treelib.mdtree.PackedJTreeDatabase - Created a subtree of height 2; subtree is J-tree (h: 2), root: ((?,?):{(-121.619,35.8917):(-115.802,36.1353)}, P6696), extents: {(-121.619,35.8917):(-115.802,36.1353)}
+     [java] 2009-02-09 19:04:56,374 INFO  fi.hut.cs.treelib.mdtree.AbstractMDDatabase - Creating slice from 1029702 (<{(-119.036,36.0859):(-119.035,36.0859)},582503>) to 1049881(<{(-121.212,36.2496):(-121.202,36.2553)},1397348>) (20180 entries)
+     [java] 2009-02-09 19:04:56,795 INFO  fi.hut.cs.treelib.mdtree.PackedJTreeDatabase - Created a subtree of height 2; subtree is J-tree (h: 2), root: ((?,?):{(-121.821,36.0859):(-116.032,36.3017)}, P6830), extents: {(-121.821,36.0859):(-116.032,36.3017)}
+     [java] 2009-02-09 19:04:56,795 INFO  fi.hut.cs.treelib.mdtree.AbstractMDDatabase - Creating slice from 1049882 (<{(-117.447,36.2497):(-117.447,36.25)},4993>) to 1070082(<{(-120.185,36.375):(-120.185,36.3856)},629213>) (20201 entries)
+     [java] 2009-02-09 19:04:57,185 INFO  fi.hut.cs.treelib.mdtree.PackedJTreeDatabase - Created a subtree of height 2; subtree is J-tree (h: 2), root: ((?,?):{(-121.905,36.2497):(-116.315,36.4361)}, P6964), extents: {(-121.905,36.2497):(-116.315,36.4361)}
+     [java] 2009-02-09 19:04:57,185 INFO  fi.hut.cs.treelib.mdtree.AbstractMDDatabase - Creating slice from 1070083 (<{(-118.014,36.3751):(-118.008,36.3758)},687780>) to 1090280(<{(-120.026,36.5751):(-120.025,36.5893)},1606777>) (20198 entries)
+     [java] 2009-02-09 19:04:57,575 INFO  fi.hut.cs.treelib.mdtree.PackedJTreeDatabase - Created a subtree of height 2; subtree is J-tree (h: 2), root: ((?,?):{(-121.971,36.3751):(-116.412,36.6032)}, P7098), extents: {(-121.971,36.3751):(-116.412,36.6032)}
+     [java] 2009-02-09 19:04:57,575 INFO  fi.hut.cs.treelib.mdtree.AbstractMDDatabase - Creating slice from 1090281 (<{(-121.862,36.5752):(-121.86,36.5752)},471877>) to 1110458(<{(-119.115,36.6899):(-119.104,36.6925)},1177346>) (20178 entries)
+     [java] 2009-02-09 19:04:57,997 INFO  fi.hut.cs.treelib.mdtree.PackedJTreeDatabase - Created a subtree of height 2; subtree is J-tree (h: 2), root: ((?,?):{(-121.976,36.5752):(-116.657,36.7475)}, P7232), extents: {(-121.976,36.5752):(-116.657,36.7475)}
+     [java] 2009-02-09 19:04:57,997 INFO  fi.hut.cs.treelib.mdtree.AbstractMDDatabase - Creating slice from 1110459 (<{(-121.164,36.69):(-121.164,36.69)},1261439>) to 1130639(<{(-121.657,36.7774):(-121.657,36.7793)},1516455>) (20181 entries)
+     [java] 2009-02-09 19:04:58,355 INFO  fi.hut.cs.treelib.mdtree.PackedJTreeDatabase - Created a subtree of height 2; subtree is J-tree (h: 2), root: ((?,?):{(-121.809,36.69):(-116.821,36.8069)}, P7366), extents: {(-121.809,36.69):(-116.821,36.8069)}
+     [java] 2009-02-09 19:04:58,355 INFO  fi.hut.cs.treelib.mdtree.AbstractMDDatabase - Creating slice from 1130640 (<{(-121.655,36.7775):(-121.655,36.7775)},893392>) to 1150840(<{(-121.802,36.8449):(-121.797,36.8486)},1155824>) (20201 entries)
+     [java] 2009-02-09 19:04:58,667 INFO  fi.hut.cs.treelib.mdtree.PackedJTreeDatabase - Created a subtree of height 2; subtree is J-tree (h: 2), root: ((?,?):{(-121.802,36.7775):(-116.958,36.8976)}, P7500), extents: {(-121.802,36.7775):(-116.958,36.8976)}
+     [java] 2009-02-09 19:04:58,667 INFO  fi.hut.cs.treelib.mdtree.AbstractMDDatabase - Creating slice from 1150841 (<{(-121.406,36.845):(-121.404,36.845)},1602795>) to 1171027(<{(-122.025,36.9734):(-122.024,36.9772)},913407>) (20187 entries)
+     [java] 2009-02-09 19:04:58,995 INFO  fi.hut.cs.treelib.mdtree.PackedJTreeDatabase - Created a subtree of height 2; subtree is J-tree (h: 2), root: ((?,?):{(-122.136,36.845):(-117.062,37.0042)}, P7634), extents: {(-122.136,36.845):(-117.062,37.0042)}
+     [java] 2009-02-09 19:04:58,995 INFO  fi.hut.cs.treelib.mdtree.AbstractMDDatabase - Creating slice from 1171028 (<{(-121.985,36.9735):(-121.985,36.9735)},1417048>) to 1191219(<{(-120.807,37.0725):(-120.803,37.077)},841087>) (20192 entries)
+     [java] 2009-02-09 19:04:59,385 INFO  fi.hut.cs.treelib.mdtree.PackedJTreeDatabase - Created a subtree of height 2; subtree is J-tree (h: 2), root: ((?,?):{(-122.268,36.9735):(-117.286,37.0995)}, P7768), extents: {(-122.268,36.9735):(-117.286,37.0995)}
+     [java] 2009-02-09 19:04:59,385 INFO  fi.hut.cs.treelib.mdtree.AbstractMDDatabase - Creating slice from 1191220 (<{(-122.056,37.0726):(-122.056,37.073)},180256>) to 1211411(<{(-121.735,37.2235):(-121.726,37.2292)},1747501>) (20192 entries)
+     [java] 2009-02-09 19:04:59,759 INFO  fi.hut.cs.treelib.mdtree.PackedJTreeDatabase - Created a subtree of height 2; subtree is J-tree (h: 2), root: ((?,?):{(-122.408,37.0726):(-117.459,37.2425)}, P7902), extents: {(-122.408,37.0726):(-117.459,37.2425)}
+     [java] 2009-02-09 19:04:59,759 INFO  fi.hut.cs.treelib.mdtree.AbstractMDDatabase - Creating slice from 1211412 (<{(-121.837,37.2236):(-121.837,37.2236)},1544030>) to 1231590(<{(-120.325,37.2823):(-120.325,37.2841)},1985830>) (20179 entries)
+     [java] 2009-02-09 19:05:00,181 INFO  fi.hut.cs.treelib.mdtree.PackedJTreeDatabase - Created a subtree of height 2; subtree is J-tree (h: 2), root: ((?,?):{(-122.418,37.2236):(-117.534,37.3351)}, P8036), extents: {(-122.418,37.2236):(-117.534,37.3351)}
+     [java] 2009-02-09 19:05:00,181 INFO  fi.hut.cs.treelib.mdtree.AbstractMDDatabase - Creating slice from 1231591 (<{(-121.986,37.2824):(-121.985,37.2824)},586387>) to 1251846(<{(-120.906,37.3232):(-120.906,37.3282)},836750>) (20256 entries)
+     [java] 2009-02-09 19:05:00,508 INFO  fi.hut.cs.treelib.mdtree.PackedJTreeDatabase - Created a subtree of height 2; subtree is J-tree (h: 2), root: ((?,?):{(-122.407,37.2824):(-117.607,37.3859)}, P8170), extents: {(-122.407,37.2824):(-117.607,37.3859)}
+     [java] 2009-02-09 19:05:00,508 INFO  fi.hut.cs.treelib.mdtree.AbstractMDDatabase - Creating slice from 1251847 (<{(-121.948,37.3233):(-121.948,37.3233)},93582>) to 1272006(<{(-120.128,37.3636):(-120.117,37.3814)},1702601>) (20160 entries)
+     [java] 2009-02-09 19:05:00,820 INFO  fi.hut.cs.treelib.mdtree.PackedJTreeDatabase - Created a subtree of height 2; subtree is J-tree (h: 2), root: ((?,?):{(-122.405,37.3233):(-117.67,37.3859)}, P8304), extents: {(-122.405,37.3233):(-117.67,37.3859)}
+     [java] 2009-02-09 19:05:00,820 INFO  fi.hut.cs.treelib.mdtree.AbstractMDDatabase - Creating slice from 1272007 (<{(-122.108,37.3637):(-122.108,37.3637)},1424106>) to 1292185(<{(-118.614,37.4159):(-118.61,37.4315)},1490403>) (20179 entries)
+     [java] 2009-02-09 19:05:01,195 INFO  fi.hut.cs.treelib.mdtree.PackedJTreeDatabase - Created a subtree of height 2; subtree is J-tree (h: 2), root: ((?,?):{(-122.428,37.3637):(-117.749,37.4384)}, P8437), extents: {(-122.428,37.3637):(-117.749,37.4384)}
+     [java] 2009-02-09 19:05:01,195 INFO  fi.hut.cs.treelib.mdtree.AbstractMDDatabase - Creating slice from 1292186 (<{(-122.062,37.416):(-122.062,37.416)},855161>) to 1312359(<{(-121.97,37.4891):(-121.958,37.5024)},1665860>) (20174 entries)
+     [java] 2009-02-09 19:05:01,522 INFO  fi.hut.cs.treelib.mdtree.PackedJTreeDatabase - Created a subtree of height 2; subtree is J-tree (h: 2), root: ((?,?):{(-122.455,37.416):(-117.788,37.5259)}, P8571), extents: {(-122.455,37.416):(-117.788,37.5259)}
+     [java] 2009-02-09 19:05:01,522 INFO  fi.hut.cs.treelib.mdtree.AbstractMDDatabase - Creating slice from 1312360 (<{(-122.264,37.4892):(-122.264,37.4892)},1440909>) to 1332563(<{(-120.009,37.5569):(-120.001,37.5636)},499280>) (20204 entries)
+     [java] 2009-02-09 19:05:01,850 INFO  fi.hut.cs.treelib.mdtree.PackedJTreeDatabase - Created a subtree of height 2; subtree is J-tree (h: 2), root: ((?,?):{(-122.518,37.4892):(-117.922,37.58)}, P8704), extents: {(-122.518,37.4892):(-117.922,37.58)}
+     [java] 2009-02-09 19:05:01,850 INFO  fi.hut.cs.treelib.mdtree.AbstractMDDatabase - Creating slice from 1332564 (<{(-122.25,37.557):(-122.25,37.557)},965833>) to 1352731(<{(-119.648,37.6246):(-119.638,37.6318)},1841600>) (20168 entries)
+     [java] 2009-02-09 19:05:02,224 INFO  fi.hut.cs.treelib.mdtree.PackedJTreeDatabase - Created a subtree of height 2; subtree is J-tree (h: 2), root: ((?,?):{(-122.517,37.557):(-117.976,37.6503)}, P8838), extents: {(-122.517,37.557):(-117.976,37.6503)}
+     [java] 2009-02-09 19:05:02,224 INFO  fi.hut.cs.treelib.mdtree.AbstractMDDatabase - Creating slice from 1352732 (<{(-122.418,37.6247):(-122.417,37.6247)},511377>) to 1372966(<{(-120.921,37.6708):(-120.915,37.6846)},793282>) (20235 entries)
+     [java] 2009-02-09 19:05:02,536 INFO  fi.hut.cs.treelib.mdtree.PackedJTreeDatabase - Created a subtree of height 2; subtree is J-tree (h: 2), root: ((?,?):{(-122.496,37.6247):(-118.068,37.7189)}, P8971), extents: {(-122.496,37.6247):(-118.068,37.7189)}
+     [java] 2009-02-09 19:05:02,536 INFO  fi.hut.cs.treelib.mdtree.AbstractMDDatabase - Creating slice from 1372967 (<{(-122.141,37.6709):(-122.14,37.6709)},1575978>) to 1393156(<{(-119.005,37.7086):(-119.003,37.7129)},439819>) (20190 entries)
+     [java] 2009-02-09 19:05:02,848 INFO  fi.hut.cs.treelib.mdtree.PackedJTreeDatabase - Created a subtree of height 2; subtree is J-tree (h: 2), root: ((?,?):{(-122.498,37.6709):(-118.377,37.7266)}, P9105), extents: {(-122.498,37.6709):(-118.377,37.7266)}
+     [java] 2009-02-09 19:05:02,848 INFO  fi.hut.cs.treelib.mdtree.AbstractMDDatabase - Creating slice from 1393157 (<{(-122.443,37.7087):(-122.442,37.7087)},1437521>) to 1413325(<{(-121.836,37.7487):(-121.832,37.7564)},1250505>) (20169 entries)
+     [java] 2009-02-09 19:05:03,223 INFO  fi.hut.cs.treelib.mdtree.PackedJTreeDatabase - Created a subtree of height 2; subtree is J-tree (h: 2), root: ((?,?):{(-123.098,37.7087):(-118.23,37.7724)}, P9239), extents: {(-123.098,37.7087):(-118.23,37.7724)}
+     [java] 2009-02-09 19:05:03,223 INFO  fi.hut.cs.treelib.mdtree.AbstractMDDatabase - Creating slice from 1413326 (<{(-122.469,37.7488):(-122.468,37.7488)},1623047>) to 1433529(<{(-120.863,37.7884):(-120.855,37.7907)},1453117>) (20204 entries)
+     [java] 2009-02-09 19:05:03,550 INFO  fi.hut.cs.treelib.mdtree.PackedJTreeDatabase - Created a subtree of height 2; subtree is J-tree (h: 2), root: ((?,?):{(-122.514,37.7488):(-118.23,37.8223)}, P9372), extents: {(-122.514,37.7488):(-118.23,37.8223)}
+     [java] 2009-02-09 19:05:03,550 INFO  fi.hut.cs.treelib.mdtree.AbstractMDDatabase - Creating slice from 1433530 (<{(-122.445,37.7885):(-122.445,37.7885)},561165>) to 1453687(<{(-121.951,37.8372):(-121.95,37.8423)},460027>) (20158 entries)
+     [java] 2009-02-09 19:05:03,925 INFO  fi.hut.cs.treelib.mdtree.PackedJTreeDatabase - Created a subtree of height 2; subtree is J-tree (h: 2), root: ((?,?):{(-122.548,37.7885):(-118.424,37.8657)}, P9506), extents: {(-122.548,37.7885):(-118.424,37.8657)}
+     [java] 2009-02-09 19:05:03,925 INFO  fi.hut.cs.treelib.mdtree.AbstractMDDatabase - Creating slice from 1453688 (<{(-122.254,37.8373):(-122.253,37.8373)},1253982>) to 1473896(<{(-122.524,37.9071):(-122.522,37.9129)},1490329>) (20209 entries)
+     [java] 2009-02-09 19:05:04,346 INFO  fi.hut.cs.treelib.mdtree.PackedJTreeDatabase - Created a subtree of height 2; subtree is J-tree (h: 2), root: ((?,?):{(-122.728,37.8373):(-118.421,37.9386)}, P9640), extents: {(-122.728,37.8373):(-118.421,37.9386)}
+     [java] 2009-02-09 19:05:04,346 INFO  fi.hut.cs.treelib.mdtree.AbstractMDDatabase - Creating slice from 1473897 (<{(-122.544,37.9072):(-122.544,37.9072)},840990>) to 1494064(<{(-120.082,37.9553):(-120.075,37.9586)},1953781>) (20168 entries)
+     [java] 2009-02-09 19:05:04,673 INFO  fi.hut.cs.treelib.mdtree.PackedJTreeDatabase - Created a subtree of height 2; subtree is J-tree (h: 2), root: ((?,?):{(-122.733,37.9072):(-118.459,37.9852)}, P9774), extents: {(-122.733,37.9072):(-118.459,37.9852)}
+     [java] 2009-02-09 19:05:04,673 INFO  fi.hut.cs.treelib.mdtree.AbstractMDDatabase - Creating slice from 1494065 (<{(-122.565,37.9554):(-122.565,37.9554)},1888792>) to 1514265(<{(-120.651,37.9891):(-120.649,38.0033)},710626>) (20201 entries)
+     [java] 2009-02-09 19:05:04,985 INFO  fi.hut.cs.treelib.mdtree.PackedJTreeDatabase - Created a subtree of height 2; subtree is J-tree (h: 2), root: ((?,?):{(-122.754,37.9554):(-118.525,38.0366)}, P9908), extents: {(-122.754,37.9554):(-118.525,38.0366)}
+     [java] 2009-02-09 19:05:04,985 INFO  fi.hut.cs.treelib.mdtree.AbstractMDDatabase - Creating slice from 1514266 (<{(-122.584,37.9892):(-122.584,37.9892)},1229183>) to 1534459(<{(-122.76,38.0296):(-122.758,38.0363)},635038>) (20194 entries)
+     [java] 2009-02-09 19:05:05,375 INFO  fi.hut.cs.treelib.mdtree.PackedJTreeDatabase - Created a subtree of height 2; subtree is J-tree (h: 2), root: ((?,?):{(-123.023,37.9892):(-118.694,38.0509)}, P10042), extents: {(-123.023,37.9892):(-118.694,38.0509)}
+     [java] 2009-02-09 19:05:05,375 INFO  fi.hut.cs.treelib.mdtree.AbstractMDDatabase - Creating slice from 1534460 (<{(-121.976,38.0297):(-121.976,38.0297)},1078016>) to 1554644(<{(-121.257,38.1255):(-121.257,38.1306)},1237332>) (20185 entries)
+     [java] 2009-02-09 19:05:05,750 INFO  fi.hut.cs.treelib.mdtree.PackedJTreeDatabase - Created a subtree of height 2; subtree is J-tree (h: 2), root: ((?,?):{(-122.994,38.0297):(-118.645,38.2022)}, P10176), extents: {(-122.994,38.0297):(-118.645,38.2022)}
+     [java] 2009-02-09 19:05:05,750 INFO  fi.hut.cs.treelib.mdtree.AbstractMDDatabase - Creating slice from 1554645 (<{(-122.101,38.1256):(-122.101,38.1256)},1226312>) to 1574835(<{(-121.723,38.255):(-121.72,38.2623)},658741>) (20191 entries)
+     [java] 2009-02-09 19:05:06,062 INFO  fi.hut.cs.treelib.mdtree.PackedJTreeDatabase - Created a subtree of height 2; subtree is J-tree (h: 2), root: ((?,?):{(-122.97,38.1256):(-118.771,38.2711)}, P10310), extents: {(-122.97,38.1256):(-118.771,38.2711)}
+     [java] 2009-02-09 19:05:06,062 INFO  fi.hut.cs.treelib.mdtree.AbstractMDDatabase - Creating slice from 1574836 (<{(-122.017,38.2551):(-122.016,38.2551)},1268310>) to 1595026(<{(-122.252,38.3419):(-122.252,38.3444)},863141>) (20191 entries)
+     [java] 2009-02-09 19:05:06,421 INFO  fi.hut.cs.treelib.mdtree.PackedJTreeDatabase - Created a subtree of height 2; subtree is J-tree (h: 2), root: ((?,?):{(-123.078,38.2551):(-118.95,38.3551)}, P10444), extents: {(-123.078,38.2551):(-118.95,38.3551)}
+     [java] 2009-02-09 19:05:06,436 INFO  fi.hut.cs.treelib.mdtree.AbstractMDDatabase - Creating slice from 1595027 (<{(-122.704,38.342):(-122.704,38.342)},1151538>) to 1615199(<{(-120.148,38.4292):(-120.138,38.4392)},255845>) (20173 entries)
+     [java] 2009-02-09 19:05:06,779 INFO  fi.hut.cs.treelib.mdtree.PackedJTreeDatabase - Created a subtree of height 2; subtree is J-tree (h: 2), root: ((?,?):{(-123.108,38.342):(-119.088,38.4546)}, P10578), extents: {(-123.108,38.342):(-119.088,38.4546)}
+     [java] 2009-02-09 19:05:06,779 INFO  fi.hut.cs.treelib.mdtree.AbstractMDDatabase - Creating slice from 1615200 (<{(-122.719,38.4293):(-122.718,38.4293)},1750692>) to 1635390(<{(-120.788,38.491):(-120.777,38.4966)},1874326>) (20191 entries)
+     [java] 2009-02-09 19:05:07,138 INFO  fi.hut.cs.treelib.mdtree.PackedJTreeDatabase - Created a subtree of height 2; subtree is J-tree (h: 2), root: ((?,?):{(-123.194,38.4293):(-119.205,38.5303)}, P10711), extents: {(-123.194,38.4293):(-119.205,38.5303)}
+     [java] 2009-02-09 19:05:07,138 INFO  fi.hut.cs.treelib.mdtree.AbstractMDDatabase - Creating slice from 1635391 (<{(-121.409,38.4911):(-121.407,38.4911)},1537163>) to 1655601(<{(-121.416,38.5539):(-121.41,38.5585)},113378>) (20211 entries)
+     [java] 2009-02-09 19:05:07,481 INFO  fi.hut.cs.treelib.mdtree.PackedJTreeDatabase - Created a subtree of height 2; subtree is J-tree (h: 2), root: ((?,?):{(-123.305,38.4911):(-119.35,38.5712)}, P10845), extents: {(-123.305,38.4911):(-119.35,38.5712)}
+     [java] 2009-02-09 19:05:07,481 INFO  fi.hut.cs.treelib.mdtree.AbstractMDDatabase - Creating slice from 1655602 (<{(-121.742,38.554):(-121.741,38.554)},142423>) to 1675791(<{(-121.711,38.6186):(-121.711,38.6439)},693266>) (20190 entries)
+     [java] 2009-02-09 19:05:07,825 INFO  fi.hut.cs.treelib.mdtree.PackedJTreeDatabase - Created a subtree of height 2; subtree is J-tree (h: 2), root: ((?,?):{(-123.375,38.554):(-119.38,38.6439)}, P10979), extents: {(-123.375,38.554):(-119.38,38.6439)}
+     [java] 2009-02-09 19:05:07,825 INFO  fi.hut.cs.treelib.mdtree.AbstractMDDatabase - Creating slice from 1675792 (<{(-121.346,38.6187):(-121.343,38.6187)},924559>) to 1695967(<{(-120.327,38.6782):(-120.304,38.6904)},1078271>) (20176 entries)
+     [java] 2009-02-09 19:05:08,230 INFO  fi.hut.cs.treelib.mdtree.PackedJTreeDatabase - Created a subtree of height 2; subtree is J-tree (h: 2), root: ((?,?):{(-123.424,38.6187):(-119.454,38.7052)}, P11113), extents: {(-123.424,38.6187):(-119.454,38.7052)}
+     [java] 2009-02-09 19:05:08,230 INFO  fi.hut.cs.treelib.mdtree.AbstractMDDatabase - Creating slice from 1695968 (<{(-121.83,38.6783):(-121.83,38.6783)},1286918>) to 1716166(<{(-122.574,38.7389):(-122.568,38.7431)},1913889>) (20199 entries)
+     [java] 2009-02-09 19:05:08,620 INFO  fi.hut.cs.treelib.mdtree.PackedJTreeDatabase - Created a subtree of height 2; subtree is J-tree (h: 2), root: ((?,?):{(-123.498,38.6783):(-119.548,38.7685)}, P11247), extents: {(-123.498,38.6783):(-119.548,38.7685)}
+     [java] 2009-02-09 19:05:08,620 INFO  fi.hut.cs.treelib.mdtree.AbstractMDDatabase - Creating slice from 1716167 (<{(-121.279,38.739):(-121.276,38.739)},1798408>) to 1736349(<{(-123.689,38.8836):(-123.674,38.9003)},1759378>) (20183 entries)
+     [java] 2009-02-09 19:05:08,979 INFO  fi.hut.cs.treelib.mdtree.PackedJTreeDatabase - Created a subtree of height 2; subtree is J-tree (h: 2), root: ((?,?):{(-123.689,38.739):(-119.641,38.9247)}, P11381), extents: {(-123.689,38.739):(-119.641,38.9247)}
+     [java] 2009-02-09 19:05:08,979 INFO  fi.hut.cs.treelib.mdtree.AbstractMDDatabase - Creating slice from 1736350 (<{(-121.155,38.8837):(-121.155,38.8837)},573814>) to 1756532(<{(-121.649,39.0111):(-121.649,39.0254)},255705>) (20183 entries)
+     [java] 2009-02-09 19:05:09,307 INFO  fi.hut.cs.treelib.mdtree.PackedJTreeDatabase - Created a subtree of height 2; subtree is J-tree (h: 2), root: ((?,?):{(-123.741,38.8837):(-119.887,39.0254)}, P11515), extents: {(-123.741,38.8837):(-119.887,39.0254)}
+     [java] 2009-02-09 19:05:09,307 INFO  fi.hut.cs.treelib.mdtree.AbstractMDDatabase - Creating slice from 1756533 (<{(-122.853,39.0112):(-122.848,39.0112)},624259>) to 1776731(<{(-121.145,39.1335):(-121.143,39.1373)},1821106>) (20199 entries)
+     [java] 2009-02-09 19:05:09,619 INFO  fi.hut.cs.treelib.mdtree.PackedJTreeDatabase - Created a subtree of height 2; subtree is J-tree (h: 2), root: ((?,?):{(-123.719,39.0112):(-120.112,39.1608)}, P11649), extents: {(-123.719,39.0112):(-120.112,39.1608)}
+     [java] 2009-02-09 19:05:09,619 INFO  fi.hut.cs.treelib.mdtree.AbstractMDDatabase - Creating slice from 1776732 (<{(-121.629,39.1336):(-121.628,39.1336)},440543>) to 1796924(<{(-120.649,39.2381):(-120.637,39.2504)},475385>) (20193 entries)
+     [java] 2009-02-09 19:05:09,977 INFO  fi.hut.cs.treelib.mdtree.PackedJTreeDatabase - Created a subtree of height 2; subtree is J-tree (h: 2), root: ((?,?):{(-123.776,39.1336):(-120.006,39.2518)}, P11783), extents: {(-123.776,39.1336):(-120.006,39.2518)}
+     [java] 2009-02-09 19:05:09,977 INFO  fi.hut.cs.treelib.mdtree.AbstractMDDatabase - Creating slice from 1796925 (<{(-120.208,39.2382):(-120.207,39.2384)},928223>) to 1817102(<{(-120.399,39.3933):(-120.398,39.3971)},981980>) (20178 entries)
+     [java] 2009-02-09 19:05:10,352 INFO  fi.hut.cs.treelib.mdtree.PackedJTreeDatabase - Created a subtree of height 2; subtree is J-tree (h: 2), root: ((?,?):{(-123.826,39.2382):(-120.004,39.4202)}, P11917), extents: {(-123.826,39.2382):(-120.004,39.4202)}
+     [java] 2009-02-09 19:05:10,352 INFO  fi.hut.cs.treelib.mdtree.AbstractMDDatabase - Creating slice from 1817103 (<{(-121.203,39.3934):(-121.203,39.394)},190539>) to 1837292(<{(-121.895,39.5948):(-121.895,39.6092)},1779116>) (20190 entries)
+     [java] 2009-02-09 19:05:10,711 INFO  fi.hut.cs.treelib.mdtree.PackedJTreeDatabase - Created a subtree of height 2; subtree is J-tree (h: 2), root: ((?,?):{(-123.821,39.3934):(-120.002,39.6192)}, P12051), extents: {(-123.821,39.3934):(-120.002,39.6192)}
+     [java] 2009-02-09 19:05:10,711 INFO  fi.hut.cs.treelib.mdtree.AbstractMDDatabase - Creating slice from 1837293 (<{(-123.621,39.5949):(-123.619,39.5953)},409947>) to 1857493(<{(-121.874,39.7779):(-121.874,39.7787)},333421>) (20201 entries)
+     [java] 2009-02-09 19:05:11,054 INFO  fi.hut.cs.treelib.mdtree.PackedJTreeDatabase - Created a subtree of height 2; subtree is J-tree (h: 2), root: ((?,?):{(-123.843,39.5949):(-120.001,39.8228)}, P12185), extents: {(-123.843,39.5949):(-120.001,39.8228)}
+     [java] 2009-02-09 19:05:11,069 INFO  fi.hut.cs.treelib.mdtree.AbstractMDDatabase - Creating slice from 1857494 (<{(-121.956,39.778):(-121.955,39.7783)},391779>) to 1877670(<{(-120.666,40.0445):(-120.66,40.0482)},1991520>) (20177 entries)
+     [java] 2009-02-09 19:05:11,381 INFO  fi.hut.cs.treelib.mdtree.PackedJTreeDatabase - Created a subtree of height 2; subtree is J-tree (h: 2), root: ((?,?):{(-124.08,39.778):(-119.997,40.089)}, P12319), extents: {(-124.08,39.778):(-119.997,40.089)}
+     [java] 2009-02-09 19:05:11,381 INFO  fi.hut.cs.treelib.mdtree.AbstractMDDatabase - Creating slice from 1877671 (<{(-124.077,40.0446):(-124.076,40.0448)},339678>) to 1897861(<{(-121.01,40.3144):(-121.004,40.346)},1447511>) (20191 entries)
+     [java] 2009-02-09 19:05:11,725 INFO  fi.hut.cs.treelib.mdtree.PackedJTreeDatabase - Created a subtree of height 2; subtree is J-tree (h: 2), root: ((?,?):{(-124.363,40.0446):(-119.996,40.346)}, P12453), extents: {(-124.363,40.0446):(-119.996,40.346)}
+     [java] 2009-02-09 19:05:11,725 INFO  fi.hut.cs.treelib.mdtree.AbstractMDDatabase - Creating slice from 1897862 (<{(-121.082,40.3145):(-121.076,40.3145)},753725>) to 1918050(<{(-121.636,40.5326):(-121.629,40.5446)},198989>) (20189 entries)
+     [java] 2009-02-09 19:05:12,146 INFO  fi.hut.cs.treelib.mdtree.PackedJTreeDatabase - Created a subtree of height 2; subtree is J-tree (h: 2), root: ((?,?):{(-124.407,40.3145):(-119.996,40.5674)}, P12587), extents: {(-124.407,40.3145):(-119.996,40.5674)}
+     [java] 2009-02-09 19:05:12,146 INFO  fi.hut.cs.treelib.mdtree.AbstractMDDatabase - Creating slice from 1918051 (<{(-121.682,40.5327):(-121.682,40.5327)},1607838>) to 1938243(<{(-121.52,40.7134):(-121.518,40.7242)},895013>) (20193 entries)
+     [java] 2009-02-09 19:05:12,473 INFO  fi.hut.cs.treelib.mdtree.PackedJTreeDatabase - Created a subtree of height 2; subtree is J-tree (h: 2), root: ((?,?):{(-124.358,40.5327):(-119.996,40.7484)}, P12721), extents: {(-124.358,40.5327):(-119.996,40.7484)}
+     [java] 2009-02-09 19:05:12,489 INFO  fi.hut.cs.treelib.mdtree.AbstractMDDatabase - Creating slice from 1938244 (<{(-121.595,40.7135):(-121.591,40.7138)},1394019>) to 1958429(<{(-123.938,40.986):(-123.931,40.9889)},688699>) (20186 entries)
+     [java] 2009-02-09 19:05:12,801 INFO  fi.hut.cs.treelib.mdtree.PackedJTreeDatabase - Created a subtree of height 2; subtree is J-tree (h: 2), root: ((?,?):{(-124.235,40.7135):(-119.998,41.0201)}, P12855), extents: {(-124.235,40.7135):(-119.998,41.0201)}
+     [java] 2009-02-09 19:05:12,801 INFO  fi.hut.cs.treelib.mdtree.AbstractMDDatabase - Creating slice from 1958430 (<{(-120.875,40.9861):(-120.875,40.9864)},158166>) to 1978625(<{(-121.926,41.3204):(-121.921,41.3343)},890000>) (20196 entries)
+     [java] 2009-02-09 19:05:13,144 INFO  fi.hut.cs.treelib.mdtree.PackedJTreeDatabase - Created a subtree of height 2; subtree is J-tree (h: 2), root: ((?,?):{(-124.163,40.9861):(-120.0,41.3612)}, P12989), extents: {(-124.163,40.9861):(-120.0,41.3612)}
+     [java] 2009-02-09 19:05:13,144 INFO  fi.hut.cs.treelib.mdtree.AbstractMDDatabase - Creating slice from 1978626 (<{(-122.085,41.3205):(-122.077,41.3229)},1736411>) to 1998812(<{(-122.862,41.6595):(-122.858,41.6676)},353853>) (20187 entries)
+     [java] 2009-02-09 19:05:13,441 INFO  fi.hut.cs.treelib.mdtree.PackedJTreeDatabase - Created a subtree of height 2; subtree is J-tree (h: 2), root: ((?,?):{(-124.122,41.3205):(-119.998,41.6955)}, P13123), extents: {(-124.122,41.3205):(-119.998,41.6955)}
+     [java] 2009-02-09 19:05:13,441 INFO  fi.hut.cs.treelib.mdtree.AbstractMDDatabase - Creating slice from 1998813 (<{(-122.398,41.6596):(-122.392,41.6599)},1329616>) to 2018979(<{(-122.344,42.0076):(-122.344,42.0088)},662399>) (20167 entries)
+     [java] 2009-02-09 19:05:13,753 INFO  fi.hut.cs.treelib.mdtree.PackedJTreeDatabase - Created a subtree of height 2; subtree is J-tree (h: 2), root: ((?,?):{(-124.253,41.6596):(-119.998,42.0092)}, P13257), extents: {(-124.253,41.6596):(-119.998,42.0092)}
+     [java] 2009-02-09 19:05:13,753 INFO  fi.hut.cs.treelib.operations.BulkLoadOperation - Bulk-load complete
+     [java] 2009-02-09 19:05:13,753 INFO  fi.hut.cs.treelib.operations.OperationExecutor - Execution complete, showing statistics
+
+append-run-log:
+
+generic-tree-overlaps:
+     [echo] Overlap query, config: exec-pjtree.xml, dataset: mbr-large-window-1.txt (10000000; skip 0)
+     [java] 2009-02-09 19:05:14,096 INFO  fi.hut.cs.treelib.operations.OperationExecutor - Initializing application context
+     [java] 2009-02-09 19:05:14,486 INFO  fi.hut.cs.treelib.operations.OperationExecutor - Initializing Operation Executor
+     [java] 2009-02-09 19:05:14,486 INFO  fi.hut.cs.treelib.operations.OperationExecutor - Starting execution
+     [java] 2009-02-09 19:05:14,486 INFO  fi.hut.cs.treelib.operations.OperationExecutor - Database is Packed J-tree database, roots: J-tree (h: 1), root: ((?,?):{(-124.407,32.5399):(-114.134,42.0092)}, P1), extents: {(-124.407,32.5399):(-114.134,42.0092)}
+     [java] 2009-02-09 19:05:14,486 INFO  fi.hut.cs.treelib.operations.OperationExecutor - Buffer is Pagebuffer, size: 200 (page size: 4096), fixes: 1, free: 198
+     [java] 2009-02-09 19:06:23,703 INFO  fi.hut.cs.treelib.operations.ProgressCounter - overlaps: 10000
+     [java] 2009-02-09 19:06:23,703 INFO  fi.hut.cs.treelib.operations.OperationExecutor - Execution complete, showing statistics
+
+append-run-log:
+
+generic-tree-overlaps:
+     [echo] Overlap query, config: exec-pjtree.xml, dataset: mbr-large-window-5.txt (10000000; skip 0)
+     [java] 2009-02-09 19:06:24,015 INFO  fi.hut.cs.treelib.operations.OperationExecutor - Initializing application context
+     [java] 2009-02-09 19:06:24,374 INFO  fi.hut.cs.treelib.operations.OperationExecutor - Initializing Operation Executor
+     [java] 2009-02-09 19:06:24,389 INFO  fi.hut.cs.treelib.operations.OperationExecutor - Starting execution
+     [java] 2009-02-09 19:06:24,389 INFO  fi.hut.cs.treelib.operations.OperationExecutor - Database is Packed J-tree database, roots: J-tree (h: 1), root: ((?,?):{(-124.407,32.5399):(-114.134,42.0092)}, P1), extents: {(-124.407,32.5399):(-114.134,42.0092)}
+     [java] 2009-02-09 19:06:24,389 INFO  fi.hut.cs.treelib.operations.OperationExecutor - Buffer is Pagebuffer, size: 200 (page size: 4096), fixes: 1, free: 198
+     [java] 2009-02-09 19:19:04,152 INFO  fi.hut.cs.treelib.operations.ProgressCounter - overlaps: 10000
+     [java] 2009-02-09 19:19:04,153 INFO  fi.hut.cs.treelib.operations.OperationExecutor - Execution complete, showing statistics
+
+append-run-log:
+
+generic-tree-overlaps:
+     [echo] Overlap query, config: exec-pjtree.xml, dataset: mbr-large-window-10.txt (10000000; skip 0)
+     [java] 2009-02-09 19:19:04,370 INFO  fi.hut.cs.treelib.operations.OperationExecutor - Initializing application context
+     [java] 2009-02-09 19:19:04,755 INFO  fi.hut.cs.treelib.operations.OperationExecutor - Initializing Operation Executor
+     [java] 2009-02-09 19:19:04,762 INFO  fi.hut.cs.treelib.operations.OperationExecutor - Starting execution
+     [java] 2009-02-09 19:19:04,762 INFO  fi.hut.cs.treelib.operations.OperationExecutor - Database is Packed J-tree database, roots: J-tree (h: 1), root: ((?,?):{(-124.407,32.5399):(-114.134,42.0092)}, P1), extents: {(-124.407,32.5399):(-114.134,42.0092)}
+     [java] 2009-02-09 19:19:04,762 INFO  fi.hut.cs.treelib.operations.OperationExecutor - Buffer is Pagebuffer, size: 200 (page size: 4096), fixes: 1, free: 198
+     [java] 2009-02-09 20:04:51,569 INFO  fi.hut.cs.treelib.operations.ProgressCounter - overlaps: 10000
+     [java] 2009-02-09 20:04:52,100 INFO  fi.hut.cs.treelib.operations.OperationExecutor - Execution complete, showing statistics
+
+append-run-log:
+
+generic-tree-overlaps:
+     [echo] Overlap query, config: exec-pjtree.xml, dataset: mbr-large-window-20.txt (10000000; skip 0)
+     [java] 2009-02-09 20:04:52,302 INFO  fi.hut.cs.treelib.operations.OperationExecutor - Initializing application context
+     [java] 2009-02-09 20:04:52,661 INFO  fi.hut.cs.treelib.operations.OperationExecutor - Initializing Operation Executor
+     [java] 2009-02-09 20:04:52,661 INFO  fi.hut.cs.treelib.operations.OperationExecutor - Starting execution
+     [java] 2009-02-09 20:04:52,677 INFO  fi.hut.cs.treelib.operations.OperationExecutor - Database is Packed J-tree database, roots: J-tree (h: 1), root: ((?,?):{(-124.407,32.5399):(-114.134,42.0092)}, P1), extents: {(-124.407,32.5399):(-114.134,42.0092)}
+     [java] 2009-02-09 20:04:52,677 INFO  fi.hut.cs.treelib.operations.OperationExecutor - Buffer is Pagebuffer, size: 200 (page size: 4096), fixes: 1, free: 198
+     [java] 2009-02-09 21:23:30,959 INFO  fi.hut.cs.treelib.operations.OperationExecutor - Execution complete, showing statistics
+
+append-run-log:
+
+generic-tree-exact:
+     [echo] Exact query, config: exec-pjtree.xml, dataset: mbr-large-exact.txt (10000000; skip 0)
+     [java] 2009-02-09 21:23:31,661 INFO  fi.hut.cs.treelib.operations.OperationExecutor - Initializing application context
+     [java] 2009-02-09 21:23:32,145 INFO  fi.hut.cs.treelib.operations.OperationExecutor - Initializing Operation Executor
+     [java] 2009-02-09 21:23:32,160 INFO  fi.hut.cs.treelib.operations.OperationExecutor - Starting execution
+     [java] 2009-02-09 21:23:32,160 INFO  fi.hut.cs.treelib.operations.OperationExecutor - Database is Packed J-tree database, roots: J-tree (h: 1), root: ((?,?):{(-124.407,32.5399):(-114.134,42.0092)}, P1), extents: {(-124.407,32.5399):(-114.134,42.0092)}
+     [java] 2009-02-09 21:23:32,160 INFO  fi.hut.cs.treelib.operations.OperationExecutor - Buffer is Pagebuffer, size: 200 (page size: 4096), fixes: 1, free: 198
+     [java] 2009-02-09 21:23:32,192 INFO  fi.hut.cs.treelib.operations.ExactQueryOperation - Executing exact query operation
+     [java] 2009-02-09 21:23:51,832 INFO  fi.hut.cs.treelib.operations.ProgressCounter - exact: 10000
+     [java] 2009-02-09 21:23:51,832 INFO  fi.hut.cs.treelib.operations.OperationExecutor - Execution complete, showing statistics
+
+append-run-log:
+
+generic-tree-delete:
+     [echo] Delete items, dataset: mbr-large-delete.txt, amount to delete: 10000000
+     [java] 2009-02-09 21:23:52,082 INFO  fi.hut.cs.treelib.operations.OperationExecutor - Initializing application context
+     [java] 2009-02-09 21:23:52,487 INFO  fi.hut.cs.treelib.operations.OperationExecutor - Initializing Operation Executor
+     [java] 2009-02-09 21:23:52,487 INFO  fi.hut.cs.treelib.operations.OperationExecutor - Starting execution
+     [java] 2009-02-09 21:23:52,487 INFO  fi.hut.cs.treelib.operations.OperationExecutor - Database is Packed J-tree database, roots: J-tree (h: 1), root: ((?,?):{(-124.407,32.5399):(-114.134,42.0092)}, P1), extents: {(-124.407,32.5399):(-114.134,42.0092)}
+     [java] 2009-02-09 21:23:52,487 INFO  fi.hut.cs.treelib.operations.OperationExecutor - Buffer is Pagebuffer, size: 200 (page size: 4096), fixes: 1, free: 198
+     [java] 2009-02-09 21:23:52,518 INFO  fi.hut.cs.treelib.operations.DeleteOperation - Executing delete...
+     [java] 2009-02-09 21:24:17,572 INFO  fi.hut.cs.treelib.operations.ProgressCounter - delete: 10000
+     [java] 2009-02-09 21:24:17,572 INFO  fi.hut.cs.treelib.operations.OperationExecutor - Execution complete, showing statistics
+
+append-run-log:
+
+generic-tree-insert:
+     [echo] Insert data, config: exec-pjtree.xml, dataset: mbr-large-insert.txt
+     [java] 2009-02-09 21:24:17,837 INFO  fi.hut.cs.treelib.operations.OperationExecutor - Initializing application context
+     [java] 2009-02-09 21:24:18,196 INFO  fi.hut.cs.treelib.operations.OperationExecutor - Initializing Operation Executor
+     [java] 2009-02-09 21:24:18,196 INFO  fi.hut.cs.treelib.operations.OperationExecutor - Starting execution
+     [java] 2009-02-09 21:24:18,196 INFO  fi.hut.cs.treelib.operations.OperationExecutor - Database is Packed J-tree database, roots: J-tree (h: 1), root: ((?,?):{(-124.407,32.5399):(-114.134,42.0092)}, P1), extents: {(-124.407,32.5399):(-114.134,42.0092)}
+     [java] 2009-02-09 21:24:18,196 INFO  fi.hut.cs.treelib.operations.OperationExecutor - Buffer is Pagebuffer, size: 200 (page size: 4096), fixes: 1, free: 198
+     [java] 2009-02-09 21:24:18,227 INFO  fi.hut.cs.treelib.operations.InsertOperation - Executing insert...
+     [java] 2009-02-09 21:24:40,769 INFO  fi.hut.cs.treelib.operations.ProgressCounter - insert: 10000
+     [java] 2009-02-09 21:24:40,769 INFO  fi.hut.cs.treelib.operations.OperationExecutor - Execution complete, showing statistics
+
+append-run-log:
+
+init-exec:
+
+copy-exec-log4j-config:
+     [copy] Copying 1 file to C:\Work\workspace\TreeLib\target\classes
+
+init-htree:
+
+htree-tests:
+
+generic-rtree-tests:
+
+generic-tree-clear:
+   [delete] Deleting: C:\Work\workspace\TreeLib\db\htree-exec.db
+
+generic-tree-bulk-load:
+     [echo] Bulk-load data, config: exec-htree.xml, dataset: mbr-large-initial.txt
+     [java] 2009-02-09 21:24:41,112 INFO  fi.hut.cs.treelib.operations.OperationExecutor - Initializing application context
+     [java] 2009-02-09 21:24:41,518 INFO  fi.hut.cs.treelib.operations.OperationExecutor - Initializing Operation Executor
+     [java] 2009-02-09 21:24:41,518 INFO  fi.hut.cs.treelib.operations.OperationExecutor - Starting execution
+     [java] 2009-02-09 21:24:41,518 INFO  fi.hut.cs.treelib.operations.OperationExecutor - Database is Hilbert R-tree db, tree: Hilbert R-tree (order: 31) (h: 0), root: none, extents: null
+     [java] 2009-02-09 21:24:41,518 INFO  fi.hut.cs.treelib.operations.OperationExecutor - Buffer is Pagebuffer, size: 200 (page size: 4096), fixes: 0, free: 199
+     [java] 2009-02-09 21:24:41,565 INFO  fi.hut.cs.treelib.operations.BulkLoadOperation - Executing bulk load
+     [java] 2009-02-09 21:24:41,565 INFO  fi.hut.cs.treelib.operations.BulkLoadOperation - Bulk-loading to a bulk-loadable db
+     [java] 2009-02-09 21:28:42,054 INFO  fi.hut.cs.treelib.mdtree.OMDDatabase - Bulk-loading 2018980 keys to Hilbert R-tree (order: 31)
+     [java] 2009-02-09 21:29:30,586 INFO  fi.hut.cs.treelib.operations.BulkLoadOperation - Bulk-load complete
+     [java] 2009-02-09 21:29:30,586 INFO  fi.hut.cs.treelib.operations.OperationExecutor - Execution complete, showing statistics
+
+append-run-log:
+
+generic-tree-overlaps:
+     [echo] Overlap query, config: exec-htree.xml, dataset: mbr-large-window-1.txt (10000000; skip 0)
+     [java] 2009-02-09 21:29:30,945 INFO  fi.hut.cs.treelib.operations.OperationExecutor - Initializing application context
+     [java] 2009-02-09 21:29:31,335 INFO  fi.hut.cs.treelib.operations.OperationExecutor - Initializing Operation Executor
+     [java] 2009-02-09 21:29:31,335 INFO  fi.hut.cs.treelib.operations.OperationExecutor - Starting execution
+     [java] 2009-02-09 21:29:31,335 INFO  fi.hut.cs.treelib.operations.OperationExecutor - Database is Hilbert R-tree db, tree: Hilbert R-tree (order: 31) (h: 3), root: (?:{(-124.407,32.5399):(-114.134,42.0092)}, P1), extents: {(-124.407,32.5399):(-114.134,42.0092)}
+     [java] 2009-02-09 21:29:31,335 INFO  fi.hut.cs.treelib.operations.OperationExecutor - Buffer is Pagebuffer, size: 200 (page size: 4096), fixes: 1, free: 198
+     [java] 2009-02-09 21:30:46,589 INFO  fi.hut.cs.treelib.operations.ProgressCounter - overlaps: 10000
+     [java] 2009-02-09 21:30:46,589 INFO  fi.hut.cs.treelib.operations.OperationExecutor - Execution complete, showing statistics
+
+append-run-log:
+
+generic-tree-overlaps:
+     [echo] Overlap query, config: exec-htree.xml, dataset: mbr-large-window-5.txt (10000000; skip 0)
+     [java] 2009-02-09 21:30:46,839 INFO  fi.hut.cs.treelib.operations.OperationExecutor - Initializing application context
+     [java] 2009-02-09 21:30:47,213 INFO  fi.hut.cs.treelib.operations.OperationExecutor - Initializing Operation Executor
+     [java] 2009-02-09 21:30:47,229 INFO  fi.hut.cs.treelib.operations.OperationExecutor - Starting execution
+     [java] 2009-02-09 21:30:47,229 INFO  fi.hut.cs.treelib.operations.OperationExecutor - Database is Hilbert R-tree db, tree: Hilbert R-tree (order: 31) (h: 3), root: (?:{(-124.407,32.5399):(-114.134,42.0092)}, P1), extents: {(-124.407,32.5399):(-114.134,42.0092)}
+     [java] 2009-02-09 21:30:47,229 INFO  fi.hut.cs.treelib.operations.OperationExecutor - Buffer is Pagebuffer, size: 200 (page size: 4096), fixes: 1, free: 198
+     [java] 2009-02-09 21:44:58,521 INFO  fi.hut.cs.treelib.operations.ProgressCounter - overlaps: 10000
+     [java] 2009-02-09 21:44:58,521 INFO  fi.hut.cs.treelib.operations.OperationExecutor - Execution complete, showing statistics
+
+append-run-log:
+
+generic-tree-overlaps:
+     [echo] Overlap query, config: exec-htree.xml, dataset: mbr-large-window-10.txt (10000000; skip 0)
+     [java] 2009-02-09 21:44:58,802 INFO  fi.hut.cs.treelib.operations.OperationExecutor - Initializing application context
+     [java] 2009-02-09 21:44:59,207 INFO  fi.hut.cs.treelib.operations.OperationExecutor - Initializing Operation Executor
+     [java] 2009-02-09 21:44:59,223 INFO  fi.hut.cs.treelib.operations.OperationExecutor - Starting execution
+     [java] 2009-02-09 21:44:59,223 INFO  fi.hut.cs.treelib.operations.OperationExecutor - Database is Hilbert R-tree db, tree: Hilbert R-tree (order: 31) (h: 3), root: (?:{(-124.407,32.5399):(-114.134,42.0092)}, P1), extents: {(-124.407,32.5399):(-114.134,42.0092)}
+     [java] 2009-02-09 21:44:59,223 INFO  fi.hut.cs.treelib.operations.OperationExecutor - Buffer is Pagebuffer, size: 200 (page size: 4096), fixes: 1, free: 198
+     [java] 2009-02-09 22:35:04,422 INFO  fi.hut.cs.treelib.operations.ProgressCounter - overlaps: 10000
+     [java] 2009-02-09 22:35:05,062 INFO  fi.hut.cs.treelib.operations.OperationExecutor - Execution complete, showing statistics
+
+append-run-log:
+
+generic-tree-overlaps:
+     [echo] Overlap query, config: exec-htree.xml, dataset: mbr-large-window-20.txt (10000000; skip 0)
+     [java] 2009-02-09 22:35:05,343 INFO  fi.hut.cs.treelib.operations.OperationExecutor - Initializing application context
+     [java] 2009-02-09 22:35:05,733 INFO  fi.hut.cs.treelib.operations.OperationExecutor - Initializing Operation Executor
+     [java] 2009-02-09 22:35:05,748 INFO  fi.hut.cs.treelib.operations.OperationExecutor - Starting execution
+     [java] 2009-02-09 22:35:05,748 INFO  fi.hut.cs.treelib.operations.OperationExecutor - Database is Hilbert R-tree db, tree: Hilbert R-tree (order: 31) (h: 3), root: (?:{(-124.407,32.5399):(-114.134,42.0092)}, P1), extents: {(-124.407,32.5399):(-114.134,42.0092)}
+     [java] 2009-02-09 22:35:05,748 INFO  fi.hut.cs.treelib.operations.OperationExecutor - Buffer is Pagebuffer, size: 200 (page size: 4096), fixes: 1, free: 198
+     [java] 2009-02-10 00:17:28,342 INFO  fi.hut.cs.treelib.operations.OperationExecutor - Execution complete, showing statistics
+
+append-run-log:
+
+generic-tree-exact:
+     [echo] Exact query, config: exec-htree.xml, dataset: mbr-large-exact.txt (10000000; skip 0)
+     [java] 2009-02-10 00:17:29,122 INFO  fi.hut.cs.treelib.operations.OperationExecutor - Initializing application context
+     [java] 2009-02-10 00:17:29,606 INFO  fi.hut.cs.treelib.operations.OperationExecutor - Initializing Operation Executor
+     [java] 2009-02-10 00:17:29,621 INFO  fi.hut.cs.treelib.operations.OperationExecutor - Starting execution
+     [java] 2009-02-10 00:17:29,621 INFO  fi.hut.cs.treelib.operations.OperationExecutor - Database is Hilbert R-tree db, tree: Hilbert R-tree (order: 31) (h: 3), root: (?:{(-124.407,32.5399):(-114.134,42.0092)}, P1), extents: {(-124.407,32.5399):(-114.134,42.0092)}
+     [java] 2009-02-10 00:17:29,621 INFO  fi.hut.cs.treelib.operations.OperationExecutor - Buffer is Pagebuffer, size: 200 (page size: 4096), fixes: 1, free: 198
+     [java] 2009-02-10 00:17:29,637 INFO  fi.hut.cs.treelib.operations.ExactQueryOperation - Executing exact query operation
+     [java] 2009-02-10 00:17:54,878 INFO  fi.hut.cs.treelib.operations.ProgressCounter - exact: 10000
+     [java] 2009-02-10 00:17:54,878 INFO  fi.hut.cs.treelib.operations.OperationExecutor - Execution complete, showing statistics
+
+append-run-log:
+
+generic-tree-delete:
+     [echo] Delete items, dataset: mbr-large-delete.txt, amount to delete: 10000000
+     [java] 2009-02-10 00:17:55,127 INFO  fi.hut.cs.treelib.operations.OperationExecutor - Initializing application context
+     [java] 2009-02-10 00:17:55,502 INFO  fi.hut.cs.treelib.operations.OperationExecutor - Initializing Operation Executor
+     [java] 2009-02-10 00:17:55,502 INFO  fi.hut.cs.treelib.operations.OperationExecutor - Starting execution
+     [java] 2009-02-10 00:17:55,517 INFO  fi.hut.cs.treelib.operations.OperationExecutor - Database is Hilbert R-tree db, tree: Hilbert R-tree (order: 31) (h: 3), root: (?:{(-124.407,32.5399):(-114.134,42.0092)}, P1), extents: {(-124.407,32.5399):(-114.134,42.0092)}
+     [java] 2009-02-10 00:17:55,517 INFO  fi.hut.cs.treelib.operations.OperationExecutor - Buffer is Pagebuffer, size: 200 (page size: 4096), fixes: 1, free: 198
+     [java] 2009-02-10 00:17:55,533 INFO  fi.hut.cs.treelib.operations.DeleteOperation - Executing delete...
+     [java] 2009-02-10 00:18:22,895 INFO  fi.hut.cs.treelib.operations.ProgressCounter - delete: 10000
+     [java] 2009-02-10 00:18:22,895 INFO  fi.hut.cs.treelib.operations.OperationExecutor - Execution complete, showing statistics
+
+append-run-log:
+
+generic-tree-insert:
+     [echo] Insert data, config: exec-htree.xml, dataset: mbr-large-insert.txt
+     [java] 2009-02-10 00:18:23,145 INFO  fi.hut.cs.treelib.operations.OperationExecutor - Initializing application context
+     [java] 2009-02-10 00:18:23,504 INFO  fi.hut.cs.treelib.operations.OperationExecutor - Initializing Operation Executor
+     [java] 2009-02-10 00:18:23,504 INFO  fi.hut.cs.treelib.operations.OperationExecutor - Starting execution
+     [java] 2009-02-10 00:18:23,504 INFO  fi.hut.cs.treelib.operations.OperationExecutor - Database is Hilbert R-tree db, tree: Hilbert R-tree (order: 31) (h: 3), root: (?:{(-124.407,32.5399):(-114.134,42.0092)}, P1), extents: {(-124.407,32.5399):(-114.134,42.0092)}
+     [java] 2009-02-10 00:18:23,504 INFO  fi.hut.cs.treelib.operations.OperationExecutor - Buffer is Pagebuffer, size: 200 (page size: 4096), fixes: 1, free: 198
+     [java] 2009-02-10 00:18:23,535 INFO  fi.hut.cs.treelib.operations.InsertOperation - Executing insert...
+     [java] 2009-02-10 00:18:51,646 INFO  fi.hut.cs.treelib.operations.ProgressCounter - insert: 10000
+     [java] 2009-02-10 00:18:51,662 INFO  fi.hut.cs.treelib.operations.OperationExecutor - Execution complete, showing statistics
+
+append-run-log:
+
+init-exec:
+
+copy-exec-log4j-config:
+     [copy] Copying 1 file to C:\Work\workspace\TreeLib\target\classes
+
+init-rtree:
+
+rtree-tests:
+
+generic-rtree-tests:
+
+generic-tree-clear:
+   [delete] Deleting: C:\Work\workspace\TreeLib\db\rtree-exec.db
+
+generic-tree-bulk-load:
+     [echo] Bulk-load data, config: exec-rtree.xml, dataset: mbr-large-initial.txt
+     [java] 2009-02-10 00:18:51,958 INFO  fi.hut.cs.treelib.operations.OperationExecutor - Initializing application context
+     [java] 2009-02-10 00:18:52,348 INFO  fi.hut.cs.treelib.operations.OperationExecutor - Initializing Operation Executor
+     [java] 2009-02-10 00:18:52,348 INFO  fi.hut.cs.treelib.operations.OperationExecutor - Starting execution
+     [java] 2009-02-10 00:18:52,348 INFO  fi.hut.cs.treelib.operations.OperationExecutor - Database is R-tree db, tree: R-Tree (h: 0), root: none, extents: {(NaN,NaN):(NaN,NaN)}
+     [java] 2009-02-10 00:18:52,348 INFO  fi.hut.cs.treelib.operations.OperationExecutor - Buffer is Pagebuffer, size: 200 (page size: 4096), fixes: 0, free: 198
+     [java] 2009-02-10 00:18:52,379 INFO  fi.hut.cs.treelib.operations.BulkLoadOperation - Executing bulk load
+     [java] 2009-02-10 00:18:52,379 INFO  fi.hut.cs.treelib.operations.BulkLoadOperation - Bulk-loading to a bulk-loadable db
+     [java] 2009-02-10 00:19:55,154 INFO  fi.hut.cs.treelib.mdtree.AbstractMDDatabase - Creating 100 slices from 2018980 entries (204 entries per page); slice size is 20190
+     [java] 2009-02-10 00:19:55,154 INFO  fi.hut.cs.treelib.mdtree.AbstractMDDatabase - Creating slice from 0 (<{(-117.064,32.5399):(-117.063,32.5403)},2007798>) to 20189(<{(-117.243,32.7112):(-117.243,32.7116)},1651514>) (20190 entries)
+     [java] 2009-02-10 00:19:55,481 INFO  fi.hut.cs.treelib.mdtree.AbstractMDDatabase - Creating slice from 20190 (<{(-117.102,32.7112):(-117.101,32.7117)},485560>) to 40379(<{(-116.98,32.7695):(-116.979,32.7701)},2013256>) (20190 entries)
+     [java] 2009-02-10 00:19:55,809 INFO  fi.hut.cs.treelib.mdtree.AbstractMDDatabase - Creating slice from 40380 (<{(-117.202,32.7695):(-117.2,32.7702)},466809>) to 60569(<{(-117.253,32.8262):(-117.252,32.8306)},1651799>) (20190 entries)
+     [java] 2009-02-10 00:19:56,230 INFO  fi.hut.cs.treelib.mdtree.AbstractMDDatabase - Creating slice from 60570 (<{(-116.952,32.8263):(-116.951,32.8263)},1547418>) to 80759(<{(-116.923,32.9627):(-116.922,32.9636)},1112717>) (20190 entries)
+     [java] 2009-02-10 00:19:56,573 INFO  fi.hut.cs.treelib.mdtree.AbstractMDDatabase - Creating slice from 80760 (<{(-116.46,32.9627):(-116.46,32.9641)},320535>) to 100949(<{(-117.313,33.1102):(-117.312,33.1121)},957290>) (20190 entries)
+     [java] 2009-02-10 00:19:56,963 INFO  fi.hut.cs.treelib.mdtree.AbstractMDDatabase - Creating slice from 100950 (<{(-117.15,33.1102):(-117.148,33.1131)},1802159>) to 121139(<{(-117.339,33.2298):(-117.339,33.23)},1168529>) (20190 entries)
+     [java] 2009-02-10 00:19:57,338 INFO  fi.hut.cs.treelib.mdtree.AbstractMDDatabase - Creating slice from 121140 (<{(-117.338,33.2298):(-117.337,33.2301)},1461981>) to 141329(<{(-116.847,33.4508):(-116.847,33.451)},1849612>) (20190 entries)
+     [java] 2009-02-10 00:19:57,790 INFO  fi.hut.cs.treelib.mdtree.AbstractMDDatabase - Creating slice from 141330 (<{(-117.623,33.4508):(-117.623,33.4511)},479951>) to 161519(<{(-116.926,33.5619):(-116.923,33.562)},484491>) (20190 entries)
+     [java] 2009-02-10 00:19:58,164 INFO  fi.hut.cs.treelib.mdtree.AbstractMDDatabase - Creating slice from 161520 (<{(-116.152,33.5619):(-116.15,33.562)},1225865>) to 181709(<{(-117.872,33.6355):(-117.871,33.6364)},1656009>) (20190 entries)
+     [java] 2009-02-10 00:19:58,539 INFO  fi.hut.cs.treelib.mdtree.AbstractMDDatabase - Creating slice from 181710 (<{(-117.699,33.6355):(-117.698,33.6365)},97416>) to 201899(<{(-117.353,33.6813):(-117.353,33.6815)},1933962>) (20190 entries)
+     [java] 2009-02-10 00:19:58,898 INFO  fi.hut.cs.treelib.mdtree.AbstractMDDatabase - Creating slice from 201900 (<{(-117.998,33.6813):(-117.998,33.6816)},490257>) to 222089(<{(-117.161,33.7212):(-117.16,33.7214)},1006546>) (20190 entries)
+     [java] 2009-02-10 00:19:59,303 INFO  fi.hut.cs.treelib.mdtree.AbstractMDDatabase - Creating slice from 222090 (<{(-116.387,33.7212):(-116.387,33.7214)},1554650>) to 242279(<{(-118.274,33.7491):(-118.271,33.7495)},1452819>) (20190 entries)
+     [java] 2009-02-10 00:19:59,631 INFO  fi.hut.cs.treelib.mdtree.AbstractMDDatabase - Creating slice from 242280 (<{(-118.125,33.7491):(-118.125,33.7495)},528222>) to 262469(<{(-116.736,33.7743):(-116.734,33.7761)},1547575>) (20190 entries)
+     [java] 2009-02-10 00:20:00,021 INFO  fi.hut.cs.treelib.mdtree.AbstractMDDatabase - Creating slice from 262470 (<{(-118.103,33.7743):(-118.103,33.7763)},1983061>) to 282659(<{(-117.214,33.7966):(-117.214,33.7974)},1147635>) (20190 entries)
+     [java] 2009-02-10 00:20:00,426 INFO  fi.hut.cs.treelib.mdtree.AbstractMDDatabase - Creating slice from 282660 (<{(-116.51,33.7966):(-116.508,33.7974)},792803>) to 302849(<{(-118.351,33.8227):(-118.348,33.823)},230677>) (20190 entries)
+     [java] 2009-02-10 00:20:00,832 INFO  fi.hut.cs.treelib.mdtree.AbstractMDDatabase - Creating slice from 302850 (<{(-118.28,33.8227):(-118.28,33.823)},348184>) to 323039(<{(-116.534,33.8506):(-116.534,33.8513)},749501>) (20190 entries)
+     [java] 2009-02-10 00:20:01,284 INFO  fi.hut.cs.treelib.mdtree.AbstractMDDatabase - Creating slice from 323040 (<{(-116.533,33.8506):(-116.533,33.8513)},232374>) to 343229(<{(-117.929,33.8769):(-117.928,33.8773)},897999>) (20190 entries)
+     [java] 2009-02-10 00:20:01,659 INFO  fi.hut.cs.treelib.mdtree.AbstractMDDatabase - Creating slice from 343230 (<{(-117.904,33.8769):(-117.904,33.8773)},1454896>) to 363419(<{(-117.872,33.9001):(-117.872,33.9009)},1510709>) (20190 entries)
+     [java] 2009-02-10 00:20:02,018 INFO  fi.hut.cs.treelib.mdtree.AbstractMDDatabase - Creating slice from 363420 (<{(-117.439,33.9001):(-117.438,33.9009)},1358742>) to 383609(<{(-118.077,33.9259):(-118.077,33.9266)},666384>) (20190 entries)
+     [java] 2009-02-10 00:20:02,361 INFO  fi.hut.cs.treelib.mdtree.AbstractMDDatabase - Creating slice from 383610 (<{(-118.029,33.9259):(-118.028,33.9266)},1038884>) to 403799(<{(-118.006,33.9492):(-118.004,33.9499)},847089>) (20190 entries)
+     [java] 2009-02-10 00:20:02,720 INFO  fi.hut.cs.treelib.mdtree.AbstractMDDatabase - Creating slice from 403800 (<{(-118.378,33.9492):(-118.378,33.95)},1730264>) to 423989(<{(-117.467,33.9782):(-117.466,33.9795)},1369697>) (20190 entries)
+     [java] 2009-02-10 00:20:03,063 INFO  fi.hut.cs.treelib.mdtree.AbstractMDDatabase - Creating slice from 423990 (<{(-118.06,33.9782):(-118.058,33.9796)},1290757>) to 444179(<{(-117.601,34.0046):(-117.601,34.0047)},1117681>) (20190 entries)
+     [java] 2009-02-10 00:20:03,468 INFO  fi.hut.cs.treelib.mdtree.AbstractMDDatabase - Creating slice from 444180 (<{(-117.349,34.0046):(-117.349,34.0047)},931312>) to 464369(<{(-117.887,34.0265):(-117.887,34.0266)},299492>) (20190 entries)
+     [java] 2009-02-10 00:20:03,858 INFO  fi.hut.cs.treelib.mdtree.AbstractMDDatabase - Creating slice from 464370 (<{(-117.766,34.0265):(-117.766,34.0266)},1203738>) to 484559(<{(-118.082,34.0446):(-118.081,34.0446)},473445>) (20190 entries)
+     [java] 2009-02-10 00:20:04,186 INFO  fi.hut.cs.treelib.mdtree.AbstractMDDatabase - Creating slice from 484560 (<{(-118.052,34.0446):(-118.051,34.0446)},1566237>) to 504749(<{(-118.172,34.0626):(-118.169,34.0631)},1427899>) (20190 entries)
+     [java] 2009-02-10 00:20:04,545 INFO  fi.hut.cs.treelib.mdtree.AbstractMDDatabase - Creating slice from 504750 (<{(-118.141,34.0626):(-118.141,34.0631)},1173913>) to 524939(<{(-114.776,34.0795):(-114.776,34.081)},244363>) (20190 entries)
+     [java] 2009-02-10 00:20:04,919 INFO  fi.hut.cs.treelib.mdtree.AbstractMDDatabase - Creating slice from 524940 (<{(-117.651,34.0795):(-117.651,34.0811)},1833803>) to 545129(<{(-117.43,34.0977):(-117.43,34.0992)},916813>) (20190 entries)
+     [java] 2009-02-10 00:20:05,247 INFO  fi.hut.cs.treelib.mdtree.AbstractMDDatabase - Creating slice from 545130 (<{(-117.428,34.0977):(-117.428,34.0992)},1395527>) to 565319(<{(-118.147,34.1143):(-118.147,34.1143)},1528207>) (20190 entries)
+     [java] 2009-02-10 00:20:05,606 INFO  fi.hut.cs.treelib.mdtree.AbstractMDDatabase - Creating slice from 565320 (<{(-118.023,34.1143):(-118.023,34.1143)},1679607>) to 585509(<{(-117.703,34.1307):(-117.701,34.1307)},503734>) (20190 entries)
+     [java] 2009-02-10 00:20:06,042 INFO  fi.hut.cs.treelib.mdtree.AbstractMDDatabase - Creating slice from 585510 (<{(-117.658,34.1307):(-117.657,34.1307)},1776153>) to 605699(<{(-118.457,34.1479):(-118.456,34.1481)},212425>) (20190 entries)
+     [java] 2009-02-10 00:20:06,479 INFO  fi.hut.cs.treelib.mdtree.AbstractMDDatabase - Creating slice from 605700 (<{(-118.433,34.1479):(-118.432,34.1481)},1367630>) to 625889(<{(-114.374,34.1658):(-114.372,34.1661)},932636>) (20190 entries)
+     [java] 2009-02-10 00:20:06,885 INFO  fi.hut.cs.treelib.mdtree.AbstractMDDatabase - Creating slice from 625890 (<{(-119.188,34.1658):(-119.188,34.1662)},635100>) to 646079(<{(-118.39,34.189):(-118.39,34.1902)},1791568>) (20190 entries)
+     [java] 2009-02-10 00:20:07,259 INFO  fi.hut.cs.treelib.mdtree.AbstractMDDatabase - Creating slice from 646080 (<{(-118.389,34.189):(-118.389,34.1902)},666179>) to 666269(<{(-118.852,34.2187):(-118.851,34.219)},838611>) (20190 entries)
+     [java] 2009-02-10 00:20:07,649 INFO  fi.hut.cs.treelib.mdtree.AbstractMDDatabase - Creating slice from 666270 (<{(-118.584,34.2187):(-118.584,34.219)},1214530>) to 686459(<{(-116.337,34.2478):(-116.334,34.2478)},4216>) (20190 entries)
+     [java] 2009-02-10 00:20:07,992 INFO  fi.hut.cs.treelib.mdtree.AbstractMDDatabase - Creating slice from 686460 (<{(-116.325,34.2478):(-116.321,34.2478)},717357>) to 706649(<{(-118.378,34.2774):(-118.377,34.2778)},1821612>) (20190 entries)
+     [java] 2009-02-10 00:20:08,336 INFO  fi.hut.cs.treelib.mdtree.AbstractMDDatabase - Creating slice from 706650 (<{(-118.356,34.2774):(-118.354,34.2778)},1090332>) to 726839(<{(-114.988,34.3677):(-114.981,34.3717)},774145>) (20190 entries)
+     [java] 2009-02-10 00:20:08,679 INFO  fi.hut.cs.treelib.mdtree.AbstractMDDatabase - Creating slice from 726840 (<{(-114.64,34.3677):(-114.618,34.3725)},1266104>) to 747029(<{(-119.74,34.4287):(-119.738,34.4293)},296766>) (20190 entries)
+     [java] 2009-02-10 00:20:09,084 INFO  fi.hut.cs.treelib.mdtree.AbstractMDDatabase - Creating slice from 747030 (<{(-118.529,34.4287):(-118.529,34.4293)},684784>) to 767219(<{(-117.452,34.4774):(-117.451,34.4774)},1575955>) (20190 entries)
+     [java] 2009-02-10 00:20:09,537 INFO  fi.hut.cs.treelib.mdtree.AbstractMDDatabase - Creating slice from 767220 (<{(-117.437,34.4774):(-117.435,34.4774)},1108249>) to 787409(<{(-117.374,34.572):(-117.374,34.5722)},1882645>) (20190 entries)
+     [java] 2009-02-10 00:20:09,989 INFO  fi.hut.cs.treelib.mdtree.AbstractMDDatabase - Creating slice from 787410 (<{(-116.972,34.572):(-116.965,34.5722)},240885>) to 807599(<{(-118.148,34.6824):(-118.148,34.6829)},981390>) (20190 entries)
+     [java] 2009-02-10 00:20:10,364 INFO  fi.hut.cs.treelib.mdtree.AbstractMDDatabase - Creating slice from 807600 (<{(-118.185,34.6824):(-118.185,34.6831)},237572>) to 827789(<{(-118.309,34.8416):(-118.309,34.8434)},936388>) (20190 entries)
+     [java] 2009-02-10 00:20:10,691 INFO  fi.hut.cs.treelib.mdtree.AbstractMDDatabase - Creating slice from 827790 (<{(-119.018,34.8416):(-119.013,34.8435)},669280>) to 847979(<{(-120.433,34.9416):(-120.432,34.9416)},1912212>) (20190 entries)
+     [java] 2009-02-10 00:20:11,050 INFO  fi.hut.cs.treelib.mdtree.AbstractMDDatabase - Creating slice from 847980 (<{(-120.432,34.9416):(-120.431,34.9416)},292409>) to 868169(<{(-117.553,35.0671):(-117.553,35.0719)},6014>) (20190 entries)
+     [java] 2009-02-10 00:20:11,471 INFO  fi.hut.cs.treelib.mdtree.AbstractMDDatabase - Creating slice from 868170 (<{(-118.917,35.0672):(-118.909,35.0672)},1634004>) to 888359(<{(-119.575,35.1554):(-119.559,35.1595)},1364561>) (20190 entries)
+     [java] 2009-02-10 00:20:11,892 INFO  fi.hut.cs.treelib.mdtree.AbstractMDDatabase - Creating slice from 888360 (<{(-119.967,35.1554):(-119.967,35.1633)},428594>) to 908549(<{(-119.328,35.2782):(-119.326,35.2794)},309020>) (20190 entries)
+     [java] 2009-02-10 00:20:12,251 INFO  fi.hut.cs.treelib.mdtree.AbstractMDDatabase - Creating slice from 908550 (<{(-119.959,35.2782):(-119.954,35.2795)},1039953>) to 928739(<{(-119.037,35.3622):(-119.037,35.3631)},1716436>) (20190 entries)
+     [java] 2009-02-10 00:20:12,610 INFO  fi.hut.cs.treelib.mdtree.AbstractMDDatabase - Creating slice from 928740 (<{(-120.824,35.3622):(-120.824,35.3636)},1681775>) to 948929(<{(-118.877,35.4413):(-118.876,35.4426)},1234912>) (20190 entries)
+     [java] 2009-02-10 00:20:13,047 INFO  fi.hut.cs.treelib.mdtree.AbstractMDDatabase - Creating slice from 948930 (<{(-119.054,35.4413):(-119.039,35.4428)},565880>) to 969119(<{(-119.358,35.5725):(-119.358,35.5797)},1207163>) (20190 entries)
+     [java] 2009-02-10 00:20:13,499 INFO  fi.hut.cs.treelib.mdtree.AbstractMDDatabase - Creating slice from 969120 (<{(-119.638,35.5725):(-119.634,35.5871)},1072934>) to 989309(<{(-117.623,35.689):(-117.623,35.6891)},1206939>) (20190 entries)
+     [java] 2009-02-10 00:20:13,936 INFO  fi.hut.cs.treelib.mdtree.AbstractMDDatabase - Creating slice from 989310 (<{(-120.336,35.689):(-120.335,35.6892)},697348>) to 1009499(<{(-119.609,35.8916):(-119.609,35.9052)},1846857>) (20190 entries)
+     [java] 2009-02-10 00:20:14,388 INFO  fi.hut.cs.treelib.mdtree.AbstractMDDatabase - Creating slice from 1009500 (<{(-119.385,35.8917):(-119.382,35.8917)},1592391>) to 1029689(<{(-119.042,36.0858):(-119.042,36.086)},994815>) (20190 entries)
+     [java] 2009-02-10 00:20:14,841 INFO  fi.hut.cs.treelib.mdtree.AbstractMDDatabase - Creating slice from 1029690 (<{(-120.209,36.0858):(-120.207,36.0862)},303697>) to 1049879(<{(-121.195,36.2496):(-121.184,36.2535)},535643>) (20190 entries)
+     [java] 2009-02-10 00:20:15,278 INFO  fi.hut.cs.treelib.mdtree.AbstractMDDatabase - Creating slice from 1049880 (<{(-120.211,36.2496):(-120.211,36.2547)},1565845>) to 1070069(<{(-119.889,36.375):(-119.888,36.3767)},1015292>) (20190 entries)
+     [java] 2009-02-10 00:20:15,730 INFO  fi.hut.cs.treelib.mdtree.AbstractMDDatabase - Creating slice from 1070070 (<{(-121.173,36.375):(-121.165,36.3776)},320078>) to 1090259(<{(-119.431,36.5751):(-119.431,36.5751)},1230880>) (20190 entries)
+     [java] 2009-02-10 00:20:16,182 INFO  fi.hut.cs.treelib.mdtree.AbstractMDDatabase - Creating slice from 1090260 (<{(-119.431,36.5751):(-119.431,36.5751)},1273851>) to 1110449(<{(-119.556,36.6899):(-119.556,36.6903)},509530>) (20190 entries)
+     [java] 2009-02-10 00:20:16,604 INFO  fi.hut.cs.treelib.mdtree.AbstractMDDatabase - Creating slice from 1110450 (<{(-121.614,36.6899):(-121.613,36.6905)},1515903>) to 1130639(<{(-121.657,36.7774):(-121.657,36.7793)},1516455>) (20190 entries)
+     [java] 2009-02-10 00:20:16,978 INFO  fi.hut.cs.treelib.mdtree.AbstractMDDatabase - Creating slice from 1130640 (<{(-121.655,36.7775):(-121.655,36.7775)},893392>) to 1150829(<{(-121.538,36.8449):(-121.537,36.8454)},1061910>) (20190 entries)
+     [java] 2009-02-10 00:20:17,337 INFO  fi.hut.cs.treelib.mdtree.AbstractMDDatabase - Creating slice from 1150830 (<{(-121.537,36.8449):(-121.537,36.8455)},172917>) to 1171019(<{(-122.019,36.9734):(-122.018,36.9744)},451756>) (20190 entries)
+     [java] 2009-02-10 00:20:17,696 INFO  fi.hut.cs.treelib.mdtree.AbstractMDDatabase - Creating slice from 1171020 (<{(-121.948,36.9734):(-121.947,36.9744)},1547911>) to 1191209(<{(-122.055,37.0725):(-122.055,37.073)},721627>) (20190 entries)
+     [java] 2009-02-10 00:20:18,054 INFO  fi.hut.cs.treelib.mdtree.AbstractMDDatabase - Creating slice from 1191210 (<{(-120.871,37.0725):(-120.871,37.073)},1731487>) to 1211399(<{(-121.427,37.2235):(-121.426,37.2238)},706307>) (20190 entries)
+     [java] 2009-02-10 00:20:18,413 INFO  fi.hut.cs.treelib.mdtree.AbstractMDDatabase - Creating slice from 1211400 (<{(-121.988,37.2235):(-121.987,37.2239)},1396987>) to 1231589(<{(-120.995,37.2823):(-120.989,37.2841)},1992188>) (20190 entries)
+     [java] 2009-02-10 00:20:18,772 INFO  fi.hut.cs.treelib.mdtree.AbstractMDDatabase - Creating slice from 1231590 (<{(-120.325,37.2823):(-120.325,37.2841)},1985830>) to 1251779(<{(-121.932,37.3232):(-121.932,37.3232)},1482087>) (20190 entries)
+     [java] 2009-02-10 00:20:19,209 INFO  fi.hut.cs.treelib.mdtree.AbstractMDDatabase - Creating slice from 1251780 (<{(-121.932,37.3232):(-121.931,37.3232)},1013089>) to 1271969(<{(-121.826,37.3636):(-121.826,37.3637)},384902>) (20190 entries)
+     [java] 2009-02-10 00:20:19,568 INFO  fi.hut.cs.treelib.mdtree.AbstractMDDatabase - Creating slice from 1271970 (<{(-121.815,37.3636):(-121.815,37.3637)},1816100>) to 1292159(<{(-121.961,37.4159):(-121.961,37.4159)},495125>) (20190 entries)
+     [java] 2009-02-10 00:20:19,958 INFO  fi.hut.cs.treelib.mdtree.AbstractMDDatabase - Creating slice from 1292160 (<{(-118.325,37.4159):(-118.323,37.4159)},610851>) to 1312349(<{(-121.921,37.4891):(-121.92,37.4897)},1966429>) (20190 entries)
+     [java] 2009-02-10 00:20:20,316 INFO  fi.hut.cs.treelib.mdtree.AbstractMDDatabase - Creating slice from 1312350 (<{(-122.232,37.4891):(-122.232,37.4898)},299292>) to 1332539(<{(-122.042,37.5569):(-122.041,37.5574)},1904128>) (20190 entries)
+     [java] 2009-02-10 00:20:20,738 INFO  fi.hut.cs.treelib.mdtree.AbstractMDDatabase - Creating slice from 1332540 (<{(-122.02,37.5569):(-122.02,37.5574)},593382>) to 1352729(<{(-120.705,37.6246):(-120.691,37.6283)},874786>) (20190 entries)
+     [java] 2009-02-10 00:20:21,128 INFO  fi.hut.cs.treelib.mdtree.AbstractMDDatabase - Creating slice from 1352730 (<{(-120.365,37.6246):(-120.363,37.6284)},1417157>) to 1372919(<{(-122.081,37.6708):(-122.081,37.6708)},831465>) (20190 entries)
+     [java] 2009-02-10 00:20:21,455 INFO  fi.hut.cs.treelib.mdtree.AbstractMDDatabase - Creating slice from 1372920 (<{(-121.772,37.6708):(-121.772,37.6708)},671423>) to 1393109(<{(-121.926,37.7086):(-121.926,37.7086)},1155399>) (20190 entries)
+     [java] 2009-02-10 00:20:21,830 INFO  fi.hut.cs.treelib.mdtree.AbstractMDDatabase - Creating slice from 1393110 (<{(-121.922,37.7086):(-121.922,37.7086)},1204696>) to 1413299(<{(-118.94,37.7487):(-118.94,37.7491)},467500>) (20190 entries)
+     [java] 2009-02-10 00:20:22,251 INFO  fi.hut.cs.treelib.mdtree.AbstractMDDatabase - Creating slice from 1413300 (<{(-122.427,37.7487):(-122.427,37.7492)},1888841>) to 1433489(<{(-122.391,37.7884):(-122.391,37.7886)},381788>) (20190 entries)
+     [java] 2009-02-10 00:20:22,734 INFO  fi.hut.cs.treelib.mdtree.AbstractMDDatabase - Creating slice from 1433490 (<{(-122.234,37.7884):(-122.234,37.7886)},593640>) to 1453679(<{(-122.262,37.8372):(-122.261,37.8381)},1296061>) (20190 entries)
+     [java] 2009-02-10 00:20:23,109 INFO  fi.hut.cs.treelib.mdtree.AbstractMDDatabase - Creating slice from 1453680 (<{(-122.194,37.8372):(-122.193,37.8381)},200425>) to 1473869(<{(-122.523,37.9071):(-122.522,37.9071)},522>) (20190 entries)
+     [java] 2009-02-10 00:20:23,468 INFO  fi.hut.cs.treelib.mdtree.AbstractMDDatabase - Creating slice from 1473870 (<{(-122.522,37.9071):(-122.52,37.9071)},212079>) to 1494059(<{(-121.233,37.9553):(-121.233,37.9563)},494984>) (20190 entries)
+     [java] 2009-02-10 00:20:23,889 INFO  fi.hut.cs.treelib.mdtree.AbstractMDDatabase - Creating slice from 1494060 (<{(-121.977,37.9553):(-121.976,37.9564)},1936163>) to 1514249(<{(-122.064,37.9891):(-122.064,37.9899)},1183923>) (20190 entries)
+     [java] 2009-02-10 00:20:24,279 INFO  fi.hut.cs.treelib.mdtree.AbstractMDDatabase - Creating slice from 1514250 (<{(-122.511,37.9891):(-122.509,37.99)},1078814>) to 1534439(<{(-121.958,38.0296):(-121.957,38.0298)},1338036>) (20190 entries)
+     [java] 2009-02-10 00:20:24,731 INFO  fi.hut.cs.treelib.mdtree.AbstractMDDatabase - Creating slice from 1534440 (<{(-121.287,38.0296):(-121.287,38.0298)},1548452>) to 1554629(<{(-121.26,38.1255):(-121.259,38.1256)},1173243>) (20190 entries)
+     [java] 2009-02-10 00:20:25,137 INFO  fi.hut.cs.treelib.mdtree.AbstractMDDatabase - Creating slice from 1554630 (<{(-121.791,38.1255):(-121.791,38.1257)},1113263>) to 1574819(<{(-122.349,38.255):(-122.347,38.2556)},124094>) (20190 entries)
+     [java] 2009-02-10 00:20:25,511 INFO  fi.hut.cs.treelib.mdtree.AbstractMDDatabase - Creating slice from 1574820 (<{(-122.073,38.255):(-122.073,38.2556)},202835>) to 1595009(<{(-122.705,38.3419):(-122.704,38.342)},519275>) (20190 entries)
+     [java] 2009-02-10 00:20:25,964 INFO  fi.hut.cs.treelib.mdtree.AbstractMDDatabase - Creating slice from 1595010 (<{(-122.695,38.3419):(-122.695,38.342)},1625379>) to 1615199(<{(-120.148,38.4292):(-120.138,38.4392)},255845>) (20190 entries)
+     [java] 2009-02-10 00:20:26,322 INFO  fi.hut.cs.treelib.mdtree.AbstractMDDatabase - Creating slice from 1615200 (<{(-122.719,38.4293):(-122.718,38.4293)},1750692>) to 1635389(<{(-120.475,38.491):(-120.473,38.4935)},851443>) (20190 entries)
+     [java] 2009-02-10 00:20:26,744 INFO  fi.hut.cs.treelib.mdtree.AbstractMDDatabase - Creating slice from 1635390 (<{(-120.788,38.491):(-120.777,38.4966)},1874326>) to 1655579(<{(-121.347,38.5539):(-121.347,38.554)},458343>) (20190 entries)
+     [java] 2009-02-10 00:20:27,118 INFO  fi.hut.cs.treelib.mdtree.AbstractMDDatabase - Creating slice from 1655580 (<{(-121.794,38.5539):(-121.793,38.5541)},618464>) to 1675769(<{(-122.84,38.6186):(-122.84,38.6186)},1983055>) (20190 entries)
+     [java] 2009-02-10 00:20:27,570 INFO  fi.hut.cs.treelib.mdtree.AbstractMDDatabase - Creating slice from 1675770 (<{(-121.497,38.6186):(-121.497,38.6186)},1473861>) to 1695959(<{(-121.207,38.6782):(-121.207,38.68)},1626468>) (20190 entries)
+     [java] 2009-02-10 00:20:27,945 INFO  fi.hut.cs.treelib.mdtree.AbstractMDDatabase - Creating slice from 1695960 (<{(-120.417,38.6782):(-120.4,38.68)},488499>) to 1716149(<{(-121.262,38.7389):(-121.261,38.7392)},1012557>) (20190 entries)
+     [java] 2009-02-10 00:20:28,382 INFO  fi.hut.cs.treelib.mdtree.AbstractMDDatabase - Creating slice from 1716150 (<{(-120.741,38.7389):(-120.741,38.7392)},532247>) to 1736339(<{(-119.991,38.8836):(-119.991,38.8838)},527908>) (20190 entries)
+     [java] 2009-02-10 00:20:28,850 INFO  fi.hut.cs.treelib.mdtree.AbstractMDDatabase - Creating slice from 1736340 (<{(-119.991,38.8836):(-119.989,38.8838)},1131250>) to 1756529(<{(-122.838,39.0111):(-122.838,39.0151)},549061>) (20190 entries)
+     [java] 2009-02-10 00:20:29,271 INFO  fi.hut.cs.treelib.mdtree.AbstractMDDatabase - Creating slice from 1756530 (<{(-120.627,39.0111):(-120.623,39.0172)},1156271>) to 1776719(<{(-120.156,39.1335):(-120.155,39.1339)},1837035>) (20190 entries)
+     [java] 2009-02-10 00:20:29,630 INFO  fi.hut.cs.treelib.mdtree.AbstractMDDatabase - Creating slice from 1776720 (<{(-123.214,39.1335):(-123.214,39.134)},1731603>) to 1796909(<{(-121.062,39.2381):(-121.062,39.2381)},954246>) (20190 entries)
+     [java] 2009-02-10 00:20:29,957 INFO  fi.hut.cs.treelib.mdtree.AbstractMDDatabase - Creating slice from 1796910 (<{(-121.008,39.2381):(-121.008,39.2382)},773949>) to 1817099(<{(-123.811,39.3933):(-123.809,39.3951)},1493409>) (20190 entries)
+     [java] 2009-02-10 00:20:30,316 INFO  fi.hut.cs.treelib.mdtree.AbstractMDDatabase - Creating slice from 1817100 (<{(-123.811,39.3933):(-123.81,39.3957)},884097>) to 1837289(<{(-121.611,39.5948):(-121.606,39.5978)},519256>) (20190 entries)
+     [java] 2009-02-10 00:20:30,659 INFO  fi.hut.cs.treelib.mdtree.AbstractMDDatabase - Creating slice from 1837290 (<{(-121.612,39.5948):(-121.611,39.5986)},1875517>) to 1857479(<{(-121.956,39.7779):(-121.956,39.778)},1447050>) (20190 entries)
+     [java] 2009-02-10 00:20:31,065 INFO  fi.hut.cs.treelib.mdtree.AbstractMDDatabase - Creating slice from 1857480 (<{(-121.873,39.7779):(-121.873,39.778)},630422>) to 1877669(<{(-120.124,40.0445):(-120.122,40.047)},1007223>) (20190 entries)
+     [java] 2009-02-10 00:20:31,408 INFO  fi.hut.cs.treelib.mdtree.AbstractMDDatabase - Creating slice from 1877670 (<{(-120.666,40.0445):(-120.66,40.0482)},1991520>) to 1897859(<{(-121.011,40.3144):(-121.006,40.3235)},39504>) (20190 entries)
+     [java] 2009-02-10 00:20:31,767 INFO  fi.hut.cs.treelib.mdtree.AbstractMDDatabase - Creating slice from 1897860 (<{(-120.563,40.3144):(-120.554,40.3236)},1141509>) to 1918049(<{(-121.011,40.5326):(-121.0,40.5421)},306698>) (20190 entries)
+     [java] 2009-02-10 00:20:32,157 INFO  fi.hut.cs.treelib.mdtree.AbstractMDDatabase - Creating slice from 1918050 (<{(-121.636,40.5326):(-121.629,40.5446)},198989>) to 1938239(<{(-121.077,40.7134):(-121.073,40.7145)},1822478>) (20190 entries)
+     [java] 2009-02-10 00:20:32,516 INFO  fi.hut.cs.treelib.mdtree.AbstractMDDatabase - Creating slice from 1938240 (<{(-121.079,40.7134):(-121.077,40.7154)},1340943>) to 1958429(<{(-123.938,40.986):(-123.931,40.9889)},688699>) (20190 entries)
+     [java] 2009-02-10 00:20:32,859 INFO  fi.hut.cs.treelib.mdtree.AbstractMDDatabase - Creating slice from 1958430 (<{(-120.875,40.9861):(-120.875,40.9864)},158166>) to 1978619(<{(-122.309,41.3204):(-122.309,41.3204)},764160>) (20190 entries)
+     [java] 2009-02-10 00:20:33,202 INFO  fi.hut.cs.treelib.mdtree.AbstractMDDatabase - Creating slice from 1978620 (<{(-122.232,41.3204):(-122.231,41.3204)},218345>) to 1998809(<{(-123.055,41.6595):(-123.05,41.6623)},779028>) (20190 entries)
+     [java] 2009-02-10 00:20:33,561 INFO  fi.hut.cs.treelib.mdtree.AbstractMDDatabase - Creating slice from 1998810 (<{(-122.4,41.6595):(-122.399,41.6644)},108133>) to 2018979(<{(-122.344,42.0076):(-122.344,42.0088)},662399>) (20170 entries)
+     [java] 2009-02-10 00:20:34,122 INFO  fi.hut.cs.treelib.operations.BulkLoadOperation - Bulk-load complete
+     [java] 2009-02-10 00:20:34,122 INFO  fi.hut.cs.treelib.operations.OperationExecutor - Execution complete, showing statistics
+
+append-run-log:
+
+generic-tree-overlaps:
+     [echo] Overlap query, config: exec-rtree.xml, dataset: mbr-large-window-1.txt (10000000; skip 0)
+     [java] 2009-02-10 00:20:34,668 INFO  fi.hut.cs.treelib.operations.OperationExecutor - Initializing application context
+     [java] 2009-02-10 00:20:35,074 INFO  fi.hut.cs.treelib.operations.OperationExecutor - Initializing Operation Executor
+     [java] 2009-02-10 00:20:35,074 INFO  fi.hut.cs.treelib.operations.OperationExecutor - Starting execution
+     [java] 2009-02-10 00:20:35,074 INFO  fi.hut.cs.treelib.operations.OperationExecutor - Database is R-tree db, tree: R-Tree (h: 3), root: ({(-124.407,32.5399):(-114.134,42.0092)}, P13302), extents: {(-124.407,32.5399):(-114.134,42.0092)}
+     [java] 2009-02-10 00:20:35,074 INFO  fi.hut.cs.treelib.operations.OperationExecutor - Buffer is Pagebuffer, size: 200 (page size: 4096), fixes: 1, free: 197
+     [java] 2009-02-10 00:21:35,493 INFO  fi.hut.cs.treelib.operations.ProgressCounter - overlaps: 10000
+     [java] 2009-02-10 00:21:35,493 INFO  fi.hut.cs.treelib.operations.OperationExecutor - Execution complete, showing statistics
+
+append-run-log:
+
+generic-tree-overlaps:
+     [echo] Overlap query, config: exec-rtree.xml, dataset: mbr-large-window-5.txt (10000000; skip 0)
+     [java] 2009-02-10 00:21:35,727 INFO  fi.hut.cs.treelib.operations.OperationExecutor - Initializing application context
+     [java] 2009-02-10 00:21:36,101 INFO  fi.hut.cs.treelib.operations.OperationExecutor - Initializing Operation Executor
+     [java] 2009-02-10 00:21:36,117 INFO  fi.hut.cs.treelib.operations.OperationExecutor - Starting execution
+     [java] 2009-02-10 00:21:36,117 INFO  fi.hut.cs.treelib.operations.OperationExecutor - Database is R-tree db, tree: R-Tree (h: 3), root: ({(-124.407,32.5399):(-114.134,42.0092)}, P13302), extents: {(-124.407,32.5399):(-114.134,42.0092)}
+     [java] 2009-02-10 00:21:36,117 INFO  fi.hut.cs.treelib.operations.OperationExecutor - Buffer is Pagebuffer, size: 200 (page size: 4096), fixes: 1, free: 197
+     [java] 2009-02-10 00:33:12,173 INFO  fi.hut.cs.treelib.operations.ProgressCounter - overlaps: 10000
+     [java] 2009-02-10 00:33:12,173 INFO  fi.hut.cs.treelib.operations.OperationExecutor - Execution complete, showing statistics
+
+append-run-log:
+
+generic-tree-overlaps:
+     [echo] Overlap query, config: exec-rtree.xml, dataset: mbr-large-window-10.txt (10000000; skip 0)
+     [java] 2009-02-10 00:33:12,407 INFO  fi.hut.cs.treelib.operations.OperationExecutor - Initializing application context
+     [java] 2009-02-10 00:33:12,844 INFO  fi.hut.cs.treelib.operations.OperationExecutor - Initializing Operation Executor
+     [java] 2009-02-10 00:33:12,860 INFO  fi.hut.cs.treelib.operations.OperationExecutor - Starting execution
+     [java] 2009-02-10 00:33:12,860 INFO  fi.hut.cs.treelib.operations.OperationExecutor - Database is R-tree db, tree: R-Tree (h: 3), root: ({(-124.407,32.5399):(-114.134,42.0092)}, P13302), extents: {(-124.407,32.5399):(-114.134,42.0092)}
+     [java] 2009-02-10 00:33:12,860 INFO  fi.hut.cs.treelib.operations.OperationExecutor - Buffer is Pagebuffer, size: 200 (page size: 4096), fixes: 1, free: 197
+     [java] 2009-02-10 01:13:04,542 INFO  fi.hut.cs.treelib.operations.ProgressCounter - overlaps: 10000
+     [java] 2009-02-10 01:13:05,042 INFO  fi.hut.cs.treelib.operations.OperationExecutor - Execution complete, showing statistics
+
+append-run-log:
+
+generic-tree-overlaps:
+     [echo] Overlap query, config: exec-rtree.xml, dataset: mbr-large-window-20.txt (10000000; skip 0)
+     [java] 2009-02-10 01:13:05,322 INFO  fi.hut.cs.treelib.operations.OperationExecutor - Initializing application context
+     [java] 2009-02-10 01:13:05,681 INFO  fi.hut.cs.treelib.operations.OperationExecutor - Initializing Operation Executor
+     [java] 2009-02-10 01:13:05,697 INFO  fi.hut.cs.treelib.operations.OperationExecutor - Starting execution
+     [java] 2009-02-10 01:13:05,697 INFO  fi.hut.cs.treelib.operations.OperationExecutor - Database is R-tree db, tree: R-Tree (h: 3), root: ({(-124.407,32.5399):(-114.134,42.0092)}, P13302), extents: {(-124.407,32.5399):(-114.134,42.0092)}
+     [java] 2009-02-10 01:13:05,697 INFO  fi.hut.cs.treelib.operations.OperationExecutor - Buffer is Pagebuffer, size: 200 (page size: 4096), fixes: 1, free: 197
+     [java] 2009-02-10 02:39:49,077 INFO  fi.hut.cs.treelib.operations.OperationExecutor - Execution complete, showing statistics
+
+append-run-log:
+
+generic-tree-exact:
+     [echo] Exact query, config: exec-rtree.xml, dataset: mbr-large-exact.txt (10000000; skip 0)
+     [java] 2009-02-10 02:39:49,389 INFO  fi.hut.cs.treelib.operations.OperationExecutor - Initializing application context
+     [java] 2009-02-10 02:39:49,794 INFO  fi.hut.cs.treelib.operations.OperationExecutor - Initializing Operation Executor
+     [java] 2009-02-10 02:39:49,810 INFO  fi.hut.cs.treelib.operations.OperationExecutor - Starting execution
+     [java] 2009-02-10 02:39:49,810 INFO  fi.hut.cs.treelib.operations.OperationExecutor - Database is R-tree db, tree: R-Tree (h: 3), root: ({(-124.407,32.5399):(-114.134,42.0092)}, P13302), extents: {(-124.407,32.5399):(-114.134,42.0092)}
+     [java] 2009-02-10 02:39:49,810 INFO  fi.hut.cs.treelib.operations.OperationExecutor - Buffer is Pagebuffer, size: 200 (page size: 4096), fixes: 1, free: 197
+     [java] 2009-02-10 02:39:49,810 INFO  fi.hut.cs.treelib.operations.ExactQueryOperation - Executing exact query operation
+     [java] 2009-02-10 02:40:23,194 INFO  fi.hut.cs.treelib.operations.ProgressCounter - exact: 10000
+     [java] 2009-02-10 02:40:23,194 INFO  fi.hut.cs.treelib.operations.OperationExecutor - Execution complete, showing statistics
+
+append-run-log:
+
+generic-tree-delete:
+     [echo] Delete items, dataset: mbr-large-delete.txt, amount to delete: 10000000
+     [java] 2009-02-10 02:40:23,444 INFO  fi.hut.cs.treelib.operations.OperationExecutor - Initializing application context
+     [java] 2009-02-10 02:40:23,818 INFO  fi.hut.cs.treelib.operations.OperationExecutor - Initializing Operation Executor
+     [java] 2009-02-10 02:40:23,834 INFO  fi.hut.cs.treelib.operations.OperationExecutor - Starting execution
+     [java] 2009-02-10 02:40:23,834 INFO  fi.hut.cs.treelib.operations.OperationExecutor - Database is R-tree db, tree: R-Tree (h: 3), root: ({(-124.407,32.5399):(-114.134,42.0092)}, P13302), extents: {(-124.407,32.5399):(-114.134,42.0092)}
+     [java] 2009-02-10 02:40:23,834 INFO  fi.hut.cs.treelib.operations.OperationExecutor - Buffer is Pagebuffer, size: 200 (page size: 4096), fixes: 1, free: 197
+     [java] 2009-02-10 02:40:23,834 INFO  fi.hut.cs.treelib.operations.DeleteOperation - Executing delete...
+     [java] 2009-02-10 02:41:11,258 INFO  fi.hut.cs.treelib.operations.ProgressCounter - delete: 10000
+     [java] 2009-02-10 02:41:11,258 INFO  fi.hut.cs.treelib.operations.OperationExecutor - Execution complete, showing statistics
+
+append-run-log:
+
+generic-tree-insert:
+     [echo] Insert data, config: exec-rtree.xml, dataset: mbr-large-insert.txt
+     [java] 2009-02-10 02:41:11,757 INFO  fi.hut.cs.treelib.operations.OperationExecutor - Initializing application context
+     [java] 2009-02-10 02:41:12,100 INFO  fi.hut.cs.treelib.operations.OperationExecutor - Initializing Operation Executor
+     [java] 2009-02-10 02:41:12,116 INFO  fi.hut.cs.treelib.operations.OperationExecutor - Starting execution
+     [java] 2009-02-10 02:41:12,116 INFO  fi.hut.cs.treelib.operations.OperationExecutor - Database is R-tree db, tree: R-Tree (h: 3), root: ({(-124.407,32.5399):(-114.134,42.0092)}, P13302), extents: {(-124.407,32.5399):(-114.134,42.0092)}
+     [java] 2009-02-10 02:41:12,116 INFO  fi.hut.cs.treelib.operations.OperationExecutor - Buffer is Pagebuffer, size: 200 (page size: 4096), fixes: 1, free: 197
+     [java] 2009-02-10 02:41:12,116 INFO  fi.hut.cs.treelib.operations.InsertOperation - Executing insert...
+     [java] 2009-02-10 02:41:44,673 INFO  fi.hut.cs.treelib.operations.ProgressCounter - insert: 10000
+     [java] 2009-02-10 02:41:44,688 INFO  fi.hut.cs.treelib.operations.OperationExecutor - Execution complete, showing statistics
+
+append-run-log:
+
+BUILD SUCCESSFUL
+Total time: 458 minutes 10 seconds

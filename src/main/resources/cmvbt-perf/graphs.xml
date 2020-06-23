@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="
+    http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd">
+
+  <bean name="mvvbt-name" class="java.lang.String">
+    <constructor-arg value="MV-VBT" />
+  </bean>
+  <bean name="tmvbt-name" class="java.lang.String">
+    <constructor-arg value="TMVBT" />
+  </bean>
+  <bean name="cmvbt-name" class="java.lang.String">
+    <constructor-arg value="CMVBT" />
+  </bean>
+  <bean name="cmvbt-1-name" class="java.lang.String">
+    <constructor-arg value="CMVBT, m=1" />
+  </bean>
+  <bean name="cmvbt-5-name" class="java.lang.String">
+    <constructor-arg value="CMVBT, m=5" />
+  </bean>
+  <bean name="cmvbt-10-name" class="java.lang.String">
+    <constructor-arg value="CMVBT, m=10" />
+  </bean>
+  <bean name="cmvbt-50-name" class="java.lang.String">
+    <constructor-arg value="CMVBT, m=50" />
+  </bean>
+  <bean name="tsb-iks-name" class="java.lang.String">
+    <constructor-arg value="TSB-I" />
+  </bean>
+  <bean name="tsb-wob-name" class="java.lang.String">
+    <constructor-arg value="TSB-W" />
+  </bean>
+  <bean name="tsb-deferred-name" class="java.lang.String">
+    <constructor-arg value="TSB-D" />
+  </bean>
+
+  <!-- Create the graphs -->
+  <bean name="graphCreator" class="fi.tuska.util.db.graph.GraphCreator" init-method="createGraphs">
+    <property name="directory" value="results/graph" />
+    <property name="graphs">
+      <list>
+<!--
+        <ref bean="graphQUInitial100Fix" />
+        <ref bean="graphQUInitial100Read" />
+        <ref bean="graphQUInitial100Write" />
+        <ref bean="graphQUInitial100Time" />
+        <ref bean="graphQUInitial5Fix" />
+        <ref bean="graphQUInitial5Read" />
+        <ref bean="graphQUInitial5Write" />
+        <ref bean="graphQUInitial5Time" />
+
+-->
+        <ref bean="graphRangeFix" />
+<!-- 
+        <ref bean="graphRangeRead" />
+        <ref bean="graphRangeWrite" />
+        <ref bean="graphRangeTime" />
+        <ref bean="graphRangeComparisonFix" />
+
+-->
+        <ref bean="graphRange5Fix" />
+<!-- 
+        <ref bean="graphRange5Read" />
+        <ref bean="graphRange5Write" />
+        <ref bean="graphRange5Time" />
+        <ref bean="graphRange5ComparisonFix" />
+
+        <ref bean="graphCMInitial5Fix" />
+        <ref bean="graphCMInitial100Fix" />
+        <ref bean="graphCMInitial100Read" />
+        <ref bean="graphCMInitial100Time" />
+        <ref bean="graphCMInitial5Read" />
+        <ref bean="graphCMInitial5Time" />
+-->
+      </list>
+    </property>
+    <property name="gnuplotDefinitions" ref="gnuplotDefinitions" />
+    <property name="gnuplot" value="gnuplot" />
+    <!-- 
+    <property name="epstopdf" value="epstopdf" />
+     -->
+    <property name="term">
+<!--      <value>pdfcairo enhanced monochrome dashed font ",5" size 10,3</value> -->  
+<!--      <value>pdf monochrome enhanced dashed linewidth 0.6 font ",4" size 11cm,5cm</value> --> 
+<!--      <value>pdf enhanced linewidth 0.6 font ",4" size 11cm,5cm</value> --> 
+      <value>pdf enhanced linewidth 0.6 font ",9" size 11cm,5cm</value> 
+    </property>
+  </bean>
+
+  <!-- Graph definitions -->
+  <import resource="graphs-qu.xml" />
+  <import resource="graphs-range-5.xml" />
+  <import resource="graphs-range-all.xml" />
+  <import resource="graphs-cm.xml" />
+  
+  <!-- General definitions -->
+  <bean name="gnuplotDefinitions" class="java.lang.String">
+    <constructor-arg>
+      <value><![CDATA[
+set pointsize 0.8
+set size ratio 0.4
+
+set style line 1 linetype 1 lw 2 linecolor rgb "blue" 
+set style line 2 linetype 2 lw 2 linecolor rgb "green"
+set style line 3 linetype 3 lw 2 linecolor rgb "red"
+set style line 4 linetype 4 lw 2 linecolor rgb "dark-red"
+set style line 5 linetype 5 lw 2 linecolor rgb "dark-green"
+set style line 6 linetype 6 lw 2 linecolor rgb "dark-blue"
+set style line 7 linetype 7 lw 2 linecolor rgb "dark-yellow"
+set style line 8 linetype 8 lw 2 linecolor rgb "cyan"
+set style line 9 linetype 9 lw 2 linecolor rgb "magenta"
+
+set style line 11 linetype 1 pt 1 lw 2 linecolor rgb "blue"
+set style line 12 linetype 2 pt 2 lw 2 linecolor rgb "green"
+set style line 13 linetype 3 pt 3 lw 2 linecolor rgb "red"
+set style line 14 linetype 4 pt 4 lw 2 linecolor rgb "dark-red"
+set style line 15 linetype 5 pt 5 lw 2 linecolor rgb "dark-green"
+set style line 16 linetype 6 pt 6 lw 2 linecolor rgb "dark-blue"
+set style line 16 linetype 7 pt 7 lw 2 linecolor rgb "dark-yellow"
+set style line 16 linetype 8 pt 8 lw 2 linecolor rgb "cyan"
+set style line 16 linetype 9 pt 9 lw 2 linecolor rgb "magenta"
+
+set style data lines
+set style fill solid 0.1
+
+set xrange [0:100]
+set yrange [0:*]
+set key right bottom
+      ]]></value>
+    </constructor-arg>
+  </bean>
+
+</beans>

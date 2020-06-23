@@ -1,0 +1,75 @@
+------------------------------------------------------------
+CMVBT database (m = 1), buffers: 168, 32
+
+initial: version 100000
+Last page ID: PageID 16087
+Total page count: 16088
+Leaf pages: 15885
+Parent pages: 197
+Entries: 1000000 alive / 4394429 total
+
+del-50: version 150000
+Last page ID: PageID 19610
+Total page count: 19610
+Leaf pages: 19352
+Parent pages: 251
+Entries: 500000 alive / 5039801 total
+
+del-100: version 200000
+Last page ID: PageID 25037
+Total page count: 25037
+Leaf pages: 24704
+Parent pages: 326
+Entries: 0 alive / 6007896 total
+
+
+------------------------------------------------------------
+TSB database (Immortal DB split)
+
+initial: version 100000
+Last page ID: PageID 14302
+Total page count: 14303
+Leaf pages: 13988
+Parent pages: 303
+Entries: 1000000 alive / 3425744 total
+
+del-50: version 150000
+Last page ID: PageID 16383
+Total page count: 16384
+Leaf pages: 16023
+Parent pages: 347
+Entries: 500000 alive / 3723854 total
+
+del-100: version 200000
+Last page ID: PageID 18603
+Total page count: 18604
+Leaf pages: 18199
+Parent pages: 391
+Entries: 0 alive / 3824145 total
+
+
+------------------------------------------------------------
+TSB database (IKS split)
+
+initial: version 100000
+Last page ID: PageID 10796
+Total page count: 10797
+Leaf pages: 10582
+Parent pages: 208
+Entries: 1000000 alive / 2519086 total
+
+del-50: version 150000
+Last page ID: PageID 13451
+Total page count: 13452
+Leaf pages: 13165
+Parent pages: 279
+Entries: 500000 alive / 2861624 total
+
+del-100: version 200000
+Last page ID: PageID 16139
+Total page count: 16140
+Leaf pages: 15788
+Parent pages: 342
+Entries: 0 alive / 2983836 total
+
+

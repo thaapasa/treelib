@@ -1,0 +1,53 @@
+--- exec-tsbt.xml;simulate;simulator --------------------------------
+title: initial-insert
+start-time:2009-06-05 16:55:27
+end-time:2009-06-05 16:56:38
+database:tsbt
+buffer-size:200
+page-size:4096
+database-size:501
+operation-count:102142
+time-measurement:70,257000
+go_new_transaction       	100
+action_insert            	count:102142
+op_object_inserted       	avg:1,000000	min:1	max:1
+op_spacemap_allocate     	avg:0,004876	min:0	max:3
+op_buffer_fix            	avg:2,570040	min:1	max:8
+op_buffer_read           	avg:0,195267	min:0	max:2
+op_buffer_write          	avg:0,198214	min:0	max:3
+op_traverse_path         	avg:1,002575	min:1	max:4
+
+title: mix
+start-time:2009-06-05 16:56:38
+end-time:2009-06-05 16:59:41
+database:tsbt
+buffer-size:200
+page-size:4096
+database-size:542
+operation-count:71637
+time-measurement:182,952000
+go_new_transaction       	1000
+action_insert            	count:5478
+action_delete            	count:4015
+action_query             	count:61950
+action_range_query       	count:194
+op_query_found_object    	avg:277,629772	min:0	max:103014
+op_object_deleted        	avg:0,056046	min:0	max:1
+op_object_inserted       	avg:0,076469	min:0	max:1
+op_spacemap_allocate     	avg:0,000572	min:0	max:1
+op_buffer_fix            	avg:4,372894	min:3	max:510
+op_buffer_read           	avg:1,833271	min:0	max:507
+op_buffer_write          	avg:0,078563	min:0	max:151
+op_traverse_path         	avg:0,139160	min:0	max:3
+
+title: simulator
+start-time:2009-06-05 16:59:41
+end-time:2009-06-05 16:59:41
+database:tsbt
+buffer-size:200
+page-size:4096
+database-size:542
+operation-count:0
+time-measurement:0,000000
+
+

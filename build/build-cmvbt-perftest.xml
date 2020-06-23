@@ -1,0 +1,418 @@
+<project name="CMVBT performance tests" basedir="..">
+
+  <import file="build.xml" />
+  <taskdef resource="net/sf/antcontrib/antcontrib.properties">
+    <classpath>
+      <pathelement location="lib/ant-contrib.jar" />
+    </classpath>
+  </taskdef>
+
+
+  <!-- Initializations -->
+
+  <target name="init-cmvbt" depends="init-exec">
+    <property name="dbID" value="cmvbt" />
+    <property name="treeConfig" value="exec-cmvbt.xml" />
+    <property name="dbFile" value="db/cmvbt-exec.db" />
+  </target>
+
+  <target name="init-tsb" depends="init-exec">
+    <property name="dbID" value="tsb" />
+    <property name="treeConfig" value="exec-tsb.xml" />
+    <property name="dbFile" value="db/tsb-exec.db" />
+  </target>
+
+  <property name="workloadDir" value="material/txlogs/cmvbt-perf" />
+  <property name="logDir" value="results/cmvbt-perf" />
+  <property name="stage" value="undefined" />
+
+  <!-- Targets -->
+
+  <!-- All tests -->
+  <target name="all-tests" description="Run all initializations and tests">
+    <antcall target="cmvbt-test" />
+    <antcall target="tsb-test" />
+  </target>
+
+  <target name="all-tests-1" description="Run all initializations and tests">
+    <antcall target="cmvbt-test-1" />
+    <antcall target="tsb-test-1" />
+  </target>
+
+  <!-- CMVBT -->
+  <target name="cmvbt-clear" description="Clear CMVBT exec DB" depends="init-cmvbt">
+    <antcall target="clear-db" />
+  </target>
+
+  <target name="cmvbt-test" description="Run all CMVBT tests" depends="init-cmvbt">
+    <antcall target="db-test" />
+  </target>
+
+  <target name="cmvbt-test-1" description="Run all CMVBT tests" depends="init-cmvbt">
+    <antcall target="db-test-1" />
+  </target>
+
+
+  <!-- TSB -->
+  <target name="tsb-clear" description="Clear TSB exec DB" depends="init-tsb">
+    <antcall target="clear-db" />
+  </target>
+
+  <target name="tsb-test" description="Run TSB-test" depends="init-tsb">
+    <antcall target="db-test" />
+  </target>
+
+  <target name="tsb-test-1" description="Run TSB-test" depends="init-tsb">
+    <antcall target="db-test-1" />
+  </target>
+
+
+  <!-- Test lists -->
+
+  <target name="db-test">
+    <!-- Initialize -->
+    <antcall target="init-db" />
+    <!-- Tests -->
+    <antcall target="run-range-tests">
+      <param name="stage" value="initial" />
+    </antcall>
+    <antcall target="run-query-update-tests">
+      <param name="stage" value="initial" />
+    </antcall>
+    <antcall target="run-history-tests">
+      <param name="stage" value="initial" />
+    </antcall>
+    <!-- Update -->
+    <antcall target="apply-updates" />
+    <!-- Tests -->
+    <antcall target="run-range-tests">
+      <param name="stage" value="updated" />
+    </antcall>
+    <antcall target="run-query-update-tests">
+      <param name="stage" value="updated" />
+    </antcall>
+    <antcall target="run-history-tests">
+      <param name="stage" value="updated" />
+    </antcall>
+    <!-- Update -->
+    <antcall target="apply-updates-2" />
+    <antcall target="run-range-tests">
+      <param name="stage" value="updated-2" />
+    </antcall>
+    <antcall target="run-history-tests">
+      <param name="stage" value="updated-2" />
+    </antcall>
+    <!-- Deletes -->
+    <antcall target="apply-deletes" />
+    <antcall target="run-range-tests">
+      <param name="stage" value="deleted" />
+    </antcall>
+    <antcall target="run-history-tests">
+      <param name="stage" value="deleted" />
+    </antcall>
+  </target>
+
+  <target name="db-test-1" depends="init-cmvbt">
+    <!-- Initialize -->
+    <antcall target="run-range-tests">
+      <param name="stage" value="initial" />
+    </antcall>
+  </target>
+
+
+  <!-- Generic targets -->
+
+  <target name="exec-wl">
+    <echo message="Executing workload ${workloadDir}/${workload} for DB ${dbFile}" />
+    <antcall target="generic-tree-execute">
+      <param name="dataset" value="${workloadDir}/${workload}" />
+    </antcall>
+  </target>
+
+  <target name="clear-db">
+    <echo message="Deleting DB file ${dbFile}" />
+    <delete file="${dbFile}" />
+  </target>
+
+  <target name="init-db">
+    <antcall target="clear-db" />
+    <antcall target="exec-wl">
+      <param name="workload" value="init.log" />
+    </antcall>
+    <antcall target="backup-db">
+      <param name="stage" value="initial" />
+    </antcall>
+    <copy file="exec-run.log" tofile="${logDir}/${dbID}-init.log" />
+  </target>
+
+  <target name="apply-updates">
+    <antcall target="restore-db">
+      <param name="stage" value="initial" />
+    </antcall>
+    <antcall target="exec-wl">
+      <param name="workload" value="apply-updates.log" />
+    </antcall>
+    <antcall target="backup-db">
+      <param name="stage" value="updated" />
+    </antcall>
+    <copy file="exec-run.log" tofile="${logDir}/${dbID}-apply-updates.log" />
+  </target>
+
+  <target name="apply-updates-2">
+    <antcall target="restore-db">
+      <param name="stage" value="updated" />
+    </antcall>
+    <antcall target="exec-wl">
+      <param name="workload" value="apply-updates-2.log" />
+    </antcall>
+    <antcall target="backup-db">
+      <param name="stage" value="updated-2" />
+    </antcall>
+    <copy file="exec-run.log" tofile="${logDir}/${dbID}-apply-updates-2.log" />
+  </target>
+
+  <target name="apply-deletes">
+    <antcall target="restore-db">
+      <param name="stage" value="updated-2" />
+    </antcall>
+    <antcall target="exec-wl">
+      <param name="workload" value="apply-deletes.log" />
+    </antcall>
+    <antcall target="backup-db">
+      <param name="stage" value="deleted" />
+    </antcall>
+    <copy file="exec-run.log" tofile="${logDir}/${dbID}-apply-deletes.log" />
+  </target>
+
+  <target name="run-range-tests">
+    <antcall target="run-test">
+      <param name="test" value="range-1" />
+    </antcall>
+    <antcall target="run-test">
+      <param name="test" value="range-5" />
+    </antcall>
+    <antcall target="run-test">
+      <param name="test" value="range-10" />
+    </antcall>
+    <antcall target="run-test">
+      <param name="test" value="range-20" />
+    </antcall>
+    <antcall target="run-test">
+      <param name="test" value="range-50" />
+    </antcall>
+  </target>
+
+  <target name="run-query-update-tests">
+    <antcall target="run-query-update-tests-txlen">
+      <param name="txLen" value="5" />
+    </antcall>
+    <antcall target="run-query-update-tests-txlen">
+      <param name="txLen" value="100" />
+    </antcall>
+  </target>
+
+  <target name="run-query-update-tests-txlen">
+    <antcall target="run-qu-test">
+      <param name="test" value="qu-${txLen}-0" />
+    </antcall>
+    <antcall target="run-qu-test">
+      <param name="test" value="qu-${txLen}-10" />
+    </antcall>
+    <antcall target="run-qu-test">
+      <param name="test" value="qu-${txLen}-20" />
+    </antcall>
+    <antcall target="run-qu-test">
+      <param name="test" value="qu-${txLen}-50" />
+    </antcall>
+    <antcall target="run-qu-test">
+      <param name="test" value="qu-${txLen}-100" />
+    </antcall>
+  </target>
+
+  <target name="run-qu-test">
+    <if>
+      <equals arg1="${dbID}" arg2="cmvbt" />
+      <then>
+        <antcall target="run-test">
+          <param name="dbID" value="cmvbt-1" />
+          <param name="extraArgs" value="maintenanceFrequency=1" />
+        </antcall>
+        <antcall target="run-test">
+          <param name="dbID" value="cmvbt-5" />
+          <param name="extraArgs" value="maintenanceFrequency=5" />
+        </antcall>
+        <antcall target="run-test">
+          <param name="dbID" value="cmvbt-10" />
+          <param name="extraArgs" value="maintenanceFrequency=10" />
+        </antcall>
+        <antcall target="run-test">
+          <param name="dbID" value="cmvbt-50" />
+          <param name="extraArgs" value="maintenanceFrequency=50" />
+        </antcall>
+      </then>
+      <else>
+        <antcall target="run-test" />
+      </else>
+    </if>
+  </target>
+
+  <target name="run-history-tests">
+    <antcall target="run-test">
+      <param name="test" value="history" />
+    </antcall>
+    <antcall target="run-test">
+      <param name="test" value="history-range" />
+    </antcall>
+  </target>
+
+  <target name="run-test">
+    <antcall target="restore-db" />
+    <antcall target="exec-wl">
+      <param name="workload" value="${test}.log" />
+    </antcall>
+    <copy file="exec-run.log" tofile="${logDir}/${dbID}-${stage}-${test}.log" />
+  </target>
+
+  <target name="backup-db">
+    <echo message="Backing up db ${dbFile} to stage ${stage} (and current)" />
+    <copy file="${dbFile}" tofile="${dbFile}.current" overwrite="true" />
+    <copy file="${dbFile}" tofile="${dbFile}.${stage}" overwrite="true" />
+  </target>
+
+  <target name="restore-db">
+    <echo message="Restoring db ${dbFile} with stage ${stage} into use" />
+    <copy file="${dbFile}.${stage}" tofile="${dbFile}" overwrite="true" />
+  </target>
+
+
+  <!-- Summary generation -->
+
+  <target name="clear-summary-logs" description="Clear summary logs">
+    <delete>
+      <fileset dir="${logDir}/summary/" includes="*.log" />
+    </delete>
+  </target>
+
+  <target name="clear-summary-images" description="Clear summary logs">
+    <delete>
+      <fileset dir="${logDir}/summary/" includes="*.eps" />
+      <fileset dir="${logDir}/summary/" includes="*.pdf" />
+    </delete>
+  </target>
+
+  <target name="create-summary-tex" description="Create summary tex listing">
+    <echo message="[${os.name}] Creating summary file query-update (${stage})" />
+    <exec executable="sh" dir=".">
+      <arg value="src/test/scripts/cmvbt-summarize-tex.sh" />
+    </exec>
+  </target>
+
+  <target name="create-summary-logs" description="Create summary log files">
+    <!-- Query-update tests -->
+    <antcall target="create-qu-summary-file">
+      <param name="stage" value="initial" />
+      <param name="txLen" value="5" />
+    </antcall>
+    <antcall target="create-qu-summary-file">
+      <param name="stage" value="initial" />
+      <param name="txLen" value="100" />
+    </antcall>
+    <antcall target="create-qu-summary-file">
+      <param name="stage" value="updated" />
+      <param name="txLen" value="5" />
+    </antcall>
+    <antcall target="create-qu-summary-file">
+      <param name="stage" value="updated" />
+      <param name="txLen" value="100" />
+    </antcall>
+
+    <!-- Range -->
+    <antcall target="create-range-summary-file" />
+
+    <!-- Single tests -->
+    <antcall target="create-single-summary-file">
+      <param name="test" value="history" />
+    </antcall>
+    <antcall target="create-single-summary-file">
+      <param name="test" value="history-range" />
+    </antcall>
+  </target>
+
+  <target name="create-qu-summary-file">
+    <echo message="[${os.name}] Creating summary file query-update (${stage})" />
+    <exec executable="sh" dir=".">
+      <arg value="src/test/scripts/cmvbt-analyze-qu.sh" />
+      <arg value="${stage}" />
+      <arg value="${txLen}" />
+    </exec>
+  </target>
+
+  <target name="create-range-summary-file">
+    <echo message="[${os.name}] Creating summary file range (${stage})" />
+    <!-- <exec os="Windows Vista" executable="sh" dir=".">
+      <arg value="src/test/scripts/cmvbt-analyze-range.sh" />
+    </exec> -->
+    <exec executable="sh" dir=".">
+      <arg value="src/test/scripts/cmvbt-analyze-range.sh" />
+    </exec>
+  </target>
+
+  <target name="create-single-summary-file">
+    <echo message="[${os.name}] Creating summary file (${test})" />
+    <exec executable="sh" dir=".">
+      <arg value="src/test/scripts/cmvbt-analyze-single.sh" />
+      <arg value="${test}" />
+    </exec>
+  </target>
+
+  <target name="create-summary-images" description="Create images">
+    <antcall target="create-summary-images-stage">
+      <param name="stage" value="initial" />
+    </antcall>
+    <antcall target="create-summary-images-stage">
+      <param name="stage" value="updated" />
+    </antcall>
+  </target>
+
+  <!--
+    Operations:
+    2: buffer fixes
+    3: page reads
+    4: page writes
+    5: time
+  -->
+  <target name="create-summary-images-stage">
+    <antcall target="create-summary-images-internal">
+      <param name="op" value="2" />
+      <param name="optitle" value="Buffer fixes" />
+      <param name="valtarget" value="action" />
+    </antcall>
+    <antcall target="create-summary-images-internal">
+      <param name="op" value="3" />
+      <param name="optitle" value="Page reads" />
+      <param name="valtarget" value="action" />
+    </antcall>
+    <antcall target="create-summary-images-internal">
+      <param name="op" value="4" />
+      <param name="optitle" value="Page writes" />
+      <param name="valtarget" value="action" />
+    </antcall>
+    <antcall target="create-summary-images-internal">
+      <param name="op" value="5" />
+      <param name="optitle" value="Time (s)" />
+      <param name="valtarget" value="test" />
+    </antcall>
+  </target>
+
+  <target name="create-summary-images-internal">
+    <echo message="[${os.name}] Creating summary images of ${stage} for ${op} (${optitle})" />
+    <exec executable="sh" dir=".">
+      <arg value="src/test/scripts/cmvbt-plot.sh" />
+      <arg value="${stage}" />
+      <arg value="${op}" />
+      <arg value="${optitle}" />
+      <arg value="${valtarget}" />
+    </exec>
+  </target>
+
+</project>

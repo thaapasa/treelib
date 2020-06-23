@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="
+    http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd">
+
+  <!-- Common settings -->
+  <import resource="common.xml" />
+
+  <!-- Database definitions -->
+  <import resource="databases.xml" />
+  
+  <!-- Database definitions. -->
+  <import resource="operations.xml" />
+
+  <!-- Database configuration -->
+  <bean id="configuration" class="fi.hut.cs.treelib.Configuration">
+    <property name="maxStringLength" value="10" />
+    <property name="typedPageNames" value="false" />
+    <property name="limitPageSizes" value="true" />
+    <property name="leafPageSizeLimit" value="5" />
+    <property name="indexPageSizeLimit" value="5" />
+    <property name="simplePageCentering" value="false" />
+    <property name="flushPagesAfterActions" value="true" />
+    <property name="checkConsistency" value="true" />
+    <property name="useRStarSplit" value="false" />
+    <property name="showLogicalPageContents" value="true" />
+    <property name="showLeafEntryValues" value="false" />
+  </bean>
+  
+  <!-- Statistics logger -->
+  <bean id="statisticsLogger" class="fi.hut.cs.treelib.stats.StatisticsImpl" />
+  
+  <!-- Amount of operations to run before showing visualizer -->
+  <bean name="initialOperationCount" class="java.lang.Integer">
+    <!-- J-tree: 26 -->
+    <constructor-arg value="90" />
+  </bean>
+  
+  <!-- Select DB to use -->
+  <!-- db2 - B-tree -->
+  <!-- db3 - MVBT -->
+  <!-- db4 - TMVBT -->
+  <!-- db5 - J-tree -->
+  <!-- db6 - R-tree -->
+  <!-- db7 - Hilbert R-tree -->
+  <!-- db8 - TSB -->
+  <!-- db9 - CMVBT -->
+  <alias alias="db" name="db4" />
+
+  <!-- Select operations to use -->
+  <!-- emptyList - no operations -->
+  <!-- operationFile - load operations from the operation log file (operations.log) -->
+  <!-- floatMBROperationList - MBR operations -->
+  <!-- versionedOperationList - versioned operations -->
+  <!-- transactionOperationList - transactional integer operations -->
+  <!--
+    <alias alias="operations" name="transactionOperationList" /> 
+    <alias alias="operations" name="floatMBROperationList" /> 
+    <alias alias="operations" name="operationFile" /> 
+    <alias alias="operations" name="articleTMVBTExample" /> 
+    <alias alias="operations" name="articleTMVBTOperations" /> 
+    
+    <bean id="operations" class="java.lang.String"> 
+      <constructor-arg value="operations.log" />
+      <constructor-arg value="operations-mbr.log" /> 
+    </bean>
+  -->
+  <bean id="operations" class="java.lang.String"> 
+    <constructor-arg value="operations.log" />
+  </bean>
+  
+  <!-- Database tree, loaded from db -->
+  <bean id="dbTree" class="org.springframework.beans.factory.config.MethodInvokingFactoryBean"
+    depends-on="db">
+    <property name="targetObject" ref="db" />
+    <property name="targetMethod" value="getDatabaseTree" />
+  </bean>
+
+  <!-- Key prototype, loaded from database tree -->
+  <bean id="keyPrototype" class="org.springframework.beans.factory.config.MethodInvokingFactoryBean"
+    depends-on="dbTree">
+    <property name="targetObject" ref="dbTree" />
+    <property name="targetMethod" value="getKeyPrototype" />
+  </bean>
+  
+  <!-- Creates the tree controller. -->
+  <bean id="controller" class="fi.hut.cs.treelib.controller.TreeCreator" init-method="initComponent"
+    depends-on="keyPrototype,db">
+    <property name="initialOperationCount" ref="initialOperationCount" />
+    <constructor-arg index="0" ref="db" />
+    <constructor-arg index="1" ref="operations" />
+    <constructor-arg index="2" ref="keyPrototype" />
+  </bean>
+  
+  <!-- Creates the tree visualizer GUI. -->
+  <bean id="gui" class="fi.hut.cs.treelib.gui.TreeVisualizerGUI" init-method="start" lazy-init="false"
+    depends-on="keyPrototype,db,controller">
+    <constructor-arg ref="db" />
+    <constructor-arg ref="controller" />
+    <constructor-arg ref="keyPrototype" />
+    <constructor-arg ref="statisticsLogger" />
+  </bean>
+</beans>

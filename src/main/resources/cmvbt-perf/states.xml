@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="
+    http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd">
+
+  <!-- 
+    - Initial state
+    - 20 actions/tx * 100000 transactions = 2M actions
+    - 2M actions, 75% inserts, 25% deletes = 1M live entries
+    -->
+  <bean id="stateInitial" class="fi.hut.cs.treelib.test.TestState">
+    <property name="name" value="initial-${testset.name.suffix}" />
+    <property name="workload">
+      <bean class="fi.hut.cs.treelib.test.Workload" autowire="byName">
+        <property name="distribution" ref="distribution" />
+        <property name="filename" value="create-initial-${testset.name.suffix}.wl" />
+        <property name="numTransactions" value="${state.initial.tx.amount}" />
+        <property name="transactionLength" value="${state.initial.tx.length}" />
+        <property name="insertAmount" value="0.75" />
+        <property name="deleteAmount" value="0.25" />
+        <property name="exactAmounts" value="true" />
+      </bean>
+    </property>
+  </bean>
+
+  <!-- 
+    - Deleted states
+    - 10% of original items deleted more in each state 
+    - 10 actions/tx * 10000 transactions = 100K items deleted/tx
+    -->
+  <bean abstract="true" id="stateDelProto" class="fi.hut.cs.treelib.test.Workload" autowire="byName">
+    <property name="distribution" ref="distribution" />
+    <property name="numTransactions" value="${state.del.tx.amount}" />
+    <property name="transactionLength" value="${state.del.tx.length}" />
+    <property name="deleteAmount" value="1" />
+    <property name="exactAmounts" value="true" />
+  </bean>
+
+  <bean id="stateDel0" class="fi.hut.cs.treelib.test.TestState">
+    <property name="name" value="del-000-${testset.name.suffix}" />
+    <property name="workload">
+      <bean class="fi.hut.cs.treelib.test.Workload" parent="stateDelProto" autowire="byName">
+        <property name="filename" value="create-del0-${testset.name.suffix}.wl" />
+        <property name="numTransactions" value="0" />
+        <property name="basedOnState" ref="stateInitial" />
+      </bean>
+    </property>
+  </bean>
+  <bean id="stateDel10" class="fi.hut.cs.treelib.test.TestState">
+    <property name="name" value="del-010-${testset.name.suffix}" />
+    <property name="workload">
+      <bean class="fi.hut.cs.treelib.test.Workload" parent="stateDelProto" autowire="byName">
+        <property name="filename" value="create-del10-${testset.name.suffix}.wl" />
+        <property name="basedOnState" ref="stateDel0" />
+      </bean>
+    </property>
+  </bean>
+  <bean id="stateDel20" class="fi.hut.cs.treelib.test.TestState">
+    <property name="name" value="del-020-${testset.name.suffix}" />
+    <property name="workload">
+      <bean class="fi.hut.cs.treelib.test.Workload" parent="stateDelProto" autowire="byName">
+        <property name="filename" value="create-del20-${testset.name.suffix}.wl" />
+        <property name="basedOnState" ref="stateDel10" />
+      </bean>
+    </property>
+  </bean>
+  <bean id="stateDel30" class="fi.hut.cs.treelib.test.TestState">
+    <property name="name" value="del-030-${testset.name.suffix}" />
+    <property name="workload">
+      <bean class="fi.hut.cs.treelib.test.Workload" parent="stateDelProto" autowire="byName">
+        <property name="filename" value="create-del30-${testset.name.suffix}.wl" />
+        <property name="basedOnState" ref="stateDel20" />
+      </bean>
+    </property>
+  </bean>
+  <bean id="stateDel40" class="fi.hut.cs.treelib.test.TestState">
+    <property name="name" value="del-040-${testset.name.suffix}" />
+    <property name="workload">
+      <bean class="fi.hut.cs.treelib.test.Workload" parent="stateDelProto" autowire="byName">
+        <property name="filename" value="create-del40-${testset.name.suffix}.wl" />
+        <property name="basedOnState" ref="stateDel30" />
+      </bean>
+    </property>
+  </bean>
+  <bean id="stateDel50" class="fi.hut.cs.treelib.test.TestState">
+    <property name="name" value="del-050-${testset.name.suffix}" />
+    <property name="workload">
+      <bean class="fi.hut.cs.treelib.test.Workload" parent="stateDelProto" autowire="byName">
+        <property name="filename" value="create-del50-${testset.name.suffix}.wl" />
+        <property name="basedOnState" ref="stateDel40" />
+      </bean>
+    </property>
+  </bean>
+  <bean id="stateDel60" class="fi.hut.cs.treelib.test.TestState">
+    <property name="name" value="del-060-${testset.name.suffix}" />
+    <property name="workload">
+      <bean class="fi.hut.cs.treelib.test.Workload" parent="stateDelProto" autowire="byName">
+        <property name="filename" value="create-del60-${testset.name.suffix}.wl" />
+        <property name="basedOnState" ref="stateDel50" />
+      </bean>
+    </property>
+  </bean>
+  <bean id="stateDel70" class="fi.hut.cs.treelib.test.TestState">
+    <property name="name" value="del-070-${testset.name.suffix}" />
+    <property name="workload">
+      <bean class="fi.hut.cs.treelib.test.Workload" parent="stateDelProto" autowire="byName">
+        <property name="filename" value="create-del70-${testset.name.suffix}.wl" />
+        <property name="basedOnState" ref="stateDel60" />
+      </bean>
+    </property>
+  </bean>
+  <bean id="stateDel80" class="fi.hut.cs.treelib.test.TestState">
+    <property name="name" value="del-080-${testset.name.suffix}" />
+    <property name="workload">
+      <bean class="fi.hut.cs.treelib.test.Workload" parent="stateDelProto" autowire="byName">
+        <property name="filename" value="create-del80-${testset.name.suffix}.wl" />
+        <property name="basedOnState" ref="stateDel70" />
+      </bean>
+    </property>
+  </bean>
+  <bean id="stateDel90" class="fi.hut.cs.treelib.test.TestState">
+    <property name="name" value="del-090-${testset.name.suffix}" />
+    <property name="workload">
+      <bean class="fi.hut.cs.treelib.test.Workload" parent="stateDelProto" autowire="byName">
+        <property name="filename" value="create-del90-${testset.name.suffix}.wl" />
+        <property name="basedOnState" ref="stateDel80" />
+      </bean>
+    </property>
+  </bean>
+  <bean id="stateDel100" class="fi.hut.cs.treelib.test.TestState">
+    <property name="name" value="del-100-${testset.name.suffix}" />
+    <property name="workload">
+      <bean class="fi.hut.cs.treelib.test.Workload" parent="stateDelProto" autowire="byName">
+        <property name="filename" value="create-del100-${testset.name.suffix}.wl" />
+        <property name="basedOnState" ref="stateDel90" />
+      </bean>
+    </property>
+  </bean>
+
+
+  <!-- 
+    - Updated states
+    - New items added, old ones deleted
+    - Number of entries stays constant 
+    -->
+  <bean abstract="true" id="stateUpdatedProto" class="fi.hut.cs.treelib.test.Workload" autowire="byName">
+    <property name="distribution" ref="distribution" />
+    <property name="numTransactions" value="${state.updated.tx.amount}" />
+    <property name="transactionLength" value="${state.updated.tx.length}" />
+    <property name="deleteAmount" value=".5" />
+    <property name="insertAmount" value=".5" />
+    <property name="exactAmounts" value="true" />
+  </bean>
+
+  <bean id="stateUpdated0" class="fi.hut.cs.treelib.test.TestState">
+    <property name="name" value="updated-00-${testset.name.suffix}" />
+    <property name="workload">
+      <bean class="fi.hut.cs.treelib.test.Workload" parent="stateUpdatedProto" autowire="byName">
+        <property name="filename" value="create-updated-0-${testset.name.suffix}.wl" />
+        <property name="numTransactions" value="0" />
+        <property name="basedOnState" ref="stateInitial" />
+      </bean>
+    </property>
+  </bean>
+  <bean id="stateUpdated1" class="fi.hut.cs.treelib.test.TestState">
+    <property name="name" value="updated-01-${testset.name.suffix}" />
+    <property name="workload">
+      <bean class="fi.hut.cs.treelib.test.Workload" parent="stateUpdatedProto" autowire="byName">
+        <property name="filename" value="create-updated-1-${testset.name.suffix}.wl" />
+        <property name="basedOnState" ref="stateUpdated0" />
+      </bean>
+    </property>
+  </bean>
+  <bean id="stateUpdated2" class="fi.hut.cs.treelib.test.TestState">
+    <property name="name" value="updated-02-${testset.name.suffix}" />
+    <property name="workload">
+      <bean class="fi.hut.cs.treelib.test.Workload" parent="stateUpdatedProto" autowire="byName">
+        <property name="filename" value="create-updated-2-${testset.name.suffix}.wl" />
+        <property name="basedOnState" ref="stateUpdated1" />
+      </bean>
+    </property>
+  </bean>
+  <bean id="stateUpdated3" class="fi.hut.cs.treelib.test.TestState">
+    <property name="name" value="updated-03-${testset.name.suffix}" />
+    <property name="workload">
+      <bean class="fi.hut.cs.treelib.test.Workload" parent="stateUpdatedProto" autowire="byName">
+        <property name="filename" value="create-updated-3-${testset.name.suffix}.wl" />
+        <property name="basedOnState" ref="stateUpdated2" />
+      </bean>
+    </property>
+  </bean>
+  <bean id="stateUpdated4" class="fi.hut.cs.treelib.test.TestState">
+    <property name="name" value="updated-04-${testset.name.suffix}" />
+    <property name="workload">
+      <bean class="fi.hut.cs.treelib.test.Workload" parent="stateUpdatedProto" autowire="byName">
+        <property name="filename" value="create-updated-4-${testset.name.suffix}.wl" />
+        <property name="basedOnState" ref="stateUpdated3" />
+      </bean>
+    </property>
+  </bean>
+  <bean id="stateUpdated5" class="fi.hut.cs.treelib.test.TestState">
+    <property name="name" value="updated-05-${testset.name.suffix}" />
+    <property name="workload">
+      <bean class="fi.hut.cs.treelib.test.Workload" parent="stateUpdatedProto" autowire="byName">
+        <property name="filename" value="create-updated-5-${testset.name.suffix}.wl" />
+        <property name="basedOnState" ref="stateUpdated4" />
+      </bean>
+    </property>
+  </bean>
+
+</beans>

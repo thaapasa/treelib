@@ -1,0 +1,78 @@
+Operations
+----------
+
+- insert(key, info)
+  Inserts new key to the MVBTree with the current version number
+  
+- delete(key)
+  Marks a key as deleted at the current version number
+
+- find(key, version)
+  Finds the key value at given version
+   
+- find(lowkey, highkey, version)
+  Finds the key values at given versions
+
+
+Variables
+---------
+
+- b: node capacity (number of entries) (say, 6) (b = k * d)
+- d: weak version condition node count (say, 2)
+- k: weak version condition variable (say, 3) (k = b / d)
+- e: strong version condition variable (say, 1/2)
+
+
+Invariants
+----------
+
+- weak version condition
+  For each version i, all nodes (except root) must contains at least d nodes 
+  of version i, where d is either 0 or
+    b = k * d; that is
+    d = b / k 
+  Note that only live version needs to be considered, since no entries are 
+  ever deleted from a node.
+
+- weak version underflow
+  A (logical) delete causes the count of live entries in the node to fall 
+  below d.
+  Solved by: version split, which will be (implicitly) followed by merge   
+
+- strong version condition
+  Amount of nodes in a node that has been created with version split must be
+  in the range of:
+    (1 + e) * d  to  (k - e) * d
+
+- strong version overflow
+  Caused by version split creating a node with too many entries.
+  Solved by: key split
+
+- strong version underflow
+  Caused by version split creating a node with too few entries.
+  Solved by: merge
+
+- block overflow
+  Caused by an insert to a node with entry count = b.
+  Solved by: version split
+  
+- block underflow
+  Cannot occur, as there are no physical node deletions.
+  
+  
+Operations
+----------
+
+- version split
+  Copies all live entries from a node into a sibling node.
+  May create a full (or almost full) sibling node. 
+  Check for strong version overflow.
+
+- key split
+  Splits an overflown version split node (which contains only live entries)
+  into two nodes.
+
+- merge
+  Merges an underflown version split node (which contains only live entries) 
+  with a version split sibling node (which also contains only live entries).
+  

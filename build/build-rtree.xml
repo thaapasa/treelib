@@ -1,0 +1,336 @@
+<project name="Tree Library R-tree targets" basedir="..">
+
+  <import file="build.xml" />
+
+  <!-- 
+    <property name="dataset" value="rrlines.txt" /> 
+    <property name="dataset" value="TCB.ascii" />
+    <property name="dataset" value="CAR.ascii" /> 
+    <property name="dataset" value="car.sorted.txt" />
+    <property name="deleteAmount" value="23415" />
+  -->
+  <property name="dataprefix" value="mbr-large" />
+  <property name="dataset" value="${dataprefix}-insert.txt" />
+
+  <property name="deleteAmount" value="10000000" />
+  <property name="exactQueryAmount" value="10000000" />
+  <property name="exactQuerySkip" value="0" />
+  <property name="overlapQueryAmount" value="10000000" />
+  <property name="overlapQuerySkip" value="0" />
+
+  <!-- Initializations -->
+
+  <target name="init-jtree" depends="init-exec">
+    <property name="treeConfig" value="exec-jtree.xml" />
+    <property name="dbFile" value="db/jtree-exec.db" />
+    <property name="initialLoadTarget" value="generic-tree-insert" />
+  </target>
+
+  <target name="init-pjtree" depends="init-exec">
+    <property name="treeConfig" value="exec-pjtree.xml" />
+    <property name="dbFile" value="db/pjtree-exec.db" />
+    <property name="initialLoadTarget" value="generic-tree-bulk-load" />
+  </target>
+
+  <target name="init-htree" depends="init-exec">
+    <property name="treeConfig" value="exec-htree.xml" />
+    <property name="dbFile" value="db/htree-exec.db" />
+    <property name="initialLoadTarget" value="generic-tree-bulk-load" />
+  </target>
+
+  <target name="init-rtree" depends="init-exec">
+    <property name="treeConfig" value="exec-rtree.xml" />
+    <property name="dbFile" value="db/rtree-exec.db" />
+    <property name="initialLoadTarget" value="generic-tree-bulk-load" />
+  </target>
+
+
+  <!-- Targets -->
+
+  <target name="all-rtree-tests" description="Runs the tests with all R-tree variants">
+    <antcall target="pjtree-tests" />
+    <antcall target="htree-tests" />
+    <antcall target="rtree-tests" />
+  </target>
+
+  <target name="generic-rtree-tests">
+    <!-- 1. Clear tree -->
+    <antcall target="generic-tree-clear" />
+
+    <!-- 2. Bulk load -->
+    <antcall target="${initialLoadTarget}">
+      <param name="dataset" value="${dataprefix}-initial.txt" />
+    </antcall>
+
+    <!-- 3. Window queries -->
+    <antcall target="generic-tree-overlaps">
+      <param name="dataset" value="${dataprefix}-window-1.txt" />
+    </antcall>
+    <antcall target="generic-tree-overlaps">
+      <param name="dataset" value="${dataprefix}-window-5.txt" />
+    </antcall>
+    <antcall target="generic-tree-overlaps">
+      <param name="dataset" value="${dataprefix}-window-10.txt" />
+    </antcall>
+    <antcall target="generic-tree-overlaps">
+      <param name="dataset" value="${dataprefix}-window-20.txt" />
+    </antcall>
+
+    <!-- 4. Exact-match queries -->
+    <antcall target="generic-tree-exact">
+      <param name="dataset" value="${dataprefix}-exact.txt" />
+    </antcall>
+
+    <!-- 5. Deletion -->
+    <antcall target="generic-tree-delete">
+      <param name="dataset" value="${dataprefix}-delete.txt" />
+    </antcall>
+
+    <!-- 6. Insertion -->
+    <antcall target="generic-tree-insert">
+      <param name="dataset" value="${dataprefix}-insert.txt" />
+    </antcall>
+  </target>
+
+
+  <!-- J-tree -->
+
+  <target name="jtree-clear" description="Clear J-Tree exec DB" depends="init-jtree">
+    <antcall target="generic-tree-clear" />
+  </target>
+
+  <target name="jtree-tests" description="Run J-Tree test set" depends="init-jtree">
+    <antcall target="generic-rtree-tests" />
+  </target>
+
+  <target name="jtree-insert" description="Execute J-Tree insert" depends="init-jtree">
+    <antcall target="generic-tree-insert" />
+  </target>
+
+  <target name="jtree-delete" description="Execute J-Tree delete items" depends="init-jtree">
+    <antcall target="generic-tree-delete" />
+  </target>
+
+  <target name="jtree-overlaps" description="Execute J-Tree overlap query" depends="init-jtree">
+    <antcall target="generic-tree-overlaps" />
+  </target>
+
+  <target name="jtree-exact" description="Execute J-Tree exact query" depends="init-jtree">
+    <antcall target="generic-tree-exact" />
+  </target>
+
+  <target name="jtree-inspect" description="Inspect J-Tree contents" depends="init-jtree">
+    <antcall target="generic-tree-inspect" />
+  </target>
+
+  <target name="jtree-check-data" description="Check J-Tree data set" depends="init-jtree">
+    <antcall target="generic-tree-check-data" />
+  </target>
+
+  <target name="jtree-check" description="Check J-tree structure" depends="init-jtree">
+    <java classpathref="treelib.classpath" classname="fi.hut.cs.treelib.operations.OperationExecutor" fork="true">
+      <jvmarg value="-ea" />
+      <arg value="${treeConfig}" />
+      <arg value="check" />
+    </java>
+  </target>
+
+  <target name="jtree-backup" description="Backup current J-Tree DB" depends="init-jtree">
+    <antcall target="generic-tree-backup" />
+  </target>
+
+  <target name="jtree-restore" description="Restore J-Tree DB backup" depends="init-jtree">
+    <antcall target="generic-tree-restore" />
+  </target>
+
+
+  <!-- Packed J-tree -->
+
+  <target name="pjtree-tests" description="Run Packed J-Tree test set" depends="init-pjtree">
+    <antcall target="generic-rtree-tests" />
+  </target>
+
+  <target name="pjtree-tests-special" description="Run Packed J-Tree special test set" depends="init-pjtree">
+    <antcall target="generic-tree-clear" />
+    <antcall target="generic-tree-bulk-load" />
+    <antcall target="generic-tree-exact" />
+    <antcall target="generic-tree-overlaps" />
+  </target>
+
+  <target name="pjtree-clear" description="Clears the packed J-Tree db file" depends="init-pjtree">
+    <antcall target="generic-tree-clear" />
+  </target>
+
+  <target name="pjtree-bulk-load" description="Bulk-load packed J-Tree data set" depends="init-pjtree">
+    <antcall target="generic-tree-bulk-load">
+      <param name="dataset" value="${dataprefix}-initial.txt" />
+    </antcall>
+  </target>
+
+  <target name="pjtree-check" description="Check Packed J-tree structure" depends="init-pjtree">
+    <java classpathref="treelib.classpath" classname="fi.hut.cs.treelib.operations.OperationExecutor" fork="true">
+      <jvmarg value="-ea" />
+      <arg value="${treeConfig}" />
+      <arg value="check" />
+    </java>
+  </target>
+  
+  <target name="pjtree-inspect" description="Inspect Packed J-Tree contents" depends="init-pjtree">
+    <antcall target="generic-tree-inspect" />
+  </target>
+
+  <target name="pjtree-insert" description="Insert data to packed J-Tree" depends="init-pjtree">
+    <antcall target="generic-tree-insert">
+      <param name="dataset" value="${dataprefix}-insert.txt" />
+    </antcall>
+  </target>
+
+  <target name="pjtree-exact" description="Execute Packed J-Tree exact query" depends="init-pjtree">
+    <antcall target="generic-tree-exact">
+      <param name="dataset" value="${dataprefix}-exact.txt" />
+    </antcall>
+  </target>
+
+  <target name="pjtree-overlaps" description="Execute Packed J-Tree overlap query" depends="init-pjtree">
+    <antcall target="generic-tree-overlaps">
+      <param name="dataset" value="${dataprefix}-window-1.txt" />
+    </antcall>
+  </target>
+
+  <target name="pjtree-delete" description="Execute Packed J-Tree delete query" depends="init-pjtree">
+    <antcall target="generic-tree-delete">
+      <param name="dataset" value="${dataprefix}-delete.txt" />
+    </antcall>
+  </target>
+
+  <target name="pjtree-backup" description="Backup Packed J-Tree DB" depends="init-pjtree">
+    <antcall target="generic-tree-backup" />
+  </target>
+
+  <target name="pjtree-restore" description="Restore Packed J-Tree DB from backup" depends="init-pjtree">
+    <antcall target="generic-tree-restore" />
+  </target>
+
+
+  <!-- Hilbert R-tree -->
+
+  <target name="htree-clear" description="Clear Hilbert R-Tree exec DB" depends="init-htree">
+    <antcall target="generic-tree-clear" />
+  </target>
+
+  <target name="htree-tests" description="Run Hilbert R-Tree test set" depends="init-htree">
+    <antcall target="generic-rtree-tests" />
+  </target>
+
+  <target name="htree-insert" description="Execute Hilbert R-Tree insert" depends="init-htree">
+    <antcall target="generic-tree-insert">
+      <param name="dataset" value="${dataprefix}-insert.txt" />
+    </antcall>
+  </target>
+
+  <target name="htree-bulk-load" description="Execute Hilbert R-Tree bulk-load" depends="init-htree">
+    <antcall target="generic-tree-bulk-load">
+      <param name="dataset" value="${dataprefix}-initial.txt" />
+    </antcall>
+  </target>
+
+  <target name="htree-delete" description="Execute Hilbert R-Tree delete items" depends="init-htree">
+    <antcall target="generic-tree-delete">
+      <param name="dataset" value="${dataprefix}-delete.txt" />
+    </antcall>
+  </target>
+
+  <target name="htree-overlaps" description="Execute Hilbert R-Tree overlap query" depends="init-htree">
+    <antcall target="generic-tree-overlaps">
+      <param name="dataset" value="${dataprefix}-window-1.txt" />
+    </antcall>
+  </target>
+
+  <target name="htree-exact" description="Execute Hilbert R-Tree exact query" depends="init-htree">
+    <antcall target="generic-tree-exact">
+      <param name="dataset" value="${dataprefix}-exact.txt" />
+    </antcall>
+  </target>
+
+  <target name="htree-inspect" description="Inspect Hilbert R-Tree contents" depends="init-htree">
+    <antcall target="generic-tree-inspect" />
+  </target>
+
+  <target name="htree-check" description="Check Hilbert R-tree structure" depends="init-htree">
+    <java classpathref="treelib.classpath" classname="fi.hut.cs.treelib.operations.OperationExecutor" fork="true">
+      <jvmarg value="-ea" />
+      <arg value="${treeConfig}" />
+      <arg value="check" />
+    </java>
+  </target>
+
+  <target name="htree-backup" description="Backup current Hilbert R-Tree DB" depends="init-htree">
+    <antcall target="generic-tree-backup" />
+  </target>
+
+  <target name="htree-restore" description="Restore Hilbert R-Tree DB backup" depends="init-htree">
+    <antcall target="generic-tree-restore" />
+  </target>
+
+
+  <!-- R-tree -->
+
+  <target name="rtree-clear" description="Clear J-Tree exec DB" depends="init-rtree">
+    <antcall target="generic-tree-clear" />
+  </target>
+
+  <target name="rtree-tests" description="Run R-Tree test set" depends="init-rtree">
+    <antcall target="generic-rtree-tests" />
+  </target>
+
+  <target name="rtree-insert" description="Execute R-Tree insert" depends="init-rtree">
+    <antcall target="generic-tree-insert">
+      <param name="dataset" value="${dataprefix}-insert.txt" />
+    </antcall>
+  </target>
+
+  <target name="rtree-bulk-load" description="Execute R-Tree bulk load" depends="init-rtree">
+    <antcall target="generic-tree-bulk-load">
+      <param name="dataset" value="${dataprefix}-initial.txt" />
+    </antcall>
+  </target>
+
+  <target name="rtree-delete" description="Execute R-Tree delete items" depends="init-rtree">
+    <antcall target="generic-tree-delete">
+      <param name="dataset" value="${dataprefix}-delete.txt" />
+    </antcall>
+  </target>
+
+  <target name="rtree-overlaps" description="Execute R-Tree overlap query" depends="init-rtree">
+    <antcall target="generic-tree-overlaps">
+      <param name="dataset" value="${dataprefix}-window-1.txt" />
+    </antcall>
+  </target>
+
+  <target name="rtree-exact" description="Execute R-Tree exact query" depends="init-rtree">
+    <antcall target="generic-tree-exact">
+      <param name="dataset" value="${dataprefix}-exact.txt" />
+    </antcall>
+  </target>
+
+  <target name="rtree-inspect" description="Inspect R-Tree contents" depends="init-rtree">
+    <antcall target="generic-tree-inspect" />
+  </target>
+
+  <target name="rtree-check" description="Check R-tree structure" depends="init-rtree">
+    <java classpathref="treelib.classpath" classname="fi.hut.cs.treelib.operations.OperationExecutor" fork="true">
+      <jvmarg value="-ea" />
+      <arg value="${treeConfig}" />
+      <arg value="check" />
+    </java>
+  </target>
+
+  <target name="rtree-backup" description="Backup current R-Tree DB" depends="init-rtree">
+    <antcall target="generic-tree-backup" />
+  </target>
+
+  <target name="rtree-restore" description="Restore R-Tree DB backup" depends="init-rtree">
+    <antcall target="generic-tree-restore" />
+  </target>
+
+</project>

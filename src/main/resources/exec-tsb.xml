@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="
+    http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd">
+
+  <!-- Common settings -->
+  <import resource="common.xml" />
+
+  <!-- Key prototype -->
+  <bean id="keyPrototype" class="fi.hut.cs.treelib.common.IntegerKey" />
+
+  <!-- Value prototypes -->
+  <bean id="valuePrototype" class="fi.hut.cs.treelib.common.IntegerValue" />
+
+  <!-- Creates a Time-Split B-tree with the new deferred split policy (2009) -->
+  <bean id="tsbdb" name="db" class="fi.hut.cs.treelib.tsb.TSBDatabase" depends-on="configuration">
+    <!-- Buffer size (pages) -->
+    <constructor-arg index="0" ref="pageBufferSize" />
+    <!-- Key prototype -->
+    <constructor-arg index="1" ref="keyPrototype" />
+    <!-- Value prototype -->
+    <constructor-arg index="2" ref="valuePrototype" />
+    <!-- Split policy -->
+    <constructor-arg index="3" value="Deferred" />
+    <!-- Batch update of PTT -->
+    <constructor-arg index="4" value="true" />    
+    <!-- TSB page storage -->
+    <constructor-arg index="5">
+      <bean class="fi.hut.cs.treelib.storage.FilePageStorage">
+        <constructor-arg ref="pageSize" />
+        <constructor-arg value="db/tsb-deferred-exec.db" />
+      </bean>
+    </constructor-arg>
+  </bean>
+
+</beans>

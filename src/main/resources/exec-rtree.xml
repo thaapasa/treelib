@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="
+    http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd">
+
+  <!-- Common settings -->
+  <import resource="common.xml" />
+
+  <!-- Key prototype -->
+  <bean id="floatKeyPrototype" class="fi.hut.cs.treelib.common.FloatKey" />
+  <bean id="floatMBRKeyPrototype" class="fi.hut.cs.treelib.MBR">
+    <!-- Number of dimensions -->
+    <constructor-arg index="0" value="2" />
+    <!-- MBR key type -->
+    <constructor-arg index="1" ref="floatKeyPrototype" />
+    <!-- Paired key order: false (not paired, but all minimums first, then all maximums) -->
+    <constructor-arg index="2" value="false" />
+  </bean>
+  <alias alias="keyPrototype" name="floatMBRKeyPrototype" />
+
+  <!-- Value prototypes -->
+  <bean id="valuePrototype" class="fi.hut.cs.treelib.common.IntegerValue" />
+
+  <!-- Creates an R-tree. -->
+  <bean id="rtreedb" name="db" class="fi.hut.cs.treelib.rtree.RTreeDatabase" depends-on="configuration">
+    <!-- Buffer size (pages) -->
+    <constructor-arg index="0" ref="pageBufferSize" />
+    <!-- SMO policy -->
+    <constructor-arg index="1" ref="mdSMOPolicy" />
+    <!-- Key prototype -->
+    <constructor-arg index="2" ref="keyPrototype" />
+    <!-- Value prototype -->
+    <constructor-arg index="3" ref="valuePrototype" />
+    <!-- Page storage -->
+    <constructor-arg index="4">
+      <bean class="fi.hut.cs.treelib.storage.FilePageStorage">
+        <constructor-arg ref="pageSize" />
+        <constructor-arg value="db/rtree-exec.db" />
+      </bean>
+    </constructor-arg>
+  </bean>
+
+</beans>

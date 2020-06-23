@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="
+    http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd">
+
+  <bean class="org.springframework.beans.factory.annotation.RequiredAnnotationBeanPostProcessor" />
+
+  <!-- Common settings -->
+  <import resource="common.xml" />
+
+  <!-- Statistics logger -->
+  <bean id="statisticsLogger" class="fi.hut.cs.treelib.stats.StatisticsImpl" />
+  <bean id="statisticsPrinter" class="fi.hut.cs.treelib.stats.SQLStatisticsPrinter">
+    <property name="targetFile" value="results/test-results.sql" />
+  </bean>
+  <!--
+    <bean id="DISABLEDstatisticsPrinter" class="fi.hut.cs.treelib.stats.DefaultStatisticsPrinter" />
+  -->
+
+  <!-- Import test set -->
+  <import resource="cmvbt-perf/testset-tiny.xml" />
+  <!-- 
+  <import resource="test-cmvbt-perf-std.xml" />
+  <import resource="test-create-model.xml" />
+  -->
+
+  <!-- Database configuration -->
+  <!-- Proper config -->
+  <!--
+  <bean id="configuration" class="fi.hut.cs.treelib.Configuration">
+    <property name="maxStringLength" value="30" />
+    <property name="typedPageNames" value="false" />
+    <property name="limitPageSizes" value="false" />
+    <property name="indexPageSizeLimit" value="145" />
+    <property name="leafPageSizeLimit" value="1000" />
+    <property name="checkConsistency" value="false" />
+    <property name="showProgress" value="10000" />
+    <property name="flushPagesAfterActions" value="false" />
+    <property name="useRStarSplit" value="true" />
+    <property name="bulkLoadFillRatio" value="0.75" />
+  </bean>
+   -->
+  <!-- Model config -->
+  <bean id="configuration" class="fi.hut.cs.treelib.Configuration">
+    <property name="maxStringLength" value="30" />
+    <property name="typedPageNames" value="false" />
+    <property name="limitPageSizes" value="false" />
+    <property name="indexPageSizeLimit" value="10" />
+    <property name="leafPageSizeLimit" value="15" />
+    <property name="checkConsistency" value="false" />
+    <property name="showProgress" value="100" />
+    <property name="flushPagesAfterActions" value="false" />
+    <property name="useRStarSplit" value="true" />
+    <property name="bulkLoadFillRatio" value="0.75" />
+  </bean>
+
+  <!-- Test runner program -->
+  <bean id="testRunner" class="fi.hut.cs.treelib.test.TestRunner" autowire="byName">
+    <property name="testSet" ref="testset" />
+  </bean>
+
+</beans>

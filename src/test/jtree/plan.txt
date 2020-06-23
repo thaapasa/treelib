@@ -1,0 +1,13 @@
+Randomized data
+                                        data set
+1. create the index (2M)                initial
+2. insert 10000                         insert
+3. delete                               delete
+  - from the data set 10000
+4. window-queries
+  - generated,  1% size, 10000          window-1
+  - generated,  5% size, 10000          window-5
+  - generated, 10% size, 10000          window-10
+  - generated, 20% size, 10000          window-20
+5. exact queries
+  - from the data set, 10000            exact

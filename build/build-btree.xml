@@ -1,0 +1,139 @@
+<project name="Tree Library B-tree targets" basedir="..">
+
+  <import file="build.xml" />
+
+  <!-- Initializations -->
+
+  <target name="init-btree" depends="init-exec">
+    <property name="treeConfig" value="exec-btree.xml" />
+    <property name="dbFile" value="db/btree-exec.db" />
+    <property name="dataset" value="integer-key-example.txt" />
+  </target>
+
+  <target name="init-cmvbt" depends="init-exec">
+    <property name="treeConfig" value="exec-cmvbt.xml" />
+    <property name="dataset" value="integer-key-example.txt" />
+    <property name="dbFile" value="db/cmvbt-exec.db" />
+  </target>
+
+  <target name="init-tmvbt" depends="init-exec">
+    <property name="treeConfig" value="exec-tmvbt.xml" />
+    <property name="dataset" value="integer-key-example.txt" />
+    <property name="dbFile" value="db/tmvbt-exec.db" />
+  </target>
+
+  <target name="init-mvbt" depends="init-exec">
+    <property name="treeConfig" value="exec-mvbt.xml" />
+    <property name="dataset" value="integer-key-example.txt" />
+    <property name="dbFile" value="db/mvbt-exec.db" />
+  </target>
+  
+  <target name="init-tsb" depends="init-exec">
+    <property name="treeConfig" value="exec-tsb.xml" />
+    <property name="dataset" value="integer-key-example.txt" />
+    <property name="dbFile" value="db/tsb-exec.db" />
+  </target>
+
+  <property name="execLogFile" value="transaction.log" />
+
+  <!-- Targets -->
+
+  <!-- B-tree -->
+  <target name="btree-clear" description="Clear B-Tree exec DB">
+    <delete file="db/btree-exec.db" />
+  </target>
+
+  <target name="btree-execute" description="Execute transaction log for B-tree" depends="init-btree">
+    <antcall target="generic-tree-execute">
+      <param name="dataset" value="transaction-notx-create.log" />
+    </antcall>
+  </target>
+
+  <target name="btree-inpect" description="Inspect B-Tree" depends="init-btree">
+    <antcall target="generic-tree-inspect" />
+  </target>
+
+  <!-- CMVBT -->
+  <target name="cmvbt-clear" description="Clear CMVBT exec DB">
+    <delete file="db/cmvbt-exec.db" />
+  </target>
+
+  <target name="cmvbt-execute" description="Execute transaction log for CMVBT" depends="init-cmvbt">
+    <antcall target="generic-tree-execute">
+      <param name="dataset" value="${execLogFile}" />
+    </antcall>
+  </target>
+
+  <target name="cmvbt-simulate" description="Run simulator for CMVBT" depends="init-cmvbt">
+    <antcall target="generic-tree-simulate" />
+  </target>
+
+  <target name="cmvbt-inspect" description="Inspect CMVBT" depends="init-cmvbt">
+    <antcall target="generic-tree-inspect" />
+  </target>
+
+  <target name="cmvbt-backup" description="Backup CMVBT DB" depends="init-cmvbt">
+    <antcall target="generic-tree-backup" />
+  </target>
+
+  <target name="cmvbt-restore" description="Restore CMVBT DB from backup" depends="init-cmvbt">
+    <antcall target="generic-tree-restore" />
+  </target>
+
+
+
+  <!-- MVBT -->
+  <target name="mvbt-clear" description="Clear MVBT exec DB">
+    <delete file="db/mvbt-exec.db" />
+  </target>
+
+  <target name="mvbt-execute" description="Execute transaction log for MVBT" depends="init-mvbt">
+    <antcall target="generic-tree-execute">
+      <param name="dataset" value="${execLogFile}" />
+    </antcall>
+  </target>
+
+
+  <!-- TMVBT -->
+  <target name="tmvbt-clear" description="Clear TMVBT exec DB">
+    <delete file="db/tmvbt-exec.db" />
+  </target>
+
+  <target name="tmvbt-execute" description="Execute transaction log for TMVBT" depends="init-tmvbt">
+    <antcall target="generic-tree-execute">
+      <param name="dataset" value="${execLogFile}" />
+    </antcall>
+  </target>
+
+  <target name="tmvbt-inspect" description="Inspect TMVBT" depends="init-tmvbt">
+    <antcall target="generic-tree-inspect" />
+  </target>
+
+  <!-- TSB -->
+  <target name="tsb-clear" description="Clear TSB exec DB">
+    <delete file="db/tsb-exec.db" />
+  </target>
+
+  <target name="tsb-execute" description="Execute transaction log for TSB" depends="init-tsb">
+    <antcall target="generic-tree-execute">
+      <param name="dataset" value="${execLogFile}" />
+    </antcall>
+  </target>
+
+  <target name="tsb-simulate" description="Run simulator for TSB" depends="init-tsb">
+    <antcall target="generic-tree-simulate" />
+  </target>
+
+  <target name="tsb-inspect" description="Inspect TSB" depends="init-tsb">
+    <antcall target="generic-tree-inspect" />
+  </target>
+
+  <target name="tsb-backup" description="Backup TSB DB" depends="init-tsb">
+    <antcall target="generic-tree-backup" />
+  </target>
+
+  <target name="tsb-restore" description="Restore TSB DB from backup" depends="init-tsb">
+    <antcall target="generic-tree-restore" />
+  </target>
+
+</project>

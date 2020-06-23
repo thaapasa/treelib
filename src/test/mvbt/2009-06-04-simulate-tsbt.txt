@@ -1,0 +1,116 @@
+--- exec-tsbt.xml;simulate;simulator --------------------------------
+title: insert
+start-time:2009-06-04 16:45:08
+end-time:2009-06-04 16:46:14
+database:tsbt
+buffer-size:200
+page-size:4096
+database-size:454
+operation-count:97601
+time-measurement:65,733000
+go_new_transaction       	100
+action_insert            	count:97601
+op_object_inserted       	avg:1,000000	min:1	max:1
+op_spacemap_allocate     	avg:0,004621	min:0	max:3
+op_buffer_fix            	avg:2,545568	min:1	max:8
+op_buffer_read           	avg:0,175480	min:0	max:2
+op_buffer_write          	avg:0,178082	min:0	max:4
+op_traverse_path         	avg:1,002613	min:1	max:3
+
+title: range-query-all
+start-time:2009-06-04 16:46:14
+end-time:2009-06-04 16:46:37
+database:tsbt
+buffer-size:200
+page-size:4096
+database-size:454
+operation-count:40
+time-measurement:23,145000
+go_new_transaction       	40
+action_range_query       	count:40
+op_query_found_object    	avg:50226,225000	min:1477	max:91396
+op_buffer_fix            	avg:451,125000	min:450	max:455
+op_buffer_read           	avg:448,700000	min:399	max:450
+op_buffer_write          	avg:5,925000	min:1	max:198
+op_traverse_path         	avg:0,025000	min:0	max:1
+
+title: range-query-latest
+start-time:2009-06-04 16:46:37
+end-time:2009-06-04 16:46:38
+database:tsbt
+buffer-size:200
+page-size:4096
+database-size:454
+operation-count:1
+time-measurement:0,561000
+go_new_transaction       	1
+action_range_query       	count:1
+op_query_found_object    	avg:96906,000000	min:96906	max:96906
+op_buffer_fix            	avg:451,000000	min:451	max:451
+op_buffer_read           	avg:450,000000	min:450	max:450
+op_buffer_write          	avg:1,000000	min:1	max:1
+
+title: delete
+start-time:2009-06-04 16:46:38
+end-time:2009-06-04 16:47:17
+database:tsbt
+buffer-size:200
+page-size:4096
+database-size:1258
+operation-count:67851
+time-measurement:38,656000
+go_new_transaction       	51
+action_delete            	count:67800
+action_range_query       	count:51
+op_query_found_object    	avg:2,427466	min:0	max:96906
+op_object_deleted        	avg:0,999248	min:0	max:1
+op_spacemap_allocate     	avg:0,011849	min:0	max:3
+op_buffer_fix            	avg:3,261352	min:3	max:637
+op_buffer_read           	avg:0,227307	min:0	max:633
+op_buffer_write          	avg:0,018334	min:0	max:198
+op_traverse_path         	avg:1,001444	min:0	max:3
+
+title: range-query-some
+start-time:2009-06-04 16:47:17
+end-time:2009-06-04 16:47:42
+database:tsbt
+buffer-size:200
+page-size:4096
+database-size:1258
+operation-count:40
+time-measurement:25,464000
+go_new_transaction       	40
+action_range_query       	count:40
+op_query_found_object    	avg:54734,400000	min:29106	max:80634
+op_buffer_fix            	avg:683,400000	min:566	max:776
+op_buffer_read           	avg:682,325000	min:565	max:775
+op_buffer_write          	avg:1,500000	min:1	max:21
+op_traverse_path         	avg:0,025000	min:0	max:1
+
+title: range-query-latest
+start-time:2009-06-04 16:47:42
+end-time:2009-06-04 16:47:43
+database:tsbt
+buffer-size:200
+page-size:4096
+database-size:1258
+operation-count:1
+time-measurement:0,762000
+go_new_transaction       	1
+action_range_query       	count:1
+op_query_found_object    	avg:29106,000000	min:29106	max:29106
+op_buffer_fix            	avg:776,000000	min:776	max:776
+op_buffer_read           	avg:775,000000	min:775	max:775
+op_buffer_write          	avg:1,000000	min:1	max:1
+
+title: simulator
+start-time:2009-06-04 16:47:43
+end-time:2009-06-04 16:47:43
+database:tsbt
+buffer-size:200
+page-size:4096
+database-size:1258
+operation-count:0
+time-measurement:0,001000
+
+

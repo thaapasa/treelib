@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="
+    http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd">
+
+  <!-- 
+    - Range query test
+    - 1 range query / transaction * 1000 transactions 
+    -->
+  <bean id="rangeWorkloadProto" class="fi.hut.cs.treelib.test.Workload" autowire="byName" abstract="true">
+    <property name="distribution" value="Uniform" />
+    <property name="numTransactions" value="${test.range.tx.amount}" />
+    <property name="transactionLength" value="${test.range.tx.length}" />
+    <property name="rangeQueryAmount" value="1" />
+    <property name="basedOnState" ref="stateInitial" />
+  </bean>
+
+  <bean id="testRange1" class="fi.hut.cs.treelib.test.Test">
+    <property name="name" value="range-001-%state" />
+    <property name="workload">
+      <bean class="fi.hut.cs.treelib.test.Workload" parent="rangeWorkloadProto" autowire="byName">
+        <property name="filename" value="range-5-${testset.name.suffix}.wl" />
+        <property name="rangeSize" value="0.01" />
+      </bean>
+    </property>
+  </bean>
+
+  <bean id="testRange5" class="fi.hut.cs.treelib.test.Test">
+    <property name="name" value="range-005-%state" />
+    <property name="workload">
+      <bean class="fi.hut.cs.treelib.test.Workload" parent="rangeWorkloadProto" autowire="byName">
+        <property name="filename" value="range-5-${testset.name.suffix}.wl" />
+        <property name="rangeSize" value="0.05" />
+      </bean>
+    </property>
+  </bean>
+
+  <bean id="testRange10" class="fi.hut.cs.treelib.test.Test">
+    <property name="name" value="range-010-%state" />
+    <property name="workload">
+      <bean class="fi.hut.cs.treelib.test.Workload" parent="rangeWorkloadProto" autowire="byName">
+        <property name="filename" value="range-5-${testset.name.suffix}.wl" />
+        <property name="rangeSize" value="0.1" />
+      </bean>
+    </property>
+  </bean>
+
+</beans>

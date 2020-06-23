@@ -1,0 +1,272 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="
+    http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd">
+
+
+  <!-- 
+    - Query/update tests
+    - 5 actions/tx * 2000 transactions = 10000 actions
+    -->
+  <bean abstract="true" id="quWorkloadProto-5" class="fi.hut.cs.treelib.test.Workload"
+    autowire="byName">
+    <property name="distribution" value="Uniform" />
+    <property name="numTransactions" value="${test.qu.short.tx.amount}" />
+    <property name="transactionLength" value="${test.qu.short.tx.length}" />
+    <property name="basedOnState" ref="stateInitial" />
+    <property name="exactAmounts" value="true" />
+  </bean>
+  <bean id="testQueryUpdate-5-0" class="fi.hut.cs.treelib.test.Test">
+    <property name="name" value="qu-5-000-%state" />
+    <property name="extra" value="0" />
+    <property name="workload">
+      <bean class="fi.hut.cs.treelib.test.Workload" parent="quWorkloadProto-5" autowire="byName">
+        <property name="filename" value="query-update-5-0-${testset.name.suffix}.wl" />
+      </bean>
+    </property>
+  </bean>
+  <bean id="testQueryUpdate-5-10" class="fi.hut.cs.treelib.test.Test">
+    <property name="name" value="qu-5-010-%state" />
+    <property name="extra" value="10" />
+    <property name="workload">
+      <bean class="fi.hut.cs.treelib.test.Workload" parent="quWorkloadProto-5" autowire="byName">
+        <property name="filename" value="query-update-5-10-${testset.name.suffix}.wl" />
+        <property name="insertAmount" value="0.05" />
+        <property name="deleteAmount" value="0.05" />
+      </bean>
+    </property>
+  </bean>
+  <bean id="testQueryUpdate-5-20" class="fi.hut.cs.treelib.test.Test">
+    <property name="name" value="qu-5-020-%state" />
+    <property name="extra" value="20" />
+    <property name="workload">
+      <bean class="fi.hut.cs.treelib.test.Workload" parent="quWorkloadProto-5" autowire="byName">
+        <property name="filename" value="query-update-5-20-${testset.name.suffix}.wl" />
+        <property name="insertAmount" value="0.1" />
+        <property name="deleteAmount" value="0.1" />
+      </bean>
+    </property>
+  </bean>
+  <bean id="testQueryUpdate-5-30" class="fi.hut.cs.treelib.test.Test">
+    <property name="name" value="qu-5-030-%state" />
+    <property name="extra" value="30" />
+    <property name="workload">
+      <bean class="fi.hut.cs.treelib.test.Workload" parent="quWorkloadProto-5" autowire="byName">
+        <property name="filename" value="query-update-5-30-${testset.name.suffix}.wl" />
+        <property name="insertAmount" value="0.15" />
+        <property name="deleteAmount" value="0.15" />
+      </bean>
+    </property>
+  </bean>
+  <bean id="testQueryUpdate-5-40" class="fi.hut.cs.treelib.test.Test">
+    <property name="name" value="qu-5-040-%state" />
+    <property name="extra" value="40" />
+    <property name="workload">
+      <bean class="fi.hut.cs.treelib.test.Workload" parent="quWorkloadProto-5" autowire="byName">
+        <property name="filename" value="query-update-5-40-${testset.name.suffix}.wl" />
+        <property name="insertAmount" value="0.2" />
+        <property name="deleteAmount" value="0.2" />
+      </bean>
+    </property>
+  </bean>
+  <bean id="testQueryUpdate-5-50" class="fi.hut.cs.treelib.test.Test">
+    <property name="name" value="qu-5-050-%state" />
+    <property name="extra" value="50" />
+    <property name="workload">
+      <bean class="fi.hut.cs.treelib.test.Workload" parent="quWorkloadProto-5" autowire="byName">
+        <property name="filename" value="query-update-5-50-${testset.name.suffix}.wl" />
+        <property name="insertAmount" value="0.25" />
+        <property name="deleteAmount" value="0.25" />
+      </bean>
+    </property>
+  </bean>
+  <bean id="testQueryUpdate-5-60" class="fi.hut.cs.treelib.test.Test">
+    <property name="name" value="qu-5-060-%state" />
+    <property name="extra" value="60" />
+    <property name="workload">
+      <bean class="fi.hut.cs.treelib.test.Workload" parent="quWorkloadProto-5" autowire="byName">
+        <property name="filename" value="query-update-5-60-${testset.name.suffix}.wl" />
+        <property name="insertAmount" value="0.3" />
+        <property name="deleteAmount" value="0.3" />
+      </bean>
+    </property>
+  </bean>
+  <bean id="testQueryUpdate-5-70" class="fi.hut.cs.treelib.test.Test">
+    <property name="name" value="qu-5-070-%state" />
+    <property name="extra" value="70" />
+    <property name="workload">
+      <bean class="fi.hut.cs.treelib.test.Workload" parent="quWorkloadProto-5" autowire="byName">
+        <property name="filename" value="query-update-5-70-${testset.name.suffix}.wl" />
+        <property name="insertAmount" value="0.35" />
+        <property name="deleteAmount" value="0.35" />
+      </bean>
+    </property>
+  </bean>
+  <bean id="testQueryUpdate-5-80" class="fi.hut.cs.treelib.test.Test">
+    <property name="name" value="qu-5-080-%state" />
+    <property name="extra" value="80" />
+    <property name="workload">
+      <bean class="fi.hut.cs.treelib.test.Workload" parent="quWorkloadProto-5" autowire="byName">
+        <property name="filename" value="query-update-5-80-${testset.name.suffix}.wl" />
+        <property name="insertAmount" value="0.4" />
+        <property name="deleteAmount" value="0.4" />
+      </bean>
+    </property>
+  </bean>
+  <bean id="testQueryUpdate-5-90" class="fi.hut.cs.treelib.test.Test">
+    <property name="name" value="qu-5-090-%state" />
+    <property name="extra" value="90" />
+    <property name="workload">
+      <bean class="fi.hut.cs.treelib.test.Workload" parent="quWorkloadProto-5" autowire="byName">
+        <property name="filename" value="query-update-5-90-${testset.name.suffix}.wl" />
+        <property name="insertAmount" value="0.45" />
+        <property name="deleteAmount" value="0.45" />
+      </bean>
+    </property>
+  </bean>
+  <bean id="testQueryUpdate-5-100" class="fi.hut.cs.treelib.test.Test">
+    <property name="name" value="qu-5-100-%state" />
+    <property name="extra" value="100" />
+    <property name="workload">
+      <bean class="fi.hut.cs.treelib.test.Workload" parent="quWorkloadProto-5" autowire="byName">
+        <property name="filename" value="query-update-5-100-${testset.name.suffix}.wl" />
+        <property name="insertAmount" value="0.5" />
+        <property name="deleteAmount" value="0.5" />
+      </bean>
+    </property>
+  </bean>
+
+
+  <!-- 
+    - Query/update tests
+    - 100 actions/tx * 100 transactions = 10000 actions
+    -->
+  <bean abstract="true" id="quWorkloadProto-100" class="fi.hut.cs.treelib.test.Workload"
+    autowire="byName">
+    <property name="distribution" value="Uniform" />
+    <property name="numTransactions" value="${test.qu.long.tx.amount}" />
+    <property name="transactionLength" value="${test.qu.long.tx.length}" />
+    <property name="basedOnState" ref="stateInitial" />
+    <property name="exactAmounts" value="true" />
+  </bean>
+  <bean id="testQueryUpdate-100-0" class="fi.hut.cs.treelib.test.Test">
+    <property name="name" value="qu-100-0000-%state" />
+    <property name="extra" value="0" />
+    <property name="workload">
+      <bean class="fi.hut.cs.treelib.test.Workload" parent="quWorkloadProto-100" autowire="byName">
+        <property name="filename" value="query-update-100-0-${testset.name.suffix}.wl" />
+      </bean>
+    </property>
+  </bean>
+  <bean id="testQueryUpdate-100-10" class="fi.hut.cs.treelib.test.Test">
+    <property name="name" value="qu-100-010-%state" />
+    <property name="extra" value="10" />
+    <property name="workload">
+      <bean class="fi.hut.cs.treelib.test.Workload" parent="quWorkloadProto-100" autowire="byName">
+        <property name="filename" value="query-update-100-10-${testset.name.suffix}.wl" />
+        <property name="insertAmount" value="0.05" />
+        <property name="deleteAmount" value="0.05" />
+      </bean>
+    </property>
+  </bean>
+  <bean id="testQueryUpdate-100-20" class="fi.hut.cs.treelib.test.Test">
+    <property name="name" value="qu-100-020-%state" />
+    <property name="extra" value="20" />
+    <property name="workload">
+      <bean class="fi.hut.cs.treelib.test.Workload" parent="quWorkloadProto-100" autowire="byName">
+        <property name="filename" value="query-update-100-20-${testset.name.suffix}.wl" />
+        <property name="insertAmount" value="0.1" />
+        <property name="deleteAmount" value="0.1" />
+      </bean>
+    </property>
+  </bean>
+  <bean id="testQueryUpdate-100-30" class="fi.hut.cs.treelib.test.Test">
+    <property name="name" value="qu-100-030-%state" />
+    <property name="extra" value="30" />
+    <property name="workload">
+      <bean class="fi.hut.cs.treelib.test.Workload" parent="quWorkloadProto-100" autowire="byName">
+        <property name="filename" value="query-update-100-30-${testset.name.suffix}.wl" />
+        <property name="insertAmount" value="0.15" />
+        <property name="deleteAmount" value="0.15" />
+      </bean>
+    </property>
+  </bean>
+  <bean id="testQueryUpdate-100-40" class="fi.hut.cs.treelib.test.Test">
+    <property name="name" value="qu-100-040-%state" />
+    <property name="extra" value="40" />
+    <property name="workload">
+      <bean class="fi.hut.cs.treelib.test.Workload" parent="quWorkloadProto-100" autowire="byName">
+        <property name="filename" value="query-update-100-40-${testset.name.suffix}.wl" />
+        <property name="insertAmount" value="0.2" />
+        <property name="deleteAmount" value="0.2" />
+      </bean>
+    </property>
+  </bean>
+  <bean id="testQueryUpdate-100-50" class="fi.hut.cs.treelib.test.Test">
+    <property name="name" value="qu-100-050-%state" />
+    <property name="extra" value="50" />
+    <property name="workload">
+      <bean class="fi.hut.cs.treelib.test.Workload" parent="quWorkloadProto-100" autowire="byName">
+        <property name="filename" value="query-update-100-50-${testset.name.suffix}.wl" />
+        <property name="insertAmount" value="0.25" />
+        <property name="deleteAmount" value="0.25" />
+      </bean>
+    </property>
+  </bean>
+  <bean id="testQueryUpdate-100-60" class="fi.hut.cs.treelib.test.Test">
+    <property name="name" value="qu-100-060-%state" />
+    <property name="extra" value="60" />
+    <property name="workload">
+      <bean class="fi.hut.cs.treelib.test.Workload" parent="quWorkloadProto-100" autowire="byName">
+        <property name="filename" value="query-update-100-60-${testset.name.suffix}.wl" />
+        <property name="insertAmount" value="0.3" />
+        <property name="deleteAmount" value="0.3" />
+      </bean>
+    </property>
+  </bean>
+  <bean id="testQueryUpdate-100-70" class="fi.hut.cs.treelib.test.Test">
+    <property name="name" value="qu-100-070-%state" />
+    <property name="extra" value="70" />
+    <property name="workload">
+      <bean class="fi.hut.cs.treelib.test.Workload" parent="quWorkloadProto-100" autowire="byName">
+        <property name="filename" value="query-update-100-70-${testset.name.suffix}.wl" />
+        <property name="insertAmount" value="0.35" />
+        <property name="deleteAmount" value="0.35" />
+      </bean>
+    </property>
+  </bean>
+  <bean id="testQueryUpdate-100-80" class="fi.hut.cs.treelib.test.Test">
+    <property name="name" value="qu-100-080-%state" />
+    <property name="extra" value="80" />
+    <property name="workload">
+      <bean class="fi.hut.cs.treelib.test.Workload" parent="quWorkloadProto-100" autowire="byName">
+        <property name="filename" value="query-update-100-80-${testset.name.suffix}.wl" />
+        <property name="insertAmount" value="0.4" />
+        <property name="deleteAmount" value="0.4" />
+      </bean>
+    </property>
+  </bean>
+  <bean id="testQueryUpdate-100-90" class="fi.hut.cs.treelib.test.Test">
+    <property name="name" value="qu-100-090-%state" />
+    <property name="extra" value="90" />
+    <property name="workload">
+      <bean class="fi.hut.cs.treelib.test.Workload" parent="quWorkloadProto-100" autowire="byName">
+        <property name="filename" value="query-update-100-90-${testset.name.suffix}.wl" />
+        <property name="insertAmount" value="0.45" />
+        <property name="deleteAmount" value="0.45" />
+      </bean>
+    </property>
+  </bean>
+  <bean id="testQueryUpdate-100-100" class="fi.hut.cs.treelib.test.Test">
+    <property name="name" value="qu-100-100-%state" />
+    <property name="extra" value="100" />
+    <property name="workload">
+      <bean class="fi.hut.cs.treelib.test.Workload" parent="quWorkloadProto-100" autowire="byName">
+        <property name="filename" value="query-update-100-100-${testset.name.suffix}.wl" />
+        <property name="insertAmount" value="0.5" />
+        <property name="deleteAmount" value="0.5" />
+      </bean>
+    </property>
+  </bean>
+
+</beans>

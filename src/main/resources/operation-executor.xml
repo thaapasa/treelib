@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd">
+
+  <!-- Database configuration -->
+  <bean id="configuration" class="fi.hut.cs.treelib.Configuration">
+    <property name="maxStringLength" value="30" />
+    <property name="typedPageNames" value="false" />
+    <property name="limitPageSizes" value="false" />
+    <property name="indexPageSizeLimit" value="145" />
+    <property name="leafPageSizeLimit" value="1000" />
+    <property name="checkConsistency" value="false" />
+    <property name="showProgress" value="10000" />
+    <property name="flushPagesAfterActions" value="false" />
+    <property name="useRStarSplit" value="true" />
+    <property name="bulkLoadFillRatio" value="0.75" />
+  </bean>
+
+  <!-- Statistics logger -->
+  <bean id="statisticsLogger" class="fi.hut.cs.treelib.stats.StatisticsImpl" />
+
+  <!-- Create the operation executor -->
+  <bean name="operationExecutor" class="fi.hut.cs.treelib.operations.OperationExecutor">
+    <property name="database" ref="db" />
+    <property name="keyPrototype" ref="keyPrototype" />
+  </bean>
+
+</beans>

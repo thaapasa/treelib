@@ -1,0 +1,12 @@
+# System detection
+
+SYS := $(shell uname -s)
+ifeq "$(SYS)" "MINGW32_NT-5.1"
+SYS = mingw
+endif
+ifeq "$(SYS)" "MINGW32_NT-6.0"
+SYS = mingw
+endif
+ifeq "$(SYS)" "MINGW32_NT-6.1"
+SYS = mingw
+endif

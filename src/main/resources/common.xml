@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="
+    http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd">
+
+  <!-- An empty list -->
+  <bean id="emptyList" class="java.util.ArrayList" />
+
+  <!-- Page buffer size (in pages) -->
+  <bean id="pageBufferSize" class="java.lang.Integer">
+    <constructor-arg value="200" />
+  </bean>
+
+  <!-- Page buffer size for temporary buffer (VBT in CMVBT) -->
+  <bean id="tempPageBufferSize" class="java.lang.Integer">
+    <constructor-arg value="32" />
+  </bean>
+
+  <!-- Page size (in bytes) -->
+  <bean id="pageSize" class="java.lang.Integer">
+    <constructor-arg value="4096" />
+  </bean>
+
+  <!-- SMO policy that prevents page thrashing -->
+  <bean id="nonThrashingPolicy" class="fi.hut.cs.treelib.common.NonThrashingSMOPolicy">
+    <!-- Min entries -->
+    <constructor-arg index="0" value="0.2" />
+    <!-- Tolerance -->
+    <constructor-arg index="1" value="0.2" />
+  </bean>
+  
+  <!-- SMO policy for MD trees -->
+  <bean id="mdSMOPolicy" class="fi.hut.cs.treelib.common.MDSMOPolicy">
+    <!-- Min entries -->
+    <constructor-arg index="0" value="0.25" />
+    <!-- Tolerance -->
+    <constructor-arg index="1" value="0.375" />
+  </bean>
+  
+  <!-- Custom editor for type conversions -->
+  <bean id="customEditorConfigurer" class="org.springframework.beans.factory.config.CustomEditorConfigurer">
+    <property name="propertyEditorRegistrars">
+      <list>
+        <bean class="fi.hut.cs.treelib.internal.TreelibPropertyEditorRegistrar"/>
+      </list>
+    </property>
+  </bean>
+ 
+  <!-- 
+  <bean class="org.springframework.beans.factory.config.CustomEditorConfigurer">
+    <property name="customEditors">
+      <map>
+        <entry key="java.util.Date" value="org.springframework.beans.propertyeditors.CustomDateEditor" />
+
+          <bean class="org.springframework.beans.propertyeditors.CustomDateEditor">
+            <constructor-arg index="0">
+              <bean class="java.text.SimpleDateFormat">
+                <constructor-arg value="dd.MM.yyyy" />
+              </bean>
+            </constructor-arg>
+            <constructor-arg index="1" value="false" />
+          </bean>
+        </entry>
+        <entry key="fi.hut.cs.treelib.common.FloatKey" value="fi.hut.cs.treelib.common.FloatKeyEditor" />
+        <entry key="fi.hut.cs.treelib.common.IntegerKey" value="fi.hut.cs.treelib.common.IntegerKeyEditor" />
+        <entry key="fi.hut.cs.treelib.common.IntegerValue" value="fi.hut.cs.treelib.common.IntegerValueEditor" />
+        <entry key="java.io.File" value="fi.tuska.util.file.CustomFileEditor" />
+      </map>
+    </property>
+  </bean>
+ -->
+</beans>

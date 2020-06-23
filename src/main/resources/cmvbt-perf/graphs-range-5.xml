@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="
+    http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd">
+
+  <!--
+    - Range queries
+    - Most recent version, last state, 5 % range size 
+    -->
+  <bean name="graphRange5Fix" class="fi.tuska.util.db.graph.GraphDefinition">
+    <property name="name" value="range-fix-5-${testset.name.suffix}.pdf" />
+    <property name="keypos" value="at graph 0.15,0.04" />
+    <property name="lines">
+      <list>
+        <bean class="fi.tuska.util.db.graph.LineDefinition">
+          <property name="dataFetchSQL"
+            value="SELECT ${test.range.statenum.select}, avgval FROM test_vals WHERE test LIKE 'range-005-del-%' AND db='cmvbt-1' AND op='op_buffer_fix'" />
+          <property name="title" ref="cmvbt-name" />
+        </bean>
+        <bean class="fi.tuska.util.db.graph.LineDefinition">
+          <property name="dataFetchSQL"
+            value="SELECT ${test.range.statenum.select}, avgval FROM test_vals WHERE test LIKE 'range-005-del-%' AND db='tsb-iks' AND op='op_buffer_fix'" />
+          <property name="title" ref="tsb-iks-name" />
+          <property name="linestyle" value="linespoints ls 5" />
+        </bean>
+        <bean class="fi.tuska.util.db.graph.LineDefinition">
+          <property name="dataFetchSQL"
+            value="SELECT ${test.range.statenum.select}, avgval FROM test_vals WHERE test LIKE 'range-005-del-%' AND db='tsb-wob' AND op='op_buffer_fix'" />
+          <property name="title" ref="tsb-wob-name" />
+          <property name="linestyle" value="linespoints ls 6" />
+        </bean>
+        <bean class="fi.tuska.util.db.graph.LineDefinition">
+          <property name="dataFetchSQL"
+            value="SELECT ${test.range.statenum.select}, avgval FROM test_vals WHERE test LIKE 'range-005-del-%' AND db='tsb-deferred' AND op='op_buffer_fix'" />
+          <property name="title" ref="tsb-deferred-name" />
+          <property name="linestyle" value="linespoints ls 7" />
+        </bean>
+      </list>
+    </property>
+  </bean>
+
+  <bean name="graphRange5Read" class="fi.tuska.util.db.graph.GraphDefinition">
+    <property name="name" value="range-read-5-${testset.name.suffix}.pdf" />
+    <property name="keypos" value="at graph 0.15,0.04" />
+    <property name="lines">
+      <list>
+        <bean class="fi.tuska.util.db.graph.LineDefinition">
+          <property name="dataFetchSQL"
+            value="SELECT ${test.range.statenum.select}, avgval FROM test_vals WHERE test LIKE 'range-005-del-%' AND db='cmvbt-1' AND op='op_buffer_read'" />
+          <property name="title" ref="cmvbt-name" />
+        </bean>
+        <bean class="fi.tuska.util.db.graph.LineDefinition">
+          <property name="dataFetchSQL"
+            value="SELECT ${test.range.statenum.select}, avgval FROM test_vals WHERE test LIKE 'range-005-del-%' AND db='tsb-iks' AND op='op_buffer_read'" />
+          <property name="title" ref="tsb-iks-name" />
+          <property name="linestyle" value="linespoints ls 5" />
+        </bean>
+        <bean class="fi.tuska.util.db.graph.LineDefinition">
+          <property name="dataFetchSQL"
+            value="SELECT ${test.range.statenum.select}, avgval FROM test_vals WHERE test LIKE 'range-005-del-%' AND db='tsb-wob' AND op='op_buffer_read'" />
+          <property name="title" ref="tsb-wob-name" />
+          <property name="linestyle" value="linespoints ls 6" />
+        </bean>
+        <bean class="fi.tuska.util.db.graph.LineDefinition">
+          <property name="dataFetchSQL"
+            value="SELECT ${test.range.statenum.select}, avgval FROM test_vals WHERE test LIKE 'range-005-del-%' AND db='tsb-deferred' AND op='op_buffer_read'" />
+          <property name="title" ref="tsb-deferred-name" />
+          <property name="linestyle" value="linespoints ls 7" />
+        </bean>
+      </list>
+    </property>
+  </bean>
+
+  <bean name="graphRange5Write" class="fi.tuska.util.db.graph.GraphDefinition">
+    <property name="name" value="range-write-5-${testset.name.suffix}.pdf" />
+    <property name="keypos" value="at graph 0.15,0.04" />
+    <property name="lines">
+      <list>
+        <bean class="fi.tuska.util.db.graph.LineDefinition">
+          <property name="dataFetchSQL"
+            value="SELECT ${test.range.statenum.select}, avgval FROM test_vals WHERE test LIKE 'range-005-del-%' AND db='cmvbt-1' AND op='op_buffer_write'" />
+          <property name="title" ref="cmvbt-name" />
+        </bean>
+        <bean class="fi.tuska.util.db.graph.LineDefinition">
+          <property name="dataFetchSQL"
+            value="SELECT ${test.range.statenum.select}, avgval FROM test_vals WHERE test LIKE 'range-005-del-%' AND db='tsb-iks' AND op='op_buffer_write'" />
+          <property name="title" ref="tsb-iks-name" />
+          <property name="linestyle" value="linespoints ls 5" />
+        </bean>
+        <bean class="fi.tuska.util.db.graph.LineDefinition">
+          <property name="dataFetchSQL"
+            value="SELECT ${test.range.statenum.select}, avgval FROM test_vals WHERE test LIKE 'range-005-del-%' AND db='tsb-wob' AND op='op_buffer_write'" />
+          <property name="title" ref="tsb-wob-name" />
+          <property name="linestyle" value="linespoints ls 6" />
+        </bean>
+        <bean class="fi.tuska.util.db.graph.LineDefinition">
+          <property name="dataFetchSQL"
+            value="SELECT ${test.range.statenum.select}, avgval FROM test_vals WHERE test LIKE 'range-005-del-%' AND db='tsb-deferred' AND op='op_buffer_write'" />
+          <property name="title" ref="tsb-deferred-name" />
+          <property name="linestyle" value="linespoints ls 7" />
+        </bean>
+      </list>
+    </property>
+  </bean>
+
+  <bean name="graphRange5Time" class="fi.tuska.util.db.graph.GraphDefinition">
+    <property name="name" value="range-time-5-${testset.name.suffix}.pdf" />
+    <property name="keypos" value="at graph 0.15,0.04" />
+    <property name="lines">
+      <list>
+        <bean class="fi.tuska.util.db.graph.LineDefinition">
+          <property name="dataFetchSQL"
+            value="SELECT ${test.range.statenum.select}, elapsed FROM test_info WHERE test LIKE 'range-005-del-%' AND db='cmvbt-1'" />
+          <property name="title" ref="cmvbt-name" />
+        </bean>
+        <bean class="fi.tuska.util.db.graph.LineDefinition">
+          <property name="dataFetchSQL"
+            value="SELECT ${test.range.statenum.select}, elapsed FROM test_info WHERE test LIKE 'range-005-del-%' AND db='tsb-iks'" />
+          <property name="title" ref="tsb-iks-name" />
+          <property name="linestyle" value="linespoints ls 5" />
+        </bean>
+        <bean class="fi.tuska.util.db.graph.LineDefinition">
+          <property name="dataFetchSQL"
+            value="SELECT ${test.range.statenum.select}, elapsed FROM test_info WHERE test LIKE 'range-005-del-%' AND db='tsb-wob'" />
+          <property name="title" ref="tsb-wob-name" />
+          <property name="linestyle" value="linespoints ls 6" />
+        </bean>
+        <bean class="fi.tuska.util.db.graph.LineDefinition">
+          <property name="dataFetchSQL"
+            value="SELECT ${test.range.statenum.select}, elapsed FROM test_info WHERE test LIKE 'range-005-del-%' AND db='tsb-deferred'" />
+          <property name="title" ref="tsb-deferred-name" />
+          <property name="linestyle" value="linespoints ls 7" />
+        </bean>
+      </list>
+    </property>
+  </bean>
+
+
+
+
+  <!--
+    - Range queries
+    - Most recent version, last version, 5 % range size 
+    -->
+  <bean name="graphRange5ComparisonFix" class="fi.tuska.util.db.graph.GraphDefinition">
+    <property name="name" value="range-comparison-fix-${testset.name.suffix}.pdf" />
+    <property name="keypos" value="at graph 0.16,0.78" />
+    <property name="lines">
+      <list>
+        <bean class="fi.tuska.util.db.graph.LineDefinition">
+          <property name="dataFetchSQL"
+            value="SELECT ${test.range.statenum.select}, avgval FROM test_vals WHERE test LIKE 'range-005-del-%' AND db='cmvbt-1' AND op='op_buffer_fix'" />
+          <property name="title" ref="cmvbt-name" />
+        </bean>
+        <bean class="fi.tuska.util.db.graph.LineDefinition">
+          <property name="dataFetchSQL"
+            value="SELECT ${test.range.statenum.select}, avgval FROM test_vals WHERE test LIKE 'range-005-del-%' AND db='tsb-deferred' AND op='op_buffer_fix'" />
+          <property name="title" ref="tsb-deferred-name" />
+          <property name="linestyle" value="linespoints ls 7" />
+        </bean>
+        <bean class="fi.tuska.util.db.graph.LineDefinition">
+          <property name="dataFetchSQL"
+            value="SELECT ${test.range.statenum.select}, avgval FROM test_vals WHERE test LIKE 'range-005-del-%' AND db='mvvbt' AND op='op_buffer_fix'" />
+          <property name="title" ref="mvvbt-name" />
+          <property name="linestyle" value="linespoints ls 8" />
+        </bean>
+      </list>
+    </property>
+  </bean>
+  
+</beans>

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<launchConfiguration type="org.eclipse.jdt.launching.localJavaApplication">
+<listAttribute key="org.eclipse.debug.core.MAPPED_RESOURCE_PATHS">
+<listEntry value="/TreeLib/src/main/java/fi/hut/cs/treelib/operations/OperationExecutor.java"/>
+</listAttribute>
+<listAttribute key="org.eclipse.debug.core.MAPPED_RESOURCE_TYPES">
+<listEntry value="1"/>
+</listAttribute>
+<booleanAttribute key="org.eclipse.debug.core.appendEnvironmentVariables" value="true"/>
+<stringAttribute key="org.eclipse.hyades.trace.ui.ATTR_DATA_COLLECTOR" value="org.eclipse.tptp.trace.jvmti.jvmtiMechanism:org.eclipse.tptp.analysisType.jvmti.execution"/>
+<stringAttribute key="org.eclipse.hyades.trace.ui.ATTR_DESTINATION_FILE" value=""/>
+<stringAttribute key="org.eclipse.hyades.trace.ui.ATTR_DESTINATION_MONITOR" value="DefaultMonitor"/>
+<stringAttribute key="org.eclipse.hyades.trace.ui.ATTR_DESTINATION_PROJECT" value="ProfileProject"/>
+<booleanAttribute key="org.eclipse.hyades.trace.ui.ATTR_PROFILE_TO_FILE" value="false"/>
+<stringAttribute key="org.eclipse.hyades.trace.ui.ATTR_PROFILING_SET" value="tptp-dummy-profiling-set-JTree insert rrlines"/>
+<stringAttribute key="org.eclipse.jdt.launching.MAIN_TYPE" value="fi.hut.cs.treelib.operations.OperationExecutor"/>
+<stringAttribute key="org.eclipse.jdt.launching.PROGRAM_ARGUMENTS" value="exec-htree.xml overlaps src/main/datasets/mbr-small-window-1.txt"/>
+<stringAttribute key="org.eclipse.jdt.launching.PROJECT_ATTR" value="TreeLib"/>
+<stringAttribute key="org.eclipse.jdt.launching.VM_ARGUMENTS" value="-ea"/>
+<booleanAttribute key="org.eclipse.tptp.monitoring.instrumentation.ui.CBE_STATUS_AFTERCALL" value="false"/>
+<booleanAttribute key="org.eclipse.tptp.monitoring.instrumentation.ui.CBE_STATUS_BEFORECALL" value="false"/>
+<booleanAttribute key="org.eclipse.tptp.monitoring.instrumentation.ui.CBE_STATUS_CATCH" value="true"/>
+<booleanAttribute key="org.eclipse.tptp.monitoring.instrumentation.ui.CBE_STATUS_ENTRY" value="false"/>
+<booleanAttribute key="org.eclipse.tptp.monitoring.instrumentation.ui.CBE_STATUS_EXECUNIT" value="false"/>
+<booleanAttribute key="org.eclipse.tptp.monitoring.instrumentation.ui.CBE_STATUS_EXIT" value="false"/>
+<booleanAttribute key="org.eclipse.tptp.monitoring.instrumentation.ui.CBE_STATUS_STATICINIT" value="false"/>
+<stringAttribute key="org.eclipse.tptp.monitoring.instrumentation.ui.SELECTED_CBE_OUTPUT" value="console"/>
+<stringAttribute key="org.eclipse.tptp.monitoring.instrumentation.ui.SELECTED_CBE_SCENARIO" value="method"/>
+<stringAttribute key="org.eclipse.tptp.platform.instrumentation.ui.CURRENT_INSTRUMENT_POINT" value="org.eclipse.tptp.monitoring.instrumentation.cbeMethodInstrumentPoint"/>
+<booleanAttribute key="org.eclipse.tptp.platform.instrumentation.ui.ENABLE_CBE_INSTRUMENT_FILTER_SET" value="false"/>
+<booleanAttribute key="org.eclipse.tptp.platform.instrumentation.ui.ENABLE_JMX_INSTRUMENT_FILTER_SET" value="false"/>
+<booleanAttribute key="org.eclipse.tptp.platform.instrumentation.ui.JMX_CREATE_MBEANS" value="true"/>
+<booleanAttribute key="org.eclipse.tptp.platform.instrumentation.ui.JMX_STATS_COLLECTION" value="false"/>
+<stringAttribute key="org.eclipse.tptp.platform.instrumentation.ui.SELECTED_INSTRUMENT_COLLECTOR" value="org.eclipse.tptp.platform.instrumentation.ui.instrumentCollector.jvmti"/>
+<listAttribute key="org.eclipse.tptp.platform.instrumentation.ui.SELECTED_INSTRUMENT_FILES">
+<listEntry value="C:\Work\workspace\TreeLib\src\main\java\JMXProbe.probescript"/>
+<listEntry value="C:\Work\workspace\TreeLib\src\main\java\CbeProbe.probescript"/>
+</listAttribute>
+</launchConfiguration>

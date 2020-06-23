@@ -1,0 +1,46 @@
+<project name="Tree Library database targets" basedir="..">
+
+  <import file="build.xml" />
+
+  <target name="console-btree" description="Run console for B-tree">
+    <antcall target="run-console">
+      <param name="execfile" value="exec-btree.xml" />
+    </antcall>
+  </target>
+  <target name="console-mvbt" description="Run console for MVBT">
+    <antcall target="run-console">
+      <param name="execfile" value="exec-mvbt.xml" />
+    </antcall>
+  </target>
+  <target name="console-tmvbt" description="Run console for TMVBT">
+    <antcall target="run-console">
+      <param name="execfile" value="exec-tmvbt.xml" />
+    </antcall>
+  </target>
+  <target name="console-cmvbt" description="Run console for CMVBT">
+    <antcall target="run-console">
+      <param name="execfile" value="exec-cmvbt.xml" />
+    </antcall>
+  </target>
+  <target name="console-tsb" description="Run console for TSB-tree">
+    <antcall target="run-console">
+      <param name="execfile" value="exec-tsb.xml" />
+    </antcall>
+  </target>
+  <target name="console-htree" description="Run console for Hilbert R-tree">
+    <antcall target="run-console">
+      <param name="execfile" value="exec-htree.xml" />
+    </antcall>
+  </target>
+  <target name="console-jtree" description="Run console for J-tree">
+    <antcall target="run-console">
+      <param name="execfile" value="exec-jtree.xml" />
+    </antcall>
+  </target>
+  <target name="console-rtree" description="Run console for R-tree">
+    <antcall target="run-console">
+      <param name="execfile" value="exec-rtree.xml" />
+    </antcall>
+  </target>
+
+</project>

@@ -1,0 +1,311 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="
+    http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd">
+
+  <!-- Create the graphs -->
+  <bean name="graphCreator" class="fi.tuska.util.db.graph.GraphCreator" init-method="createGraphs">
+    <property name="directory" value="results/graph" />
+    <property name="graphs">
+      <list>
+        <ref bean="graphWindowBufferFix" />
+        <ref bean="graphWindowPageRead" />
+        <ref bean="graphWindowTime" />
+        <ref bean="graphCreateTime" />
+        <ref bean="graphCreateBufferFix" />
+        <ref bean="graphInsertTime" />
+        <ref bean="graphInsertBufferFix" />
+      </list>
+    </property>
+    <property name="gnuplotDefinitions" ref="gnuplotDefinitions" />
+    <property name="gnuplot" value="wgnuplot" />
+    <property name="epstopdf" value="epstopdf" />
+  </bean>
+
+  <!-- Graph definitions -->
+  <bean name="graphWindowBufferFix" class="fi.tuska.util.db.graph.GraphDefinition">
+    <property name="graphTitle" value="Window query, buffer fixes" />
+    <property name="name" value="window-buffer-fix" />
+    <property name="xlabel" value="Window size" />
+    <property name="ylabel" value="Buffer fixes" />
+    <property name="keypos" value="left top" />
+    <property name="extraGNUPlot">
+      <value>set xtics ("1%%" 0, "5%%" 1, "10%%" 2, "20%%" 3)</value>
+    </property>
+    <property name="lines">
+      <list>
+        <bean class="fi.tuska.util.db.graph.LineDefinition">
+          <property name="dataFetchSQL"
+            value="SELECT SUBSTR(extra, 18, LENGTH(extra)-21), avgval FROM test_vals WHERE test='overlap-query' AND db='packed-jtree' AND op='op_buffer_fix'" />
+          <property name="title" value="J-tree" />
+          <property name="definition" value="using 2:key(1)" />
+          <property name="linestyle" value="" />
+        </bean>
+        <bean class="fi.tuska.util.db.graph.LineDefinition">
+          <property name="dataFetchSQL"
+            value="SELECT SUBSTR(extra, 18, LENGTH(extra)-21), avgval FROM test_vals WHERE test='overlap-query' AND db='rtree-r_star' AND op='op_buffer_fix'" />
+          <property name="title" value="R-tree" />
+          <property name="definition" value="using 2" />
+          <property name="linestyle" value="" />
+        </bean>
+        <bean class="fi.tuska.util.db.graph.LineDefinition">
+          <property name="dataFetchSQL"
+            value="SELECT SUBSTR(extra, 18, LENGTH(extra)-21), avgval FROM test_vals WHERE test='overlap-query' AND db='htree-31' AND op='op_buffer_fix'" />
+          <property name="title" value="Hilbert R-tree" />
+          <property name="definition" value="using 2" />
+          <property name="linestyle" value="" />
+        </bean>
+      </list>
+    </property>
+  </bean>
+
+  <bean name="graphWindowPageRead" class="fi.tuska.util.db.graph.GraphDefinition">
+    <property name="graphTitle" value="Window query, page reads" />
+    <property name="name" value="window-page-read" />
+    <property name="xlabel" value="Window size" />
+    <property name="ylabel" value="Page reads" />
+    <property name="keypos" value="left top" />
+    <property name="extraGNUPlot">
+      <value>set xtics ("1%%" 0, "5%%" 1, "10%%" 2, "20%%" 3)</value>
+    </property>
+    <property name="lines">
+      <list>
+        <bean class="fi.tuska.util.db.graph.LineDefinition">
+          <property name="dataFetchSQL"
+            value="SELECT SUBSTR(extra, 18, LENGTH(extra)-21), avgval FROM test_vals WHERE test='overlap-query' AND db='packed-jtree' AND op='op_buffer_read'" />
+          <property name="title" value="J-tree" />
+          <property name="definition" value="using 2:key(1)" />
+          <property name="linestyle" value="" />
+        </bean>
+        <bean class="fi.tuska.util.db.graph.LineDefinition">
+          <property name="dataFetchSQL"
+            value="SELECT SUBSTR(extra, 18, LENGTH(extra)-21), avgval FROM test_vals WHERE test='overlap-query' AND db='rtree-r_star' AND op='op_buffer_read'" />
+          <property name="title" value="R-tree" />
+          <property name="definition" value="using 2" />
+          <property name="linestyle" value="" />          
+        </bean>
+        <bean class="fi.tuska.util.db.graph.LineDefinition">
+          <property name="dataFetchSQL"
+            value="SELECT SUBSTR(extra, 18, LENGTH(extra)-21), avgval FROM test_vals WHERE test='overlap-query' AND db='htree-31' AND op='op_buffer_read'" />
+          <property name="title" value="Hilbert R-tree" />
+          <property name="definition" value="using 2" />
+          <property name="linestyle" value="" />          
+        </bean>
+      </list>
+    </property>
+  </bean>
+
+  <bean name="graphWindowTime" class="fi.tuska.util.db.graph.GraphDefinition">
+    <property name="graphTitle" value="Window query, time" />
+    <property name="name" value="window-time" />
+    <property name="xlabel" value="Window size" />
+    <property name="ylabel" value="Time" />
+    <property name="keypos" value="left top" />
+    <property name="extraGNUPlot">
+      <value>set xtics ("1%%" 0, "5%%" 1, "10%%" 2, "20%%" 3)</value>
+    </property>
+    <property name="lines">
+      <list>
+        <bean class="fi.tuska.util.db.graph.LineDefinition">
+          <property name="dataFetchSQL"
+            value="SELECT SUBSTR(extra, 18, LENGTH(extra)-21), elapsed FROM test_info WHERE test='overlap-query' AND db='packed-jtree'" />
+          <property name="title" value="J-tree" />
+          <property name="definition" value="using 2:key(1)" />
+          <property name="linestyle" value="" />
+        </bean>
+        <bean class="fi.tuska.util.db.graph.LineDefinition">
+          <property name="dataFetchSQL"
+            value="SELECT SUBSTR(extra, 18, LENGTH(extra)-21), elapsed FROM test_info WHERE test='overlap-query' AND db='rtree-r_star'" />
+          <property name="title" value="R-tree" />
+          <property name="definition" value="using 2" />
+          <property name="linestyle" value="" />
+        </bean>
+        <bean class="fi.tuska.util.db.graph.LineDefinition">
+          <property name="dataFetchSQL"
+            value="SELECT SUBSTR(extra, 18, LENGTH(extra)-21), elapsed FROM test_info WHERE test='overlap-query' AND db='htree-31'" />
+          <property name="title" value="Hilbert R-tree" />
+          <property name="definition" value="using 2" />
+          <property name="linestyle" value="" />
+        </bean>
+      </list>
+    </property>
+  </bean>
+
+  <bean name="graphCreateTime" class="fi.tuska.util.db.graph.GraphDefinition">
+    <property name="graphTitle" value="Index creation, time" />
+    <property name="name" value="create-time" />
+    <property name="xlabel" value="" />
+    <property name="ylabel" value="Time (s)" />
+    <property name="keypos" value="left top" />
+    <property name="yrange" value="[0:300]" />
+    <property name="extraGNUPlot">
+      <value>set xtics ("Create index" 0)</value>
+    </property>
+    <property name="lines">
+      <list>
+        <bean class="fi.tuska.util.db.graph.LineDefinition">
+          <property name="dataFetchSQL"
+            value="SELECT elapsed FROM test_info WHERE test='bulk-load' AND db='packed-jtree'" />
+          <property name="title" value="J-tree" />
+          <property name="definition" value="using 1:key(1)" />
+          <property name="linestyle" value="" />
+        </bean>
+        <bean class="fi.tuska.util.db.graph.LineDefinition">
+          <property name="dataFetchSQL"
+            value="SELECT elapsed FROM test_info WHERE test='bulk-load' AND db='rtree-r_star'" />
+          <property name="title" value="R-tree" />
+          <property name="definition" value="using 1" />
+          <property name="linestyle" value="" />
+        </bean>
+        <bean class="fi.tuska.util.db.graph.LineDefinition">
+          <property name="dataFetchSQL"
+            value="SELECT elapsed FROM test_info WHERE test='bulk-load' AND db='htree-31'" />
+          <property name="title" value="Hilbert R-tree" />
+          <property name="definition" value="using 1" />
+          <property name="linestyle" value="" />
+        </bean>
+      </list>
+    </property>
+  </bean>
+
+  <bean name="graphCreateBufferFix" class="fi.tuska.util.db.graph.GraphDefinition">
+    <property name="graphTitle" value="Index creation, buffer fixes" />
+    <property name="name" value="create-buffer-fix" />
+    <property name="xlabel" value="" />
+    <property name="ylabel" value="Buffer fixes" />
+    <property name="keypos" value="left top" />
+    <property name="extraGNUPlot">
+      <value>set xtics ("Create index" 0)</value>
+    </property>
+    <property name="lines">
+      <list>
+        <bean class="fi.tuska.util.db.graph.LineDefinition">
+          <property name="dataFetchSQL"
+            value="SELECT maxval FROM test_vals WHERE test='bulk-load' AND db='packed-jtree' and op='op_buffer_fix'" />
+          <property name="title" value="J-tree" />
+          <property name="definition" value="using 1:key(1)" />
+          <property name="linestyle" value="" />
+        </bean>
+        <bean class="fi.tuska.util.db.graph.LineDefinition">
+          <property name="dataFetchSQL"
+            value="SELECT maxval FROM test_vals WHERE test='bulk-load' AND db='rtree-r_star' and op='op_buffer_fix'" />
+          <property name="title" value="R-tree" />
+          <property name="definition" value="using 1" />
+          <property name="linestyle" value="" />
+        </bean>
+        <bean class="fi.tuska.util.db.graph.LineDefinition">
+          <property name="dataFetchSQL"
+            value="SELECT maxval FROM test_vals WHERE test='bulk-load' AND db='htree-31' and op='op_buffer_fix'" />
+          <property name="title" value="Hilbert R-tree" />
+          <property name="definition" value="using 1" />
+          <property name="linestyle" value="" />
+        </bean>
+      </list>
+    </property>
+  </bean>
+  
+  <bean name="graphInsertTime" class="fi.tuska.util.db.graph.GraphDefinition">
+    <property name="graphTitle" value="Item insertion, time" />
+    <property name="name" value="insert-time" />
+    <property name="xlabel" value="" />
+    <property name="ylabel" value="Time (s)" />
+    <property name="keypos" value="left top" />
+    <property name="yrange" value="[0:35]" />
+    <property name="extraGNUPlot">
+      <value>set xtics ("Insert items" 0)</value>
+    </property>
+    <property name="lines">
+      <list>
+        <bean class="fi.tuska.util.db.graph.LineDefinition">
+          <property name="dataFetchSQL"
+            value="SELECT elapsed FROM test_info WHERE test='insert' AND db='packed-jtree'" />
+          <property name="title" value="J-tree" />
+          <property name="definition" value="using 1:key(1)" />
+          <property name="linestyle" value="" />
+        </bean>
+        <bean class="fi.tuska.util.db.graph.LineDefinition">
+          <property name="dataFetchSQL"
+            value="SELECT elapsed FROM test_info WHERE test='insert' AND db='rtree-r_star'" />
+          <property name="title" value="R-tree" />
+          <property name="definition" value="using 1" />
+          <property name="linestyle" value="" />
+        </bean>
+        <bean class="fi.tuska.util.db.graph.LineDefinition">
+          <property name="dataFetchSQL"
+            value="SELECT elapsed FROM test_info WHERE test='insert' AND db='htree-31'" />
+          <property name="title" value="Hilbert R-tree" />
+          <property name="definition" value="using 1" />
+          <property name="linestyle" value="" />
+        </bean>
+      </list>
+    </property>
+  </bean>
+
+  <bean name="graphInsertBufferFix" class="fi.tuska.util.db.graph.GraphDefinition">
+    <property name="graphTitle" value="Item insertion, buffer fixes" />
+    <property name="name" value="insert-buffer-fix" />
+    <property name="xlabel" value="" />
+    <property name="ylabel" value="Buffer fixes" />
+    <property name="keypos" value="left top" />
+    <property name="yrange" value="[0:4]" />
+    <property name="extraGNUPlot">
+      <value>set xtics ("Insert items" 0)</value>
+    </property>
+    <property name="lines">
+      <list>
+        <bean class="fi.tuska.util.db.graph.LineDefinition">
+          <property name="dataFetchSQL"
+            value="SELECT avgval FROM test_vals WHERE test='insert' AND db='packed-jtree' and op='op_buffer_fix'" />
+          <property name="title" value="J-tree" />
+          <property name="definition" value="using 1:key(1)" />
+          <property name="linestyle" value="" />
+        </bean>
+        <bean class="fi.tuska.util.db.graph.LineDefinition">
+          <property name="dataFetchSQL"
+            value="SELECT avgval FROM test_vals WHERE test='insert' AND db='rtree-r_star' and op='op_buffer_fix'" />
+          <property name="title" value="R-tree" />
+          <property name="definition" value="using 1" />
+          <property name="linestyle" value="" />
+        </bean>
+        <bean class="fi.tuska.util.db.graph.LineDefinition">
+          <property name="dataFetchSQL"
+            value="SELECT avgval FROM test_vals WHERE test='insert' AND db='htree-31' and op='op_buffer_fix'" />
+          <property name="title" value="Hilbert R-tree" />
+          <property name="definition" value="using 1" />
+          <property name="linestyle" value="" />
+        </bean>
+      </list>
+    </property>
+  </bean>
+  
+  <!-- General definitions -->
+  <bean name="gnuplotDefinitions" class="java.lang.String">
+    <constructor-arg>
+      <value><![CDATA[
+set pointsize 1.5
+
+set style line 1 linetype 1 lw 2 linecolor rgb "blue"
+set style line 2 linetype 1 lw 2 linecolor rgb "green"
+set style line 3 linetype 1 lw 2 linecolor rgb "red"
+set style line 4 linetype 1 lw 2 linecolor rgb "dark-red"
+set style line 5 linetype 1 lw 2 linecolor rgb "dark-green"
+set style line 6 linetype 1 lw 2 linecolor rgb "dark-blue"
+
+set style line 11 linetype 4 pt 1 lw 2 linecolor rgb "blue"
+set style line 12 linetype 4 pt 2 lw 2 linecolor rgb "green"
+set style line 13 linetype 4 pt 3 lw 2 linecolor rgb "red"
+set style line 14 linetype 4 pt 4 lw 2 linecolor rgb "dark-red"
+set style line 15 linetype 4 pt 5 lw 2 linecolor rgb "dark-green"
+set style line 16 linetype 4 pt 6 lw 2 linecolor rgb "dark-blue"
+
+set style data histogram
+set style histogram cluster gap 1
+set style fill solid border -1
+# set xtic rotate by -20
+set bar 1.0
+set boxwidth 1.0 absolute
+      ]]></value>
+    </constructor-arg>
+  </bean>
+
+</beans>

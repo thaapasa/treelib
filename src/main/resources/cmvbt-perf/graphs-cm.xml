@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="
+    http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd">
+
+    <!--
+    - CMVBT comparison
+    - Initial state, 100 updates/tx 
+    -->
+  <bean name="graphCMInitial100Fix" class="fi.tuska.util.db.graph.GraphDefinition">
+    <property name="name" value="cm-initial-100-fix-${testset.name.suffix}.pdf" />
+    <property name="lines">
+      <list>
+        <bean class="fi.tuska.util.db.graph.LineDefinition">
+          <property name="dataFetchSQL"
+            value="SELECT CAST (extra AS INTEGER) AS extranum, avgval FROM test_vals WHERE test LIKE 'qu-100-%-initial-${testset.name.suffix}' AND db='cmvbt-1' AND op='op_buffer_fix'" />
+          <property name="title" ref="cmvbt-1-name" />
+        </bean>
+        <bean class="fi.tuska.util.db.graph.LineDefinition">
+          <property name="dataFetchSQL"
+            value="SELECT CAST (extra AS INTEGER) AS extranum, avgval FROM test_vals WHERE test LIKE 'qu-100-%-initial-${testset.name.suffix}' AND db='cmvbt-5' AND op='op_buffer_fix'" />
+          <property name="title" ref="cmvbt-5-name" />
+        </bean>
+        <bean class="fi.tuska.util.db.graph.LineDefinition">
+          <property name="dataFetchSQL"
+            value="SELECT CAST (extra AS INTEGER) AS extranum, avgval FROM test_vals WHERE test LIKE 'qu-100-%-initial-${testset.name.suffix}' AND db='cmvbt-10' AND op='op_buffer_fix'" />
+          <property name="title" ref="cmvbt-10-name" />
+        </bean>
+        <bean class="fi.tuska.util.db.graph.LineDefinition">
+          <property name="dataFetchSQL"
+            value="SELECT CAST (extra AS INTEGER) AS extranum, avgval FROM test_vals WHERE test LIKE 'qu-100-%-initial-${testset.name.suffix}' AND db='cmvbt-50' AND op='op_buffer_fix'" />
+          <property name="title" ref="cmvbt-50-name" />
+        </bean>
+        <bean class="fi.tuska.util.db.graph.LineDefinition">
+          <property name="dataFetchSQL"
+            value="SELECT CAST (extra AS INTEGER) AS extranum, avgval FROM test_vals WHERE test LIKE 'qu-100-%-initial-${testset.name.suffix}' AND db='tmvbt' AND op='op_buffer_fix'" />
+          <property name="title" ref="tmvbt-name" />
+          <property name="linestyle" value="linespoints ls 9" />
+        </bean>
+      </list>
+    </property>
+  </bean>
+  <bean name="graphCMInitial100Read" class="fi.tuska.util.db.graph.GraphDefinition">
+    <property name="name" value="cm-initial-100-read-${testset.name.suffix}.pdf" />
+    <property name="lines">
+      <list>
+        <bean class="fi.tuska.util.db.graph.LineDefinition">
+          <property name="dataFetchSQL"
+            value="SELECT CAST (extra AS INTEGER) AS extranum, avgval FROM test_vals WHERE test LIKE 'qu-100-%-initial-${testset.name.suffix}' AND db='cmvbt-1' AND op='op_buffer_read'" />
+          <property name="title" ref="cmvbt-1-name" />
+        </bean>
+        <bean class="fi.tuska.util.db.graph.LineDefinition">
+          <property name="dataFetchSQL"
+            value="SELECT CAST (extra AS INTEGER) AS extranum, avgval FROM test_vals WHERE test LIKE 'qu-100-%-initial-${testset.name.suffix}' AND db='cmvbt-5' AND op='op_buffer_read'" />
+          <property name="title" ref="cmvbt-5-name" />
+        </bean>
+        <bean class="fi.tuska.util.db.graph.LineDefinition">
+          <property name="dataFetchSQL"
+            value="SELECT CAST (extra AS INTEGER) AS extranum, avgval FROM test_vals WHERE test LIKE 'qu-100-%-initial-${testset.name.suffix}' AND db='cmvbt-10' AND op='op_buffer_read'" />
+          <property name="title" ref="cmvbt-10-name" />
+        </bean>
+        <bean class="fi.tuska.util.db.graph.LineDefinition">
+          <property name="dataFetchSQL"
+            value="SELECT CAST (extra AS INTEGER) AS extranum, avgval FROM test_vals WHERE test LIKE 'qu-100-%-initial-${testset.name.suffix}' AND db='cmvbt-50' AND op='op_buffer_read'" />
+          <property name="title" ref="cmvbt-50-name" />
+        </bean>
+        <bean class="fi.tuska.util.db.graph.LineDefinition">
+          <property name="dataFetchSQL"
+            value="SELECT CAST (extra AS INTEGER) AS extranum, avgval FROM test_vals WHERE test LIKE 'qu-100-%-initial-${testset.name.suffix}' AND db='tmvbt' AND op='op_buffer_read'" />
+          <property name="title" ref="tmvbt-name" />
+          <property name="linestyle" value="linespoints ls 9" />
+        </bean>
+      </list>
+    </property>
+  </bean>
+  <bean name="graphCMInitial100Time" class="fi.tuska.util.db.graph.GraphDefinition">
+    <property name="name" value="cm-initial-100-time-${testset.name.suffix}.pdf" />
+    <property name="lines">
+      <list>
+        <bean class="fi.tuska.util.db.graph.LineDefinition">
+          <property name="dataFetchSQL"
+            value="SELECT CAST (extra AS INTEGER) AS extranum, elapsed FROM test_info WHERE test LIKE 'qu-100-%-initial-${testset.name.suffix}' AND db='cmvbt-1'" />
+          <property name="title" ref="cmvbt-1-name" />
+        </bean>
+        <bean class="fi.tuska.util.db.graph.LineDefinition">
+          <property name="dataFetchSQL"
+            value="SELECT CAST (extra AS INTEGER) AS extranum, elapsed FROM test_info WHERE test LIKE 'qu-100-%-initial-${testset.name.suffix}' AND db='cmvbt-5'" />
+          <property name="title" ref="cmvbt-5-name" />
+        </bean>
+        <bean class="fi.tuska.util.db.graph.LineDefinition">
+          <property name="dataFetchSQL"
+            value="SELECT CAST (extra AS INTEGER) AS extranum, elapsed FROM test_info WHERE test LIKE 'qu-100-%-initial-${testset.name.suffix}' AND db='cmvbt-10'" />
+          <property name="title" ref="cmvbt-10-name" />
+        </bean>
+        <bean class="fi.tuska.util.db.graph.LineDefinition">
+          <property name="dataFetchSQL"
+            value="SELECT CAST (extra AS INTEGER) AS extranum, elapsed FROM test_info WHERE test LIKE 'qu-100-%-initial-${testset.name.suffix}' AND db='cmvbt-50'" />
+          <property name="title" ref="cmvbt-50-name" />
+        </bean>
+        <bean class="fi.tuska.util.db.graph.LineDefinition">
+          <property name="dataFetchSQL"
+            value="SELECT CAST (extra AS INTEGER) AS extranum, elapsed FROM test_info WHERE test LIKE 'qu-100-%-initial-${testset.name.suffix}' AND db='tmvbt'" />
+          <property name="title" ref="tmvbt-name" />
+          <property name="linestyle" value="linespoints ls 9" />
+        </bean>
+      </list>
+    </property>
+  </bean>
+
+  <!--
+    - Queries and updates
+    - Initial state, 5 updates/tx 
+    -->
+  <bean name="graphCMInitial5Fix" class="fi.tuska.util.db.graph.GraphDefinition">
+    <property name="name" value="cm-initial-5-fix-${testset.name.suffix}.pdf" />
+    <property name="lines">
+      <list>
+        <bean class="fi.tuska.util.db.graph.LineDefinition">
+          <property name="dataFetchSQL"
+            value="SELECT CAST (extra AS INTEGER) AS extranum, avgval FROM test_vals WHERE test LIKE 'qu-5-%-initial-${testset.name.suffix}' AND db='cmvbt-1' AND op='op_buffer_fix'" />
+          <property name="title" ref="cmvbt-1-name" />
+        </bean>
+        <bean class="fi.tuska.util.db.graph.LineDefinition">
+          <property name="dataFetchSQL"
+            value="SELECT CAST (extra AS INTEGER) AS extranum, avgval FROM test_vals WHERE test LIKE 'qu-5-%-initial-${testset.name.suffix}' AND db='cmvbt-5' AND op='op_buffer_fix'" />
+          <property name="title" ref="cmvbt-5-name" />
+        </bean>
+        <bean class="fi.tuska.util.db.graph.LineDefinition">
+          <property name="dataFetchSQL"
+            value="SELECT CAST (extra AS INTEGER) AS extranum, avgval FROM test_vals WHERE test LIKE 'qu-5-%-initial-${testset.name.suffix}' AND db='cmvbt-10' AND op='op_buffer_fix'" />
+          <property name="title" ref="cmvbt-10-name" />
+        </bean>
+        <bean class="fi.tuska.util.db.graph.LineDefinition">
+          <property name="dataFetchSQL"
+            value="SELECT CAST (extra AS INTEGER) AS extranum, avgval FROM test_vals WHERE test LIKE 'qu-5-%-initial-${testset.name.suffix}' AND db='cmvbt-50' AND op='op_buffer_fix'" />
+          <property name="title" ref="cmvbt-50-name" />
+        </bean>
+        <bean class="fi.tuska.util.db.graph.LineDefinition">
+          <property name="dataFetchSQL"
+            value="SELECT CAST (extra AS INTEGER) AS extranum, avgval FROM test_vals WHERE test LIKE 'qu-5-%-initial-${testset.name.suffix}' AND db='tmvbt' AND op='op_buffer_fix'" />
+          <property name="title" ref="tmvbt-name" />
+          <property name="linestyle" value="linespoints ls 9" />
+        </bean>
+      </list>
+    </property>
+  </bean>
+  <bean name="graphCMInitial5Read" class="fi.tuska.util.db.graph.GraphDefinition">
+    <property name="name" value="cm-initial-5-read-${testset.name.suffix}.pdf" />
+    <property name="lines">
+      <list>
+        <bean class="fi.tuska.util.db.graph.LineDefinition">
+          <property name="dataFetchSQL"
+            value="SELECT CAST (extra AS INTEGER) AS extranum, avgval FROM test_vals WHERE test LIKE 'qu-5-%-initial-${testset.name.suffix}' AND db='cmvbt-1' AND op='op_buffer_read'" />
+          <property name="title" ref="cmvbt-1-name" />
+        </bean>
+        <bean class="fi.tuska.util.db.graph.LineDefinition">
+          <property name="dataFetchSQL"
+            value="SELECT CAST (extra AS INTEGER) AS extranum, avgval FROM test_vals WHERE test LIKE 'qu-5-%-initial-${testset.name.suffix}' AND db='cmvbt-5' AND op='op_buffer_read'" />
+          <property name="title" ref="cmvbt-5-name" />
+        </bean>
+        <bean class="fi.tuska.util.db.graph.LineDefinition">
+          <property name="dataFetchSQL"
+            value="SELECT CAST (extra AS INTEGER) AS extranum, avgval FROM test_vals WHERE test LIKE 'qu-5-%-initial-${testset.name.suffix}' AND db='cmvbt-10' AND op='op_buffer_read'" />
+          <property name="title" ref="cmvbt-10-name" />
+        </bean>
+        <bean class="fi.tuska.util.db.graph.LineDefinition">
+          <property name="dataFetchSQL"
+            value="SELECT CAST (extra AS INTEGER) AS extranum, avgval FROM test_vals WHERE test LIKE 'qu-5-%-initial-${testset.name.suffix}' AND db='cmvbt-50' AND op='op_buffer_read'" />
+          <property name="title" ref="cmvbt-50-name" />
+        </bean>
+        <bean class="fi.tuska.util.db.graph.LineDefinition">
+          <property name="dataFetchSQL"
+            value="SELECT CAST (extra AS INTEGER) AS extranum, avgval FROM test_vals WHERE test LIKE 'qu-5-%-initial-${testset.name.suffix}' AND db='tmvbt' AND op='op_buffer_read'" />
+          <property name="title" ref="tmvbt-name" />
+          <property name="linestyle" value="linespoints ls 9" />
+        </bean>
+      </list>
+    </property>
+  </bean>
+  <bean name="graphCMInitial5Time" class="fi.tuska.util.db.graph.GraphDefinition">
+    <property name="name" value="cm-initial-5-time-${testset.name.suffix}.pdf" />
+    <property name="lines">
+      <list>
+        <bean class="fi.tuska.util.db.graph.LineDefinition">
+          <property name="dataFetchSQL"
+            value="SELECT CAST (extra AS INTEGER) AS extranum, elapsed FROM test_info WHERE test LIKE 'qu-5-%-initial-${testset.name.suffix}' AND db='cmvbt-1'" />
+          <property name="title" ref="cmvbt-1-name" />
+        </bean>
+        <bean class="fi.tuska.util.db.graph.LineDefinition">
+          <property name="dataFetchSQL"
+            value="SELECT CAST (extra AS INTEGER) AS extranum, elapsed FROM test_info WHERE test LIKE 'qu-5-%-initial-${testset.name.suffix}' AND db='cmvbt-5'" />
+          <property name="title" ref="cmvbt-5-name" />
+        </bean>
+        <bean class="fi.tuska.util.db.graph.LineDefinition">
+          <property name="dataFetchSQL"
+            value="SELECT CAST (extra AS INTEGER) AS extranum, elapsed FROM test_info WHERE test LIKE 'qu-5-%-initial-${testset.name.suffix}' AND db='cmvbt-10'" />
+          <property name="title" ref="cmvbt-10-name" />
+        </bean>
+        <bean class="fi.tuska.util.db.graph.LineDefinition">
+          <property name="dataFetchSQL"
+            value="SELECT CAST (extra AS INTEGER) AS extranum, elapsed FROM test_info WHERE test LIKE 'qu-5-%-initial-${testset.name.suffix}' AND db='cmvbt-50'" />
+          <property name="title" ref="cmvbt-50-name" />
+        </bean>
+        <bean class="fi.tuska.util.db.graph.LineDefinition">
+          <property name="dataFetchSQL"
+            value="SELECT CAST (extra AS INTEGER) AS extranum, elapsed FROM test_info WHERE test LIKE 'qu-5-%-initial-${testset.name.suffix}' AND db='tmvbt'" />
+          <property name="title" ref="tmvbt-name" />
+          <property name="linestyle" value="linespoints ls 9" />
+        </bean>
+      </list>
+    </property>
+  </bean>
+  
+</beans>

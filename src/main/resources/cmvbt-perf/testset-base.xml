@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="
+    http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd">
+
+  <bean class="org.springframework.beans.factory.annotation.RequiredAnnotationBeanPostProcessor" />
+
+  <bean id="distribution" class="java.lang.String">
+    <constructor-arg value="Uniform" />
+    <!-- 
+    <constructor-arg value="Gaussian" />
+    -->
+  </bean>
+
+  <!-- Import tested databases -->
+  <import resource="../exec-cmvbt.xml" />
+  <import resource="../exec-tsb-wob.xml" />
+  <import resource="../exec-tsb-iks.xml" />
+  <import resource="../exec-tsb.xml" />
+  <import resource="../exec-mvvbt.xml" />
+  <import resource="../exec-tmvbt.xml" />
+
+  <!-- Directory to place workloads -->
+  <bean id="workloadDir" class="java.lang.String" autowire-candidate="true">
+    <constructor-arg value="material/workloads" />
+  </bean>
+
+  <!-- Directory to place different database states -->
+  <bean id="dbDir" class="java.lang.String" autowire-candidate="true">
+    <constructor-arg value="db" />
+  </bean>
+
+  <bean id="dbList" class="java.util.HashMap">
+    <constructor-arg>
+      <map>
+        <entry key="cmvbt-1" value-ref="cmvbtdb" />
+        <entry key="cmvbt-5" value-ref="cmvbtdb" />
+        <entry key="cmvbt-10" value-ref="cmvbtdb" />
+        <entry key="cmvbt-50" value-ref="cmvbtdb" />
+        <entry key="tsb-wob" value-ref="tsbwobdb" />
+        <entry key="tsb-iks" value-ref="tsbiksdb" />
+        <entry key="tsb-deferred" value-ref="tsbdb" />
+        <entry key="mvvbt" value-ref="mvvbtdb" />
+        <entry key="tmvbt" value-ref="tmvbtdb" />
+      </map>
+    </constructor-arg>
+  </bean>
+
+  <bean id="dbSettings" class="java.util.HashMap">
+    <constructor-arg>
+      <map>
+        <entry key="cmvbt" value="maintenanceFrequency=1" />
+        <entry key="cmvbt-1" value="maintenanceFrequency=1" />
+        <entry key="cmvbt-5" value="maintenanceFrequency=5" />
+        <entry key="cmvbt-10" value="maintenanceFrequency=10" />
+        <entry key="cmvbt-50" value="maintenanceFrequency=50" />
+      </map>
+    </constructor-arg>
+  </bean>
+
+  <!-- Select test sets that are run -->
+  <bean id="testset" class="java.util.ArrayList">
+    <constructor-arg>
+      <list>
+        <ref local="queryUpdateTests" />
+        <ref local="rangeQueryTests" />
+      </list>
+    </constructor-arg>
+  </bean>
+
+  <!-- Query update tests -->
+  <bean id="queryUpdateTests" class="fi.hut.cs.treelib.test.TestSet">
+    <property name="databases" ref="dbList" />
+    <property name="databaseSettings" ref="dbSettings" />
+    <property name="states">
+      <list>
+        <ref bean="stateInitial" />
+        <ref bean="stateDel50" />
+      </list>
+    </property>
+    <property name="tests">
+      <list>
+        <ref bean="testQueryUpdate-5-0" />
+        <ref bean="testQueryUpdate-5-10" />
+        <ref bean="testQueryUpdate-5-20" />
+        <ref bean="testQueryUpdate-5-30" />
+        <ref bean="testQueryUpdate-5-40" />
+        <ref bean="testQueryUpdate-5-50" />
+        <ref bean="testQueryUpdate-5-60" />
+        <ref bean="testQueryUpdate-5-70" />
+        <ref bean="testQueryUpdate-5-80" />
+        <ref bean="testQueryUpdate-5-90" />
+        <ref bean="testQueryUpdate-5-100" />
+        <ref bean="testQueryUpdate-100-0" />
+        <ref bean="testQueryUpdate-100-10" />
+        <ref bean="testQueryUpdate-100-20" />
+        <ref bean="testQueryUpdate-100-30" />
+        <ref bean="testQueryUpdate-100-40" />
+        <ref bean="testQueryUpdate-100-50" />
+        <ref bean="testQueryUpdate-100-60" />
+        <ref bean="testQueryUpdate-100-70" />
+        <ref bean="testQueryUpdate-100-80" />
+        <ref bean="testQueryUpdate-100-90" />
+        <ref bean="testQueryUpdate-100-100" />
+      </list>
+    </property>
+  </bean>
+
+  <!-- Range query tests -->
+  <bean id="rangeQueryTests" class="fi.hut.cs.treelib.test.TestSet">
+    <property name="databases">
+      <map>
+        <entry key="cmvbt" value-ref="cmvbtdb" />
+        <entry key="tsb-wob" value-ref="tsbwobdb" />
+        <entry key="tsb-iks" value-ref="tsbiksdb" />
+        <entry key="tsb-deferred" value-ref="tsbdb" />
+        <entry key="mvvbt" value-ref="mvvbtdb" />
+        <entry key="tmvbt" value-ref="tmvbtdb" />
+      </map>
+    </property>
+    <property name="databaseSettings" ref="dbSettings" />
+    <property name="states">
+      <list>
+        <ref bean="stateDel0" />
+        <ref bean="stateDel10" />
+        <ref bean="stateDel20" />
+        <ref bean="stateDel30" />
+        <ref bean="stateDel40" />
+        <ref bean="stateDel50" />
+        <ref bean="stateDel60" />
+        <ref bean="stateDel70" />
+        <ref bean="stateDel80" />
+        <ref bean="stateDel90" />
+        <ref bean="stateDel100" />
+      </list>
+    </property>
+    <property name="tests">
+      <list>
+        <ref bean="testRange1" />
+        <ref bean="testRange5" />
+        <ref bean="testRange10" />
+      </list>
+    </property>
+  </bean>
+
+  <!-- General key bounds for the database -->
+  <bean id="keyBounds" class="fi.hut.cs.treelib.test.KeyBounds">
+    <property name="minLimit" value="0" />
+    <property name="maxLimit" value="2000000000" />
+  </bean>
+
+
+  <!-- States -->
+  <import resource="states.xml" />
+
+  <!-- Tests -->
+  <import resource="tests-qu.xml" />
+  <import resource="tests-range.xml" />
+
+</beans>

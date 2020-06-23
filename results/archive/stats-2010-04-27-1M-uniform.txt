@@ -1,0 +1,149 @@
+State initial for cmvbt
+Database: cmvbt-1
+Tree: cmvbt-1
+Index page: 203 entries; height: 3
+Leaf page: 338 entries
+Entries (alive/all): 1000000 / 4407606
+Pages (leaf/parent/total/file): 15870 / 212 / 16082 / 16089
+Tree: vbt
+Index page: 338 entries; height: 2
+Leaf page: 338 entries
+
+State del-50 for cmvbt
+Database: cmvbt-1
+Tree: cmvbt-1
+Index page: 203 entries; height: 3
+Leaf page: 338 entries
+Entries (alive/all): 500000 / 5077804
+Pages (leaf/parent/total/file): 19463 / 254 / 19717 / 19724
+Tree: vbt
+Index page: 338 entries; height: 2
+Leaf page: 338 entries
+
+State del-100 for cmvbt
+Database: cmvbt-1
+Tree: cmvbt-1
+Entries (alive/all): 0 / 6021509
+Pages (leaf/parent/total/file): 24689 / 330 / 25019 / 25026
+Tree: vbt
+Index page: 338 entries; height: 2
+Leaf page: 338 entries
+
+State initial for tsb
+Database: tsb-deferred
+Tree: tsb-deferred
+Index page: 203 entries; height: 4
+Leaf page: 335 entries
+Entries (alive/all): 1000000 / 3396196
+Pages (leaf/parent/total/file): 12793 / 301 / 13094 / 13104
+
+State del-50 for tsb
+Database: tsb-deferred
+Tree: tsb-deferred
+Index page: 203 entries; height: 4
+Leaf page: 335 entries
+Entries (alive/all): 500000 / 3746547
+Pages (leaf/parent/total/file): 16070 / 358 / 16428 / 16438
+
+State del-100 for tsb
+Database: tsb-deferred
+Tree: tsb-deferred
+Index page: 203 entries; height: 4
+Leaf page: 335 entries
+Entries (alive/all): 0 / 3844617
+Pages (leaf/parent/total/file): 18169 / 397 / 18566 / 18578
+
+State initial for tsb-iks
+Database: tsb-iks
+Tree: tsb-iks
+Index page: 203 entries; height: 4
+Leaf page: 335 entries
+Entries (alive/all): 1000000 / 2502629
+Pages (leaf/parent/total/file): 10609 / 241 / 10850 / 10858
+
+State del-50 for tsb-iks
+Database: tsb-iks
+Tree: tsb-iks
+Index page: 203 entries; height: 4
+Leaf page: 335 entries
+Entries (alive/all): 500000 / 2834108
+Pages (leaf/parent/total/file): 13072 / 307 / 13379 / 13387
+
+State del-100 for tsb-iks
+Database: tsb-iks
+Tree: tsb-iks
+Index page: 203 entries; height: 4
+Leaf page: 335 entries
+Entries (alive/all): 0 / 2958763
+Pages (leaf/parent/total/file): 15827 / 368 / 16195 / 16207
+
+State initial for tsb-wob
+Database: tsb-wob
+Tree: tsb-wob
+Index page: 203 entries; height: 4
+Leaf page: 335 entries
+Entries (alive/all): 1000000 / 3404358
+Pages (leaf/parent/total/file): 13894 / 272 / 14166 / 14176
+
+State del-50 for tsb-wob
+Database: tsb-wob
+Tree: tsb-wob
+Index page: 203 entries; height: 4
+Leaf page: 335 entries
+Entries (alive/all): 500000 / 3715423
+Pages (leaf/parent/total/file): 16005 / 317 / 16322 / 16334
+
+State del-100 for tsb-wob
+Database: tsb-wob
+Tree: tsb-wob
+Index page: 203 entries; height: 4
+Leaf page: 335 entries
+Entries (alive/all): 0 / 3820102
+Pages (leaf/parent/total/file): 18195 / 377 / 18572 / 18587
+
+State initial for tmvbt
+Database: tmvbt
+Tree: tmvbt
+Index page: 203 entries; height: 3
+Leaf page: 338 entries
+Entries (alive/all): 1000000 / 4420773
+Pages (leaf/parent/total/file): 15961 / 204 / 16165 / 16170
+
+State del-50 for tmvbt
+Database: tmvbt
+Tree: tmvbt
+Index page: 203 entries; height: 3
+Leaf page: 338 entries
+Entries (alive/all): 500000 / 5074473
+Pages (leaf/parent/total/file): 19458 / 250 / 19708 / 19714
+
+State del-100 for tmvbt
+Database: tmvbt
+Tree: tmvbt
+Entries (alive/all): 0 / 6034161
+Pages (leaf/parent/total/file): 24740 / 330 / 25070 / 25076
+
+State initial for mvvbt
+Database: mvvbt
+Tree: mvvbt
+Index page: 338 entries; height: 3
+Leaf page: 338 entries
+Entries (alive/all): 0 / 2000000
+Pages (leaf/parent/total/file): 8372 / 32 / 8404 / 8407
+
+State del-50 for mvvbt
+Database: mvvbt
+Tree: mvvbt
+Index page: 338 entries; height: 3
+Leaf page: 338 entries
+Entries (alive/all): 0 / 2500000
+Pages (leaf/parent/total/file): 10441 / 41 / 10482 / 10485
+
+State del-100 for mvvbt
+Database: mvvbt
+Tree: mvvbt
+Index page: 338 entries; height: 3
+Leaf page: 338 entries
+Entries (alive/all): 0 / 3000000
+Pages (leaf/parent/total/file): 13213 / 64 / 13277 / 13280
+

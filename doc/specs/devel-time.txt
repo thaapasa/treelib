@@ -1,0 +1,10 @@
+Days marked in   
+
+24 Full  75 Half  Total
+14 Full  34 Half  R-tree specifics
+
+--- Calculation stops at 6.2.2009 ---
+
+Total ~ 62 days = 450 h     Total
+Total ~ 31 days = 220 h     Total
+

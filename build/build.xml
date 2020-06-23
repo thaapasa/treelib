@@ -1,0 +1,204 @@
+<project default="build" name="Tree Library" basedir="..">
+
+  <property name="extraArgs" value="" />
+
+  <!-- Classpath for compiling and running treelib apps -->
+  <path id="treelib.classpath">
+    <pathelement path="${classpath}" />
+    <pathelement location="target/classes" />
+    <fileset dir="lib" />
+  </path>
+
+  <target name="clean">
+    <delete dir="target/classes" />
+  </target>
+
+  <target name="build">
+    <mkdir dir="target/classes" />
+    <javac classpathref="treelib.classpath" srcdir="src/main/java" destdir="target/classes" source="1.6" optimize="true" />
+    <copy todir="target/classes">
+      <fileset dir="src/main/resources" />
+    </copy>
+  </target>
+
+
+  <!-- Initializations -->
+
+  <target name="init-programs">
+    <antcall target="copy-std-log4j-config" />
+  </target>
+
+  <target name="init-exec">
+    <!-- <antcall target="copy-exec-log4j-config" /> -->
+    <antcall target="copy-exec-log4j-config" />
+  </target>
+
+
+  <!-- Targets -->
+
+  <target name="copy-std-log4j-config">
+    <copy file="src/main/resources/log4j.properties" tofile="target/classes/log4j.properties" overwrite="true" />
+  </target>
+
+  <target name="run-visualizer" description="Run Tree Visualizer" depends="init-programs">
+    <java classpathref="treelib.classpath" classname="fi.hut.cs.treelib.gui.TreeVisualizer" fork="true">
+      <jvmarg value="-ea" />
+    </java>
+  </target>
+
+  <target name="run-console" description="Run Tree Console" depends="init-programs">
+  	<echo message="Starting console for ${execfile}" />
+    <java classpathref="treelib.classpath" classname="fi.hut.cs.treelib.console.TreeConsole" fork="true">
+      <arg value="${execfile}"/>
+      <jvmarg value="-ea" />
+    </java>
+  </target>
+
+  <target name="log-generator" description="Create transaction log" depends="init-programs">
+    <java classpathref="treelib.classpath" classname="fi.hut.cs.treelib.data.TransactionLogGenerator" fork="true" error="transaction.log" append="false" failonerror="true">
+      <jvmarg value="-ea" />
+    </java>
+  </target>
+
+  <target name="copy-exec-log4j-config">
+    <copy file="src/main/resources/log4j.exec.properties" tofile="target/classes/log4j.properties" overwrite="true" />
+  </target>
+
+  <target name="append-run-log">
+    <concat destfile="${testLog}" append="true" force="true" fixlastline="true">
+      <header>--- ${treeConfig};${operation};${dataset} --------------------------------
+</header>
+      <fileset file="${runLog}" />
+    </concat>
+  </target>
+
+  <target name="generic-tree-clear">
+    <delete file="${dbFile}" />
+  </target>
+
+  <target name="generic-tree-execute">
+    <property name="operation" value="execute" />
+    <echo message="Execute transaction log, config: ${treeConfig}, transaction log: ${dataset}" />
+    <java classpathref="treelib.classpath" classname="fi.hut.cs.treelib.operations.OperationExecutor" fork="true" output="exec-run.log" append="false" logError="true" failonerror="true">
+      <jvmarg value="-ea" />
+      <arg value="${treeConfig}" />
+      <arg value="execute" />
+      <arg value="${dataset}" />
+      <arg value="${extraArgs}" />
+    </java>
+    <antcall target="append-run-log">
+      <param name="testLog" value="exec-test.log" />
+      <param name="runLog" value="exec-run.log" />
+    </antcall>
+  </target>
+
+  <target name="generic-tree-simulate">
+    <property name="operation" value="simulate" />
+    <echo message="Execute simulation, config: ${treeConfig}" />
+    <java classpathref="treelib.classpath" classname="fi.hut.cs.treelib.simulator.Simulator" fork="true" output="simulate-run.log" append="false" logError="true" failonerror="true">
+      <jvmarg value="-ea" />
+      <arg value="${treeConfig}" />
+    </java>
+    <antcall target="append-run-log">
+      <param name="testLog" value="simulate-test.log" />
+      <param name="runLog" value="simulate-run.log" />
+      <param name="dataset" value="simulator" />
+    </antcall>
+  </target>
+
+  <target name="generic-tree-insert">
+    <property name="operation" value="insert" />
+    <echo message="Insert data, config: ${treeConfig}, dataset: ${dataset}" />
+    <java classpathref="treelib.classpath" classname="fi.hut.cs.treelib.operations.OperationExecutor" fork="true" output="exec-run.log" append="false" logError="true" failonerror="true">
+      <jvmarg value="-ea" />
+      <arg value="${treeConfig}" />
+      <arg value="insert" />
+      <arg value="src/main/datasets/${dataset}" />
+      <!-- <arg value="5000" /> -->
+    </java>
+    <antcall target="append-run-log" />
+  </target>
+
+  <target name="generic-tree-bulk-load">
+    <property name="operation" value="bulk-load" />
+    <echo message="Bulk-load data, config: ${treeConfig}, dataset: ${dataset}" />
+    <java classpathref="treelib.classpath" classname="fi.hut.cs.treelib.operations.OperationExecutor" fork="true" output="exec-run.log" append="false" logError="true" failonerror="true">
+      <jvmarg value="-ea" />
+      <jvmarg value="-Xmx1024m" />
+      <arg value="${treeConfig}" />
+      <arg value="bulk-load" />
+      <arg value="src/main/datasets/${dataset}" />
+    </java>
+    <antcall target="append-run-log" />
+  </target>
+
+  <target name="generic-tree-overlaps">
+    <property name="operation" value="overlap-query" />
+    <echo message="Overlap query, config: ${treeConfig}, dataset: ${dataset} (${overlapQueryAmount}; skip ${overlapQuerySkip})" />
+    <java classpathref="treelib.classpath" classname="fi.hut.cs.treelib.operations.OperationExecutor" fork="true" output="exec-run.log" append="false" logError="true" failonerror="true">
+      <jvmarg value="-ea" />
+      <arg value="${treeConfig}" />
+      <arg value="overlaps" />
+      <arg value="src/main/datasets/${dataset}" />
+      <arg value="${overlapQueryAmount}" />
+      <arg value="${overlapQuerySkip}" />
+    </java>
+    <antcall target="append-run-log" />
+  </target>
+
+  <target name="generic-tree-exact">
+    <property name="operation" value="exact-query" />
+    <echo message="Exact query, config: ${treeConfig}, dataset: ${dataset} (${exactQueryAmount}; skip ${exactQuerySkip})" />
+    <java classpathref="treelib.classpath" classname="fi.hut.cs.treelib.operations.OperationExecutor" fork="true" output="exec-run.log" append="false" logError="true" failonerror="true">
+      <jvmarg value="-ea" />
+      <arg value="${treeConfig}" />
+      <arg value="exact" />
+      <arg value="src/main/datasets/${dataset}" />
+      <arg value="${exactQueryAmount}" />
+      <arg value="${exactQuerySkip}" />
+    </java>
+    <antcall target="append-run-log" />
+  </target>
+
+  <target name="generic-tree-delete">
+    <property name="operation" value="delete" />
+    <echo message="Delete items, dataset: ${dataset}, amount to delete: ${deleteAmount}" />
+    <java classpathref="treelib.classpath" classname="fi.hut.cs.treelib.operations.OperationExecutor" fork="true" output="exec-run.log" append="false" logError="true" failonerror="true">
+      <jvmarg value="-ea" />
+      <arg value="${treeConfig}" />
+      <arg value="delete" />
+      <arg value="src/main/datasets/${dataset}" />
+      <arg value="${deleteAmount}" />
+    </java>
+    <antcall target="append-run-log" />
+  </target>
+
+  <target name="generic-tree-inspect">
+    <java classpathref="treelib.classpath" classname="fi.hut.cs.treelib.operations.OperationExecutor" fork="true">
+      <jvmarg value="-ea" />
+      <arg value="${treeConfig}" />
+      <arg value="inspect" />
+    </java>
+  </target>
+
+  <target name="generic-tree-check-data">
+    <echo message="Check data, dataset: ${dataset}" />
+    <java classpathref="treelib.classpath" classname="fi.hut.cs.treelib.operations.OperationExecutor" fork="true">
+      <jvmarg value="-ea" />
+      <arg value="${treeConfig}" />
+      <arg value="check-data" />
+      <arg value="src/main/datasets/${dataset}" />
+    </java>
+  </target>
+
+  <target name="generic-tree-backup">
+    <echo message="Copying file ${dbFile} to ${dbFile}.backup" />
+    <copy file="${dbFile}" tofile="${dbFile}.backup" overwrite="true" />
+  </target>
+
+  <target name="generic-tree-restore">
+    <echo message="Restoring file ${dbFile}.backup to ${dbFile}" />
+    <copy file="${dbFile}.backup" tofile="${dbFile}" overwrite="true" />
+  </target>
+
+</project>

@@ -1,0 +1,54 @@
+------------------------------------------------------------
+CMVBT database (m = 1), buffers: 168, 32
+
+initial: version 100000
+Last page ID: PageID 16022
+Total page count: 16023
+Leaf pages: 15818
+Parent pages: 199
+Entries: 1000000 alive / 4378342 total
+
+del-100: version 200000
+Last page ID: PageID 24979
+Total page count: 24980
+Leaf pages: 24650
+Parent pages: 323
+Entries: 0 alive / 5992692 total
+
+
+------------------------------------------------------------
+TSB database (Immortal DB split)
+
+initial: version 100000
+Last page ID: PageID 14071
+Total page count: 14072
+Leaf pages: 13769
+Parent pages: 295
+Entries: 1000000 alive / 3414897 total
+
+del-100: version 200000
+Last page ID: PageID 18729
+Total page count: 18730
+Leaf pages: 18341
+Parent pages: 377
+Entries: 0 alive / 3856281 total
+
+
+------------------------------------------------------------
+TSB database (IKS split)
+
+initial: version 100000
+Last page ID: PageID 10869
+Total page count: 10870
+Leaf pages: 10658
+Parent pages: 205
+Entries: 1000000 alive / 2533953 total
+
+del-100: version 200000
+Last page ID: PageID 16185
+Total page count: 16186
+Leaf pages: 15871
+Parent pages: 307
+Entries: 0 alive / 2989185 total
+
+

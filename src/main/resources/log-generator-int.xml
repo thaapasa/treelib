@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="
+    http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd">
+  
+  <!-- Create the transaction log generator -->
+  <bean name="logGenerator" class="fi.hut.cs.treelib.data.TransactionLogGenerator">
+    <constructor-arg index="0" ref="actionGenerator" />
+    <!-- Reporting interval -->
+    <constructor-arg index="1" value="10000" />
+    <property name="initialState">
+      <list>
+        <value>transaction-create.log</value>
+      <!-- 
+        <value>material/txlogs/cmvbt-perf/init.log</value>
+        <value>transaction-create.log</value>
+        <value>transaction-delete.log</value>
+        <value>transaction-query.log</value>
+        <value>transaction-range.log</value>
+       -->
+      </list>
+    </property>
+  </bean>
+  
+  <!-- Create the action generator that creates the contents of the transaction -->
+  <bean name="actionGenerator" class="fi.hut.cs.treelib.data.ActionGenerator">
+    <!-- Bounds (not used for integer keys) -->
+    <constructor-arg index="0">
+      <value type="fi.hut.cs.treelib.common.IntegerKey">0</value>
+    </constructor-arg>
+    <!-- Minimum possible generated key value -->
+    <constructor-arg index="1">
+      <value type="fi.hut.cs.treelib.common.IntegerKey">1</value>
+    </constructor-arg>
+    <!-- Maximum possible generated key value -->
+    <constructor-arg index="2">
+      <value type="fi.hut.cs.treelib.common.IntegerKey">100000000</value>
+    </constructor-arg>
+    <!-- Minimum transaction length -->
+    <constructor-arg index="3" value="5" />
+    <!-- Maximum transaction length -->
+    <constructor-arg index="4" value="100" />
+    <!-- Amount of transactions -->
+    <constructor-arg index="5" value="100" />
+    <!-- Value generator -->
+    <constructor-arg index="6">
+      <bean class="fi.hut.cs.treelib.data.IntegerValueGenerator" />
+    </constructor-arg>
+    <property name="deleteProbability" value="0.2" />
+    <property name="insertProbability" value="0.2" />
+    <property name="rangeQueryProbability" value="0" />
+    <property name="rangeSize" value="0.02" />
+  </bean>
+</beans>

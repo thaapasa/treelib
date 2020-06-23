@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="
+    http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd">
+
+  <!-- Database configuration -->
+  <bean id="configuration" class="fi.hut.cs.treelib.Configuration">
+    <property name="maxStringLength" value="30" />
+    <property name="typedPageNames" value="false" />
+    <property name="limitPageSizes" value="false" />
+    <property name="checkConsistency" value="false" />
+    <property name="showProgress" value="10000" />
+    <property name="flushPagesAfterActions" value="false" />
+    <property name="useRStarSplit" value="true" />
+    <property name="bulkLoadFillRatio" value="0.75" />
+  </bean>
+
+  <!-- Select simulator to use -->
+  <alias alias="simulator" name="manualSimulator" />
+
+  <!-- Create a manual simulator -->
+  <bean name="manualSimulator" class="fi.hut.cs.treelib.simulator.ManualSimulator" lazy-init="true">
+    <constructor-arg ref="db" />
+    <property name="logTarget" value="material/txlogs/cmvbt-perf/simulator.log" />
+  </bean>
+
+  <!-- Create a log file reading simulator -->
+  <bean name="logSimulator" class="fi.hut.cs.treelib.simulator.LogSimulator" lazy-init="true">
+    <constructor-arg index="0" ref="db" />
+    <constructor-arg index="1" value="simulator.log" />
+  </bean>
+
+</beans>

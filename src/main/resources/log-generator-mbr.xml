@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="
+    http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd">
+  
+  <!-- Create the transaction log generator -->
+  <bean name="logGenerator" class="fi.hut.cs.treelib.data.TransactionLogGenerator">
+    <constructor-arg index="0" ref="actionGenerator" />
+    <!-- Reporting interval -->
+    <constructor-arg index="1" value="10000" />
+    <property name="initialState">
+      <list>
+      </list>
+    </property>
+  </bean>
+  
+  <!-- Create the action generator that creates the contents of the transaction -->
+  <bean name="actionGenerator" class="fi.hut.cs.treelib.data.ActionGenerator">
+    <!-- Bounds (not used for integer keys) -->
+    <constructor-arg index="0" ref="bounds" />
+    <!-- Minimum possible generated key value -->
+    <constructor-arg index="1" ref="minSize" />
+    <!-- Maximum possible generated key value -->
+    <constructor-arg index="2" ref="maxSize" />
+    <!-- Minimum transaction length -->
+    <constructor-arg index="3" value="10000" />
+    <!-- Maximum transaction length -->
+    <constructor-arg index="4" value="10000" />
+    <!-- Amount of transactions -->
+    <constructor-arg index="5" value="1" />
+    <!-- Value generator -->
+    <constructor-arg index="6">
+      <bean class="fi.hut.cs.treelib.data.IntegerValueGenerator" />
+    </constructor-arg>
+    <property name="deleteProbability" value="0" />
+    <property name="insertProbability" value="0" />
+    <property name="rangeQueryProbability" value="0" />
+    <property name="rangeSize" value="0.1" />
+  </bean>
+  <!--
+    Calculate bounds with PowerToy calc: input function: sizes(min,max,p)=(max-min)*(p/100) type:
+    sizes(482, 9500, 1) to get 1% size
+  -->
+  
+  <!-- MBR bounds etc. -->
+  <bean id="bounds" class="fi.hut.cs.treelib.MBR">
+    <constructor-arg index="0" type="fi.hut.cs.treelib.Coordinate">
+      <bean class="fi.hut.cs.treelib.Coordinate">
+        <constructor-arg index="0">
+          <list>
+            <value type="fi.hut.cs.treelib.common.FloatKey">-124.407</value>
+            <value type="fi.hut.cs.treelib.common.FloatKey">32.5399</value>
+          </list>
+        </constructor-arg>
+      </bean>
+    </constructor-arg>
+    <constructor-arg index="1" type="fi.hut.cs.treelib.Coordinate">
+      <bean class="fi.hut.cs.treelib.Coordinate">
+        <constructor-arg index="0">
+          <list>
+            <value type="fi.hut.cs.treelib.common.FloatKey">-114.134</value>
+            <value type="fi.hut.cs.treelib.common.FloatKey">42.0092</value>
+          </list>
+        </constructor-arg>
+      </bean>
+    </constructor-arg>
+    <constructor-arg index="2" value="false" />
+  </bean>
+  <bean id="minSize" class="fi.hut.cs.treelib.MBR">
+    <constructor-arg index="0" type="fi.hut.cs.treelib.Coordinate">
+      <bean class="fi.hut.cs.treelib.Coordinate">
+        <constructor-arg index="0">
+          <list>
+            <value type="fi.hut.cs.treelib.common.FloatKey">0</value>
+            <value type="fi.hut.cs.treelib.common.FloatKey">0</value>
+          </list>
+        </constructor-arg>
+      </bean>
+    </constructor-arg>
+    <constructor-arg index="1" type="fi.hut.cs.treelib.Coordinate">
+      <bean class="fi.hut.cs.treelib.Coordinate">
+        <constructor-arg index="0">
+          <list>
+            <value type="fi.hut.cs.treelib.common.FloatKey">2.0546</value>
+            <value type="fi.hut.cs.treelib.common.FloatKey">1.89386</value>
+          </list>
+        </constructor-arg>
+      </bean>
+    </constructor-arg>
+    <constructor-arg index="2" value="false" />
+  </bean>
+  
+  <!-- For now, force size to be the same -->
+  <alias alias="maxSize" name="minSize" />
+</beans>

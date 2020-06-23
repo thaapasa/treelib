@@ -1,0 +1,122 @@
+rrlines (small):
+36334 entries
+Hilbert order 8: 65536 entries
+extents: {(482.0,406.0):(9500.0,7904.0)}
+x0:  482.0
+y0:  406.0
+x1: 9500.0
+y1: 7904.0
+
+
+TCB (medium):
+556696 entries
+Hilbert order 11
+extents: {(-104.054,30.1461):(-88.0979,43.5012)}
+x0: -104.054
+y0:   30.1461
+x1:  -88.0979
+y1:   43.5012
+
+
+CAR (large):
+2249727 entries
+Hilbert order 12
+extents: {(-124.407,32.5399):(-114.134,42.0092)}  
+x0: -124.407
+y0:   32.5399
+x1: -114.134
+y1:   42.0092
+
+
+
+
+htree settings:
+---------------
+rrlines:
+
+  <!-- Settings for the Hilbert curve (rrlines) -->
+  <bean id="hTreeHilbertLevel" class="java.lang.Integer">
+    <constructor-arg value="8" />
+  </bean>
+  <bean id="hTreeMinValues" class="fi.hut.cs.treelib.Coordinate">
+    <constructor-arg index="0">
+      <list>
+        <value type="fi.hut.cs.treelib.common.FloatKey">400</value>
+        <value type="fi.hut.cs.treelib.common.FloatKey">400</value>
+      </list>
+    </constructor-arg>
+  </bean>
+  <bean id="hTreeMaxValues" class="fi.hut.cs.treelib.Coordinate">
+    <constructor-arg index="0">
+      <list>
+        <value type="fi.hut.cs.treelib.common.FloatKey">9600</value>
+        <value type="fi.hut.cs.treelib.common.FloatKey">8000</value>
+      </list>
+    </constructor-arg>
+  </bean>
+  <bean id="hTreeDataRange" class="fi.hut.cs.treelib.MBR">
+    <constructor-arg index="0" type="fi.hut.cs.treelib.Coordinate" ref="hTreeMinValues" />
+    <constructor-arg index="1" type="fi.hut.cs.treelib.Coordinate" ref="hTreeMaxValues" />
+    <constructor-arg index="2" value="false" />
+  </bean>
+
+
+
+tcb:
+
+  <!-- Settings for the Hilbert curve (TCB) -->
+  <bean id="hTreeHilbertLevel" class="java.lang.Integer">
+    <constructor-arg value="11" />
+  </bean>
+  <bean id="hTreeMinValues" class="fi.hut.cs.treelib.Coordinate">
+    <constructor-arg index="0">
+      <list>
+        <value type="fi.hut.cs.treelib.common.FloatKey">-105</value>
+        <value type="fi.hut.cs.treelib.common.FloatKey">30</value>
+      </list>
+    </constructor-arg>
+  </bean>
+  <bean id="hTreeMaxValues" class="fi.hut.cs.treelib.Coordinate">
+    <constructor-arg index="0">
+      <list>
+        <value type="fi.hut.cs.treelib.common.FloatKey">-88</value>
+        <value type="fi.hut.cs.treelib.common.FloatKey">44</value>
+      </list>
+    </constructor-arg>
+  </bean>
+  <bean id="hTreeDataRange" class="fi.hut.cs.treelib.MBR">
+    <constructor-arg index="0" type="fi.hut.cs.treelib.Coordinate" ref="hTreeMinValues" />
+    <constructor-arg index="1" type="fi.hut.cs.treelib.Coordinate" ref="hTreeMaxValues" />
+    <constructor-arg index="2" value="false" />
+  </bean>
+
+
+
+car:
+
+  <!-- Settings for the Hilbert curve (CAR) -->
+  <bean id="hTreeHilbertLevel" class="java.lang.Integer">
+    <constructor-arg value="12" />
+  </bean>
+  <bean id="hTreeMinValues" class="fi.hut.cs.treelib.Coordinate">
+    <constructor-arg index="0">
+      <list>
+        <value type="fi.hut.cs.treelib.common.FloatKey">-125</value>
+        <value type="fi.hut.cs.treelib.common.FloatKey">32</value>
+      </list>
+    </constructor-arg>
+  </bean>
+  <bean id="hTreeMaxValues" class="fi.hut.cs.treelib.Coordinate">
+    <constructor-arg index="0">
+      <list>
+        <value type="fi.hut.cs.treelib.common.FloatKey">-114</value>
+        <value type="fi.hut.cs.treelib.common.FloatKey">43</value>
+      </list>
+    </constructor-arg>
+  </bean>
+  <bean id="hTreeDataRange" class="fi.hut.cs.treelib.MBR">
+    <constructor-arg index="0" type="fi.hut.cs.treelib.Coordinate" ref="hTreeMinValues" />
+    <constructor-arg index="1" type="fi.hut.cs.treelib.Coordinate" ref="hTreeMaxValues" />
+    <constructor-arg index="2" value="false" />
+  </bean>
+

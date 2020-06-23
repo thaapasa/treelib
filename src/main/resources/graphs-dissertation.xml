@@ -1,0 +1,742 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="
+    http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd">
+
+  <bean name="mvvbt-name" class="java.lang.String">
+    <constructor-arg value="MV-VBT" />
+  </bean>
+  <bean name="tmvbt-name" class="java.lang.String">
+    <constructor-arg value="TMVBT" />
+  </bean>
+  <bean name="cmvbt-name" class="java.lang.String">
+    <constructor-arg value="CMVBT" />
+  </bean>
+  <bean name="cmvbt-1-name" class="java.lang.String">
+    <constructor-arg value="CMVBT, m=1" />
+  </bean>
+  <bean name="cmvbt-5-name" class="java.lang.String">
+    <constructor-arg value="CMVBT, m=5" />
+  </bean>
+  <bean name="cmvbt-10-name" class="java.lang.String">
+    <constructor-arg value="CMVBT, m=10" />
+  </bean>
+  <bean name="cmvbt-50-name" class="java.lang.String">
+    <constructor-arg value="CMVBT, m=50" />
+  </bean>
+  <bean name="tsb-iks-name" class="java.lang.String">
+    <constructor-arg value="TSB-I" />
+  </bean>
+  <bean name="tsb-wob-name" class="java.lang.String">
+    <constructor-arg value="TSB-W" />
+  </bean>
+  <bean name="tsb-deferred-name" class="java.lang.String">
+    <constructor-arg value="TSB-D" />
+  </bean>
+
+  <!-- Create the graphs -->
+  <bean name="graphCreator" class="fi.tuska.util.db.graph.GraphCreator" init-method="createGraphs">
+    <property name="directory" value="results/graph" />
+    <property name="graphs">
+      <list>
+        <ref bean="graphQUInitial100Fix" />
+        <ref bean="graphQUInitial100Read" />
+        <ref bean="graphQUInitial100Time" />
+        <ref bean="graphQUInitial5Fix" />
+        <ref bean="graphQUInitial5Read" />
+        <ref bean="graphQUInitial5Time" />
+        <ref bean="graphCMInitial100Fix" />
+        <ref bean="graphCMInitial5Fix" />
+
+<!-- 
+        <ref bean="graphCMInitial100Read" />
+        <ref bean="graphCMInitial100Time" />
+        <ref bean="graphCMInitial5Read" />
+        <ref bean="graphCMInitial5Time" />
+ -->
+ 
+        <ref bean="graphRangeFix" />
+        <ref bean="graphRangeRead" />
+        <ref bean="graphRangeWrite" />
+        <ref bean="graphRangeTime" />
+        <ref bean="graphRangeComparisonFix" />
+
+      </list>
+    </property>
+    <property name="gnuplotDefinitions" ref="gnuplotDefinitions" />
+    <property name="gnuplot" value="gnuplot" />
+    <!-- 
+    <property name="epstopdf" value="epstopdf" />
+     -->
+    <property name="term">
+<!-- <value>pdfcairo enhanced monochrome dashed font ",5" size 10,3</value>  -->      
+      <value>pdf monochrome enhanced dashed linewidth 0.6 font ",9" size 11cm,5cm</value>
+    </property>
+  </bean>
+
+  <!-- Graph definitions -->
+
+  <!--
+    - Queries and updates
+    - Initial state, 100 updates/tx 
+    -->
+  <bean name="graphQUInitial100Fix" class="fi.tuska.util.db.graph.GraphDefinition">
+    <property name="name" value="qu-initial-100-fix.pdf" />
+    <property name="lines">
+      <list>
+        <bean class="fi.tuska.util.db.graph.LineDefinition">
+          <property name="dataFetchSQL"
+            value="SELECT CAST (extra AS DECIMAL(3,0)) AS extranum, MIN(avgval), MAX(avgval) FROM test_vals WHERE test LIKE 'qu-initial-100-%' AND db LIKE 'cmvbt-%' AND op='op_buffer_fix' GROUP BY extra ORDER BY extranum" />
+          <property name="title" ref="cmvbt-name" />
+          <property name="linestyle" value="filledcurves closed, '' u 1:2 with linespoints ls 1 notitle, '' u 1:3 with linespoints ls 1 notitle" />
+        </bean>
+        <bean class="fi.tuska.util.db.graph.LineDefinition">
+          <property name="dataFetchSQL"
+            value="SELECT CAST (extra AS DECIMAL(3,0)) AS extranum, avgval FROM test_vals WHERE test LIKE 'qu-initial-100-%' AND db='tsb-iks' AND op='op_buffer_fix' ORDER BY extranum" />
+          <property name="title" ref="tsb-iks-name" />
+          <property name="linestyle" value="linespoints ls 5" />
+        </bean>
+        <bean class="fi.tuska.util.db.graph.LineDefinition">
+          <property name="dataFetchSQL"
+            value="SELECT CAST (extra AS DECIMAL(3,0)) AS extranum, avgval FROM test_vals WHERE test LIKE 'qu-initial-100-%' AND db='tsb-wob' AND op='op_buffer_fix' ORDER BY extranum" />
+          <property name="title" ref="tsb-wob-name" />
+          <property name="linestyle" value="linespoints ls 6" />
+        </bean>
+        <bean class="fi.tuska.util.db.graph.LineDefinition">
+          <property name="dataFetchSQL"
+            value="SELECT CAST (extra AS DECIMAL(3,0)) AS extranum, avgval FROM test_vals WHERE test LIKE 'qu-initial-100-%' AND db='tsb-deferred' AND op='op_buffer_fix' ORDER BY extranum" />
+          <property name="title" ref="tsb-deferred-name" />
+          <property name="linestyle" value="linespoints ls 7" />
+        </bean>
+      </list>
+    </property>
+  </bean>
+  <bean name="graphQUInitial100Read" class="fi.tuska.util.db.graph.GraphDefinition">
+    <property name="name" value="qu-initial-100-read.pdf" />
+    <property name="lines">
+      <list>
+        <bean class="fi.tuska.util.db.graph.LineDefinition">
+          <property name="dataFetchSQL"
+            value="SELECT CAST (extra AS DECIMAL(3,0)) AS extranum, MIN(avgval), MAX(avgval) FROM test_vals WHERE test LIKE 'qu-initial-100-%' AND db LIKE 'cmvbt-%' AND op='op_buffer_read' GROUP BY extra ORDER BY extranum" />
+          <property name="title" ref="cmvbt-name" />
+          <property name="linestyle" value="filledcurves closed, '' u 1:2 with linespoints ls 1 notitle, '' u 1:3 with linespoints ls 1 notitle" />
+        </bean>
+        <bean class="fi.tuska.util.db.graph.LineDefinition">
+          <property name="dataFetchSQL"
+            value="SELECT CAST (extra AS DECIMAL(3,0)) AS extranum, avgval FROM test_vals WHERE test LIKE 'qu-initial-100-%' AND db='tsb-iks' AND op='op_buffer_read' ORDER BY extranum" />
+          <property name="title" ref="tsb-iks-name" />
+          <property name="linestyle" value="linespoints ls 5" />
+        </bean>
+        <bean class="fi.tuska.util.db.graph.LineDefinition">
+          <property name="dataFetchSQL"
+            value="SELECT CAST (extra AS DECIMAL(3,0)) AS extranum, avgval FROM test_vals WHERE test LIKE 'qu-initial-100-%' AND db='tsb-wob' AND op='op_buffer_read' ORDER BY extranum" />
+          <property name="title" ref="tsb-wob-name" />
+          <property name="linestyle" value="linespoints ls 6" />
+        </bean>
+        <bean class="fi.tuska.util.db.graph.LineDefinition">
+          <property name="dataFetchSQL"
+            value="SELECT CAST (extra AS DECIMAL(3,0)) AS extranum, avgval FROM test_vals WHERE test LIKE 'qu-initial-100-%' AND db='tsb-deferred' AND op='op_buffer_read' ORDER BY extranum" />
+          <property name="title" ref="tsb-deferred-name" />
+          <property name="linestyle" value="linespoints ls 7" />
+        </bean>
+      </list>
+    </property>
+  </bean>
+  <bean name="graphQUInitial100Write" class="fi.tuska.util.db.graph.GraphDefinition">
+    <property name="name" value="qu-initial-100-write.pdf" />
+    <property name="lines">
+      <list>
+        <bean class="fi.tuska.util.db.graph.LineDefinition">
+          <property name="dataFetchSQL"
+            value="SELECT CAST (extra AS DECIMAL(3,0)) AS extranum, MIN(avgval), MAX(avgval) FROM test_vals WHERE test LIKE 'qu-initial-100-%' AND db LIKE 'cmvbt-%' AND op='op_buffer_write' GROUP BY extra ORDER BY extranum" />
+          <property name="title" ref="cmvbt-name" />
+          <property name="linestyle" value="filledcurves closed, '' u 1:2 with linespoints ls 1 notitle, '' u 1:3 with linespoints ls 1 notitle" />
+        </bean>
+        <bean class="fi.tuska.util.db.graph.LineDefinition">
+          <property name="dataFetchSQL"
+            value="SELECT CAST (extra AS DECIMAL(3,0)) AS extranum, avgval FROM test_vals WHERE test LIKE 'qu-initial-100-%' AND db='tsb-iks' AND op='op_buffer_write' ORDER BY extranum" />
+          <property name="title" ref="tsb-iks-name" />
+          <property name="linestyle" value="linespoints ls 5" />
+        </bean>
+        <bean class="fi.tuska.util.db.graph.LineDefinition">
+          <property name="dataFetchSQL"
+            value="SELECT CAST (extra AS DECIMAL(3,0)) AS extranum, avgval FROM test_vals WHERE test LIKE 'qu-initial-100-%' AND db='tsb-wob' AND op='op_buffer_write' ORDER BY extranum" />
+          <property name="title" ref="tsb-wob-name" />
+          <property name="linestyle" value="linespoints ls 6" />
+        </bean>
+        <bean class="fi.tuska.util.db.graph.LineDefinition">
+          <property name="dataFetchSQL"
+            value="SELECT CAST (extra AS DECIMAL(3,0)) AS extranum, avgval FROM test_vals WHERE test LIKE 'qu-initial-100-%' AND db='tsb-deferred' AND op='op_buffer_write' ORDER BY extranum" />
+          <property name="title" ref="tsb-deferred-name" />
+          <property name="linestyle" value="linespoints ls 7" />
+        </bean>
+      </list>
+    </property>
+  </bean>
+  <bean name="graphQUInitial100Time" class="fi.tuska.util.db.graph.GraphDefinition">
+    <property name="name" value="qu-initial-100-time.pdf" />
+    <property name="lines">
+      <list>
+        <bean class="fi.tuska.util.db.graph.LineDefinition">
+          <property name="dataFetchSQL"
+            value="SELECT CAST (extra AS DECIMAL(3,0)) AS extranum, MIN(elapsed), MAX(elapsed) FROM test_info WHERE test LIKE 'qu-initial-100-%' AND db LIKE 'cmvbt-%' GROUP BY extra ORDER BY extranum" />
+          <property name="title" ref="cmvbt-name" />
+          <property name="linestyle" value="filledcurves closed, '' u 1:2 with linespoints ls 1 notitle, '' u 1:3 with linespoints ls 1 notitle" />
+        </bean>
+        <bean class="fi.tuska.util.db.graph.LineDefinition">
+          <property name="dataFetchSQL"
+            value="SELECT CAST (extra AS DECIMAL(3,0)) AS extranum, elapsed FROM test_info WHERE test LIKE 'qu-initial-100-%' AND db='tsb-iks' ORDER BY extranum" />
+          <property name="title" ref="tsb-iks-name" />
+          <property name="linestyle" value="linespoints ls 5" />
+        </bean>
+        <bean class="fi.tuska.util.db.graph.LineDefinition">
+          <property name="dataFetchSQL"
+            value="SELECT CAST (extra AS DECIMAL(3,0)) AS extranum, elapsed FROM test_info WHERE test LIKE 'qu-initial-100-%' AND db='tsb-wob' ORDER BY extranum" />
+          <property name="title" ref="tsb-wob-name" />
+          <property name="linestyle" value="linespoints ls 6" />
+        </bean>
+        <bean class="fi.tuska.util.db.graph.LineDefinition">
+          <property name="dataFetchSQL"
+            value="SELECT CAST (extra AS DECIMAL(3,0)) AS extranum, elapsed FROM test_info WHERE test LIKE 'qu-initial-100-%' AND db='tsb-deferred' ORDER BY extranum" />
+          <property name="title" ref="tsb-deferred-name" />
+          <property name="linestyle" value="linespoints ls 7" />
+        </bean>
+      </list>
+    </property>
+  </bean>
+
+  <!--
+    - Queries and updates
+    - Initial state, 5 updates/tx 
+    -->
+  <bean name="graphQUInitial5Fix" class="fi.tuska.util.db.graph.GraphDefinition">
+    <property name="name" value="qu-initial-5-fix.pdf" />
+    <property name="lines">
+      <list>
+        <bean class="fi.tuska.util.db.graph.LineDefinition">
+          <property name="dataFetchSQL"
+            value="SELECT CAST (extra AS DECIMAL(3,0)) AS extranum, MIN(avgval), MAX(avgval) FROM test_vals WHERE test LIKE 'qu-initial-5-%' AND db LIKE 'cmvbt-%' AND op='op_buffer_fix' GROUP BY extra ORDER BY extranum" />
+          <property name="title" ref="cmvbt-name" />
+          <property name="linestyle" value="filledcurves closed, '' u 1:2 with linespoints ls 1 notitle, '' u 1:3 with linespoints ls 1 notitle" />
+        </bean>
+        <bean class="fi.tuska.util.db.graph.LineDefinition">
+          <property name="dataFetchSQL"
+            value="SELECT CAST (extra AS DECIMAL(3,0)) AS extranum, avgval FROM test_vals WHERE test LIKE 'qu-initial-5-%' AND db='tsb-iks' AND op='op_buffer_fix' ORDER BY extranum" />
+          <property name="title" ref="tsb-iks-name" />
+          <property name="linestyle" value="linespoints ls 5" />
+        </bean>
+        <bean class="fi.tuska.util.db.graph.LineDefinition">
+          <property name="dataFetchSQL"
+            value="SELECT CAST (extra AS DECIMAL(3,0)) AS extranum, avgval FROM test_vals WHERE test LIKE 'qu-initial-5-%' AND db='tsb-wob' AND op='op_buffer_fix' ORDER BY extranum" />
+          <property name="title" ref="tsb-wob-name" />
+          <property name="linestyle" value="linespoints ls 6" />
+        </bean>
+        <bean class="fi.tuska.util.db.graph.LineDefinition">
+          <property name="dataFetchSQL"
+            value="SELECT CAST (extra AS DECIMAL(3,0)) AS extranum, avgval FROM test_vals WHERE test LIKE 'qu-initial-5-%' AND db='tsb-deferred' AND op='op_buffer_fix' ORDER BY extranum" />
+          <property name="title" ref="tsb-deferred-name" />
+          <property name="linestyle" value="linespoints ls 7" />
+        </bean>
+      </list>
+    </property>
+  </bean>
+  <bean name="graphQUInitial5Read" class="fi.tuska.util.db.graph.GraphDefinition">
+    <property name="name" value="qu-initial-5-read.pdf" />
+    <property name="lines">
+      <list>
+        <bean class="fi.tuska.util.db.graph.LineDefinition">
+          <property name="dataFetchSQL"
+            value="SELECT CAST (extra AS DECIMAL(3,0)) AS extranum, MIN(avgval), MAX(avgval) FROM test_vals WHERE test LIKE 'qu-initial-5-%' AND db LIKE 'cmvbt-%' AND op='op_buffer_read' GROUP BY extra ORDER BY extranum" />
+          <property name="title" ref="cmvbt-name" />
+          <property name="linestyle" value="filledcurves closed, '' u 1:2 with linespoints ls 1 notitle, '' u 1:3 with linespoints ls 1 notitle" />
+        </bean>
+        <bean class="fi.tuska.util.db.graph.LineDefinition">
+          <property name="dataFetchSQL"
+            value="SELECT CAST (extra AS DECIMAL(3,0)) AS extranum, avgval FROM test_vals WHERE test LIKE 'qu-initial-5-%' AND db='tsb-iks' AND op='op_buffer_read' ORDER BY extranum" />
+          <property name="title" ref="tsb-iks-name" />
+          <property name="linestyle" value="linespoints ls 5" />
+        </bean>
+        <bean class="fi.tuska.util.db.graph.LineDefinition">
+          <property name="dataFetchSQL"
+            value="SELECT CAST (extra AS DECIMAL(3,0)) AS extranum, avgval FROM test_vals WHERE test LIKE 'qu-initial-5-%' AND db='tsb-wob' AND op='op_buffer_read' ORDER BY extranum" />
+          <property name="title" ref="tsb-wob-name" />
+          <property name="linestyle" value="linespoints ls 6" />
+        </bean>
+        <bean class="fi.tuska.util.db.graph.LineDefinition">
+          <property name="dataFetchSQL"
+            value="SELECT CAST (extra AS DECIMAL(3,0)) AS extranum, avgval FROM test_vals WHERE test LIKE 'qu-initial-5-%' AND db='tsb-deferred' AND op='op_buffer_read' ORDER BY extranum" />
+          <property name="title" ref="tsb-deferred-name" />
+          <property name="linestyle" value="linespoints ls 7" />
+        </bean>
+      </list>
+    </property>
+  </bean>
+  <bean name="graphQUInitial5Write" class="fi.tuska.util.db.graph.GraphDefinition">
+    <property name="name" value="qu-initial-5-write.pdf" />
+    <property name="lines">
+      <list>
+        <bean class="fi.tuska.util.db.graph.LineDefinition">
+          <property name="dataFetchSQL"
+            value="SELECT CAST (extra AS DECIMAL(3,0)) AS extranum, MIN(avgval), MAX(avgval) FROM test_vals WHERE test LIKE 'qu-initial-5-%' AND db LIKE 'cmvbt-%' AND op='op_buffer_write' GROUP BY extra ORDER BY extranum" />
+          <property name="title" ref="cmvbt-name" />
+          <property name="linestyle" value="filledcurves closed, '' u 1:2 with linespoints ls 1 notitle, '' u 1:3 with linespoints ls 1 notitle" />
+        </bean>
+        <bean class="fi.tuska.util.db.graph.LineDefinition">
+          <property name="dataFetchSQL"
+            value="SELECT CAST (extra AS DECIMAL(3,0)) AS extranum, avgval FROM test_vals WHERE test LIKE 'qu-initial-5-%' AND db='tsb-iks' AND op='op_buffer_write' ORDER BY extranum" />
+          <property name="title" ref="tsb-iks-name" />
+          <property name="linestyle" value="linespoints ls 5" />
+        </bean>
+        <bean class="fi.tuska.util.db.graph.LineDefinition">
+          <property name="dataFetchSQL"
+            value="SELECT CAST (extra AS DECIMAL(3,0)) AS extranum, avgval FROM test_vals WHERE test LIKE 'qu-initial-5-%' AND db='tsb-wob' AND op='op_buffer_write' ORDER BY extranum" />
+          <property name="title" ref="tsb-wob-name" />
+          <property name="linestyle" value="linespoints ls 6" />
+        </bean>
+        <bean class="fi.tuska.util.db.graph.LineDefinition">
+          <property name="dataFetchSQL"
+            value="SELECT CAST (extra AS DECIMAL(3,0)) AS extranum, avgval FROM test_vals WHERE test LIKE 'qu-initial-5-%' AND db='tsb-deferred' AND op='op_buffer_write' ORDER BY extranum" />
+          <property name="title" ref="tsb-deferred-name" />
+          <property name="linestyle" value="linespoints ls 7" />
+        </bean>
+      </list>
+    </property>
+  </bean>
+  <bean name="graphQUInitial5Time" class="fi.tuska.util.db.graph.GraphDefinition">
+    <property name="name" value="qu-initial-5-time.pdf" />
+    <property name="lines">
+      <list>
+        <bean class="fi.tuska.util.db.graph.LineDefinition">
+          <property name="dataFetchSQL"
+            value="SELECT CAST (extra AS DECIMAL(3,0)) AS extranum, MIN(elapsed), MAX(elapsed) FROM test_info WHERE test LIKE 'qu-initial-5-%' AND db LIKE 'cmvbt-%' GROUP BY extra ORDER BY extranum" />
+          <property name="title" ref="cmvbt-name" />
+          <property name="linestyle" value="filledcurves closed, '' u 1:2 with linespoints ls 1 notitle, '' u 1:3 with linespoints ls 1 notitle" />
+        </bean>
+        <bean class="fi.tuska.util.db.graph.LineDefinition">
+          <property name="dataFetchSQL"
+            value="SELECT CAST (extra AS DECIMAL(3,0)) AS extranum, elapsed FROM test_info WHERE test LIKE 'qu-initial-5-%' AND db='tsb-iks' ORDER BY extranum" />
+          <property name="title" ref="tsb-iks-name" />
+          <property name="linestyle" value="linespoints ls 5" />
+        </bean>
+        <bean class="fi.tuska.util.db.graph.LineDefinition">
+          <property name="dataFetchSQL"
+            value="SELECT CAST (extra AS DECIMAL(3,0)) AS extranum, elapsed FROM test_info WHERE test LIKE 'qu-initial-5-%' AND db='tsb-wob' ORDER BY extranum" />
+          <property name="title" ref="tsb-wob-name" />
+          <property name="linestyle" value="linespoints ls 6" />
+        </bean>
+        <bean class="fi.tuska.util.db.graph.LineDefinition">
+          <property name="dataFetchSQL"
+            value="SELECT CAST (extra AS DECIMAL(3,0)) AS extranum, elapsed FROM test_info WHERE test LIKE 'qu-initial-5-%' AND db='tsb-deferred' ORDER BY extranum" />
+          <property name="title" ref="tsb-deferred-name" />
+          <property name="linestyle" value="linespoints ls 7" />
+        </bean>
+      </list>
+    </property>
+  </bean>
+
+
+
+  <!--
+    - Range queries
+    - Most recent version, last state, 5 % range size 
+    -->
+  <bean name="graphRangeFix" class="fi.tuska.util.db.graph.GraphDefinition">
+    <property name="name" value="range-fix.pdf" />
+    <property name="keypos" value="at graph 0.15,0.04" />
+    <property name="lines">
+      <list>
+        <bean class="fi.tuska.util.db.graph.LineDefinition">
+          <property name="dataFetchSQL"
+            value="SELECT SUBSTR(test, 11), avgval FROM test_vals WHERE test LIKE 'range-del-%' AND db='cmvbt-1' AND op='op_buffer_fix'" />
+          <property name="title" ref="cmvbt-name" />
+        </bean>
+        <bean class="fi.tuska.util.db.graph.LineDefinition">
+          <property name="dataFetchSQL"
+            value="SELECT SUBSTR(test, 11), avgval FROM test_vals WHERE test LIKE 'range-del-%' AND db='tsb-iks' AND op='op_buffer_fix'" />
+          <property name="title" ref="tsb-iks-name" />
+          <property name="linestyle" value="linespoints ls 5" />
+        </bean>
+        <bean class="fi.tuska.util.db.graph.LineDefinition">
+          <property name="dataFetchSQL"
+            value="SELECT SUBSTR(test, 11), avgval FROM test_vals WHERE test LIKE 'range-del-%' AND db='tsb-wob' AND op='op_buffer_fix'" />
+          <property name="title" ref="tsb-wob-name" />
+          <property name="linestyle" value="linespoints ls 6" />
+        </bean>
+        <bean class="fi.tuska.util.db.graph.LineDefinition">
+          <property name="dataFetchSQL"
+            value="SELECT SUBSTR(test, 11), avgval FROM test_vals WHERE test LIKE 'range-del-%' AND db='tsb-deferred' AND op='op_buffer_fix'" />
+          <property name="title" ref="tsb-deferred-name" />
+          <property name="linestyle" value="linespoints ls 7" />
+        </bean>
+      </list>
+    </property>
+  </bean>
+
+  <bean name="graphRangeRead" class="fi.tuska.util.db.graph.GraphDefinition">
+    <property name="name" value="range-read.pdf" />
+    <property name="keypos" value="at graph 0.15,0.04" />
+    <property name="lines">
+      <list>
+        <bean class="fi.tuska.util.db.graph.LineDefinition">
+          <property name="dataFetchSQL"
+            value="SELECT SUBSTR(test, 11), avgval FROM test_vals WHERE test LIKE 'range-del-%' AND db='cmvbt-1' AND op='op_buffer_read'" />
+          <property name="title" ref="cmvbt-name" />
+        </bean>
+        <bean class="fi.tuska.util.db.graph.LineDefinition">
+          <property name="dataFetchSQL"
+            value="SELECT SUBSTR(test, 11), avgval FROM test_vals WHERE test LIKE 'range-del-%' AND db='tsb-iks' AND op='op_buffer_read'" />
+          <property name="title" ref="tsb-iks-name" />
+          <property name="linestyle" value="linespoints ls 5" />
+        </bean>
+        <bean class="fi.tuska.util.db.graph.LineDefinition">
+          <property name="dataFetchSQL"
+            value="SELECT SUBSTR(test, 11), avgval FROM test_vals WHERE test LIKE 'range-del-%' AND db='tsb-wob' AND op='op_buffer_read'" />
+          <property name="title" ref="tsb-wob-name" />
+          <property name="linestyle" value="linespoints ls 6" />
+        </bean>
+        <bean class="fi.tuska.util.db.graph.LineDefinition">
+          <property name="dataFetchSQL"
+            value="SELECT SUBSTR(test, 11), avgval FROM test_vals WHERE test LIKE 'range-del-%' AND db='tsb-deferred' AND op='op_buffer_read'" />
+          <property name="title" ref="tsb-deferred-name" />
+          <property name="linestyle" value="linespoints ls 7" />
+        </bean>
+      </list>
+    </property>
+  </bean>
+
+  <bean name="graphRangeWrite" class="fi.tuska.util.db.graph.GraphDefinition">
+    <property name="name" value="range-write.pdf" />
+    <property name="keypos" value="at graph 0.15,0.04" />
+    <property name="lines">
+      <list>
+        <bean class="fi.tuska.util.db.graph.LineDefinition">
+          <property name="dataFetchSQL"
+            value="SELECT SUBSTR(test, 11), avgval FROM test_vals WHERE test LIKE 'range-del-%' AND db='cmvbt-1' AND op='op_buffer_write'" />
+          <property name="title" ref="cmvbt-name" />
+        </bean>
+        <bean class="fi.tuska.util.db.graph.LineDefinition">
+          <property name="dataFetchSQL"
+            value="SELECT SUBSTR(test, 11), avgval FROM test_vals WHERE test LIKE 'range-del-%' AND db='tsb-iks' AND op='op_buffer_write'" />
+          <property name="title" ref="tsb-iks-name" />
+          <property name="linestyle" value="linespoints ls 5" />
+        </bean>
+        <bean class="fi.tuska.util.db.graph.LineDefinition">
+          <property name="dataFetchSQL"
+            value="SELECT SUBSTR(test, 11), avgval FROM test_vals WHERE test LIKE 'range-del-%' AND db='tsb-wob' AND op='op_buffer_write'" />
+          <property name="title" ref="tsb-wob-name" />
+          <property name="linestyle" value="linespoints ls 6" />
+        </bean>
+        <bean class="fi.tuska.util.db.graph.LineDefinition">
+          <property name="dataFetchSQL"
+            value="SELECT SUBSTR(test, 11), avgval FROM test_vals WHERE test LIKE 'range-del-%' AND db='tsb-deferred' AND op='op_buffer_write'" />
+          <property name="title" ref="tsb-deferred-name" />
+          <property name="linestyle" value="linespoints ls 7" />
+        </bean>
+      </list>
+    </property>
+  </bean>
+
+  <bean name="graphRangeTime" class="fi.tuska.util.db.graph.GraphDefinition">
+    <property name="name" value="range-time.pdf" />
+    <property name="keypos" value="at graph 0.15,0.04" />
+    <property name="lines">
+      <list>
+        <bean class="fi.tuska.util.db.graph.LineDefinition">
+          <property name="dataFetchSQL"
+            value="SELECT SUBSTR(test, 11), elapsed FROM test_info WHERE test LIKE 'range-del-%' AND db='cmvbt-1'" />
+          <property name="title" ref="cmvbt-name" />
+        </bean>
+        <bean class="fi.tuska.util.db.graph.LineDefinition">
+          <property name="dataFetchSQL"
+            value="SELECT SUBSTR(test, 11), elapsed FROM test_info WHERE test LIKE 'range-del-%' AND db='tsb-iks'" />
+          <property name="title" ref="tsb-iks-name" />
+          <property name="linestyle" value="linespoints ls 5" />
+        </bean>
+        <bean class="fi.tuska.util.db.graph.LineDefinition">
+          <property name="dataFetchSQL"
+            value="SELECT SUBSTR(test, 11), elapsed FROM test_info WHERE test LIKE 'range-del-%' AND db='tsb-wob'" />
+          <property name="title" ref="tsb-wob-name" />
+          <property name="linestyle" value="linespoints ls 6" />
+        </bean>
+        <bean class="fi.tuska.util.db.graph.LineDefinition">
+          <property name="dataFetchSQL"
+            value="SELECT SUBSTR(test, 11), elapsed FROM test_info WHERE test LIKE 'range-del-%' AND db='tsb-deferred'" />
+          <property name="title" ref="tsb-deferred-name" />
+          <property name="linestyle" value="linespoints ls 7" />
+        </bean>
+      </list>
+    </property>
+  </bean>
+
+
+
+
+  <!--
+    - Range queries
+    - Most recent version, last version, 5 % range size 
+    -->
+  <bean name="graphRangeComparisonFix" class="fi.tuska.util.db.graph.GraphDefinition">
+    <property name="name" value="range-comparison-fix.pdf" />
+    <property name="keypos" value="at graph 0.16,0.78" />
+    <property name="lines">
+      <list>
+        <bean class="fi.tuska.util.db.graph.LineDefinition">
+          <property name="dataFetchSQL"
+            value="SELECT SUBSTR(test, 11), avgval FROM test_vals WHERE test LIKE 'range-del-%' AND db='cmvbt-1' AND op='op_buffer_fix'" />
+          <property name="title" ref="cmvbt-name" />
+        </bean>
+        <bean class="fi.tuska.util.db.graph.LineDefinition">
+          <property name="dataFetchSQL"
+            value="SELECT SUBSTR(test, 11), avgval FROM test_vals WHERE test LIKE 'range-del-%' AND db='tsb-deferred' AND op='op_buffer_fix'" />
+          <property name="title" ref="tsb-deferred-name" />
+          <property name="linestyle" value="linespoints ls 7" />
+        </bean>
+        <bean class="fi.tuska.util.db.graph.LineDefinition">
+          <property name="dataFetchSQL"
+            value="SELECT SUBSTR(test, 11), avgval FROM test_vals WHERE test LIKE 'range-del-%' AND db='mvvbt' AND op='op_buffer_fix'" />
+          <property name="title" ref="mvvbt-name" />
+          <property name="linestyle" value="linespoints ls 8" />
+        </bean>
+      </list>
+    </property>
+  </bean>
+  
+  
+    <!--
+    - CMVBT comparison
+    - Initial state, 100 updates/tx 
+    -->
+  <bean name="graphCMInitial100Fix" class="fi.tuska.util.db.graph.GraphDefinition">
+    <property name="name" value="cm-initial-100-fix.pdf" />
+    <property name="lines">
+      <list>
+        <bean class="fi.tuska.util.db.graph.LineDefinition">
+          <property name="dataFetchSQL"
+            value="SELECT CAST (extra AS DECIMAL(3,0)) AS extranum, avgval FROM test_vals WHERE test LIKE 'qu-initial-100-%' AND db='cmvbt-1' AND op='op_buffer_fix'" />
+          <property name="title" ref="cmvbt-1-name" />
+        </bean>
+        <bean class="fi.tuska.util.db.graph.LineDefinition">
+          <property name="dataFetchSQL"
+            value="SELECT CAST (extra AS DECIMAL(3,0)) AS extranum, avgval FROM test_vals WHERE test LIKE 'qu-initial-100-%' AND db='cmvbt-5' AND op='op_buffer_fix'" />
+          <property name="title" ref="cmvbt-5-name" />
+        </bean>
+        <bean class="fi.tuska.util.db.graph.LineDefinition">
+          <property name="dataFetchSQL"
+            value="SELECT CAST (extra AS DECIMAL(3,0)) AS extranum, avgval FROM test_vals WHERE test LIKE 'qu-initial-100-%' AND db='cmvbt-10' AND op='op_buffer_fix'" />
+          <property name="title" ref="cmvbt-10-name" />
+        </bean>
+        <bean class="fi.tuska.util.db.graph.LineDefinition">
+          <property name="dataFetchSQL"
+            value="SELECT CAST (extra AS DECIMAL(3,0)) AS extranum, avgval FROM test_vals WHERE test LIKE 'qu-initial-100-%' AND db='cmvbt-50' AND op='op_buffer_fix'" />
+          <property name="title" ref="cmvbt-50-name" />
+        </bean>
+        <bean class="fi.tuska.util.db.graph.LineDefinition">
+          <property name="dataFetchSQL"
+            value="SELECT CAST (extra AS DECIMAL(3,0)) AS extranum, avgval FROM test_vals WHERE test LIKE 'qu-initial-100-%' AND db='tmvbt' AND op='op_buffer_fix'" />
+          <property name="title" ref="tmvbt-name" />
+          <property name="linestyle" value="linespoints ls 9" />
+        </bean>
+      </list>
+    </property>
+  </bean>
+  <bean name="graphCMInitial100Read" class="fi.tuska.util.db.graph.GraphDefinition">
+    <property name="name" value="cm-initial-100-read.pdf" />
+    <property name="lines">
+      <list>
+        <bean class="fi.tuska.util.db.graph.LineDefinition">
+          <property name="dataFetchSQL"
+            value="SELECT CAST (extra AS DECIMAL(3,0)) AS extranum, avgval FROM test_vals WHERE test LIKE 'qu-initial-100-%' AND db='cmvbt-1' AND op='op_buffer_read'" />
+          <property name="title" ref="cmvbt-1-name" />
+        </bean>
+        <bean class="fi.tuska.util.db.graph.LineDefinition">
+          <property name="dataFetchSQL"
+            value="SELECT CAST (extra AS DECIMAL(3,0)) AS extranum, avgval FROM test_vals WHERE test LIKE 'qu-initial-100-%' AND db='cmvbt-5' AND op='op_buffer_read'" />
+          <property name="title" ref="cmvbt-5-name" />
+        </bean>
+        <bean class="fi.tuska.util.db.graph.LineDefinition">
+          <property name="dataFetchSQL"
+            value="SELECT CAST (extra AS DECIMAL(3,0)) AS extranum, avgval FROM test_vals WHERE test LIKE 'qu-initial-100-%' AND db='cmvbt-10' AND op='op_buffer_read'" />
+          <property name="title" ref="cmvbt-10-name" />
+        </bean>
+        <bean class="fi.tuska.util.db.graph.LineDefinition">
+          <property name="dataFetchSQL"
+            value="SELECT CAST (extra AS DECIMAL(3,0)) AS extranum, avgval FROM test_vals WHERE test LIKE 'qu-initial-100-%' AND db='cmvbt-50' AND op='op_buffer_read'" />
+          <property name="title" ref="cmvbt-50-name" />
+        </bean>
+        <bean class="fi.tuska.util.db.graph.LineDefinition">
+          <property name="dataFetchSQL"
+            value="SELECT CAST (extra AS DECIMAL(3,0)) AS extranum, avgval FROM test_vals WHERE test LIKE 'qu-initial-100-%' AND db='tmvbt' AND op='op_buffer_read'" />
+          <property name="title" ref="tmvbt-name" />
+          <property name="linestyle" value="linespoints ls 9" />
+        </bean>
+      </list>
+    </property>
+  </bean>
+  <bean name="graphCMInitial100Time" class="fi.tuska.util.db.graph.GraphDefinition">
+    <property name="name" value="cm-initial-100-time.pdf" />
+    <property name="lines">
+      <list>
+        <bean class="fi.tuska.util.db.graph.LineDefinition">
+          <property name="dataFetchSQL"
+            value="SELECT CAST (extra AS DECIMAL(3,0)) AS extranum, elapsed FROM test_info WHERE test LIKE 'qu-initial-100-%' AND db='cmvbt-1'" />
+          <property name="title" ref="cmvbt-1-name" />
+        </bean>
+        <bean class="fi.tuska.util.db.graph.LineDefinition">
+          <property name="dataFetchSQL"
+            value="SELECT CAST (extra AS DECIMAL(3,0)) AS extranum, elapsed FROM test_info WHERE test LIKE 'qu-initial-100-%' AND db='cmvbt-5'" />
+          <property name="title" ref="cmvbt-5-name" />
+        </bean>
+        <bean class="fi.tuska.util.db.graph.LineDefinition">
+          <property name="dataFetchSQL"
+            value="SELECT CAST (extra AS DECIMAL(3,0)) AS extranum, elapsed FROM test_info WHERE test LIKE 'qu-initial-100-%' AND db='cmvbt-10'" />
+          <property name="title" ref="cmvbt-10-name" />
+        </bean>
+        <bean class="fi.tuska.util.db.graph.LineDefinition">
+          <property name="dataFetchSQL"
+            value="SELECT CAST (extra AS DECIMAL(3,0)) AS extranum, elapsed FROM test_info WHERE test LIKE 'qu-initial-100-%' AND db='cmvbt-50'" />
+          <property name="title" ref="cmvbt-50-name" />
+        </bean>
+        <bean class="fi.tuska.util.db.graph.LineDefinition">
+          <property name="dataFetchSQL"
+            value="SELECT CAST (extra AS DECIMAL(3,0)) AS extranum, elapsed FROM test_info WHERE test LIKE 'qu-initial-100-%' AND db='tmvbt'" />
+          <property name="title" ref="tmvbt-name" />
+          <property name="linestyle" value="linespoints ls 9" />
+        </bean>
+      </list>
+    </property>
+  </bean>
+
+  <!--
+    - Queries and updates
+    - Initial state, 5 updates/tx 
+    -->
+  <bean name="graphCMInitial5Fix" class="fi.tuska.util.db.graph.GraphDefinition">
+    <property name="name" value="cm-initial-5-fix.pdf" />
+    <property name="lines">
+      <list>
+        <bean class="fi.tuska.util.db.graph.LineDefinition">
+          <property name="dataFetchSQL"
+            value="SELECT CAST (extra AS DECIMAL(3,0)) AS extranum, avgval FROM test_vals WHERE test LIKE 'qu-initial-5-%' AND db='cmvbt-1' AND op='op_buffer_fix'" />
+          <property name="title" ref="cmvbt-1-name" />
+        </bean>
+        <bean class="fi.tuska.util.db.graph.LineDefinition">
+          <property name="dataFetchSQL"
+            value="SELECT CAST (extra AS DECIMAL(3,0)) AS extranum, avgval FROM test_vals WHERE test LIKE 'qu-initial-5-%' AND db='cmvbt-5' AND op='op_buffer_fix'" />
+          <property name="title" ref="cmvbt-5-name" />
+        </bean>
+        <bean class="fi.tuska.util.db.graph.LineDefinition">
+          <property name="dataFetchSQL"
+            value="SELECT CAST (extra AS DECIMAL(3,0)) AS extranum, avgval FROM test_vals WHERE test LIKE 'qu-initial-5-%' AND db='cmvbt-10' AND op='op_buffer_fix'" />
+          <property name="title" ref="cmvbt-10-name" />
+        </bean>
+        <bean class="fi.tuska.util.db.graph.LineDefinition">
+          <property name="dataFetchSQL"
+            value="SELECT CAST (extra AS DECIMAL(3,0)) AS extranum, avgval FROM test_vals WHERE test LIKE 'qu-initial-5-%' AND db='cmvbt-50' AND op='op_buffer_fix'" />
+          <property name="title" ref="cmvbt-50-name" />
+        </bean>
+        <bean class="fi.tuska.util.db.graph.LineDefinition">
+          <property name="dataFetchSQL"
+            value="SELECT CAST (extra AS DECIMAL(3,0)) AS extranum, avgval FROM test_vals WHERE test LIKE 'qu-initial-5-%' AND db='tmvbt' AND op='op_buffer_fix'" />
+          <property name="title" ref="tmvbt-name" />
+          <property name="linestyle" value="linespoints ls 9" />
+        </bean>
+      </list>
+    </property>
+  </bean>
+  <bean name="graphCMInitial5Read" class="fi.tuska.util.db.graph.GraphDefinition">
+    <property name="name" value="cm-initial-5-read.pdf" />
+    <property name="lines">
+      <list>
+        <bean class="fi.tuska.util.db.graph.LineDefinition">
+          <property name="dataFetchSQL"
+            value="SELECT CAST (extra AS DECIMAL(3,0)) AS extranum, avgval FROM test_vals WHERE test LIKE 'qu-initial-5-%' AND db='cmvbt-1' AND op='op_buffer_read'" />
+          <property name="title" ref="cmvbt-1-name" />
+        </bean>
+        <bean class="fi.tuska.util.db.graph.LineDefinition">
+          <property name="dataFetchSQL"
+            value="SELECT CAST (extra AS DECIMAL(3,0)) AS extranum, avgval FROM test_vals WHERE test LIKE 'qu-initial-5-%' AND db='cmvbt-5' AND op='op_buffer_read'" />
+          <property name="title" ref="cmvbt-5-name" />
+        </bean>
+        <bean class="fi.tuska.util.db.graph.LineDefinition">
+          <property name="dataFetchSQL"
+            value="SELECT CAST (extra AS DECIMAL(3,0)) AS extranum, avgval FROM test_vals WHERE test LIKE 'qu-initial-5-%' AND db='cmvbt-10' AND op='op_buffer_read'" />
+          <property name="title" ref="cmvbt-10-name" />
+        </bean>
+        <bean class="fi.tuska.util.db.graph.LineDefinition">
+          <property name="dataFetchSQL"
+            value="SELECT CAST (extra AS DECIMAL(3,0)) AS extranum, avgval FROM test_vals WHERE test LIKE 'qu-initial-5-%' AND db='cmvbt-50' AND op='op_buffer_read'" />
+          <property name="title" ref="cmvbt-50-name" />
+        </bean>
+        <bean class="fi.tuska.util.db.graph.LineDefinition">
+          <property name="dataFetchSQL"
+            value="SELECT CAST (extra AS DECIMAL(3,0)) AS extranum, avgval FROM test_vals WHERE test LIKE 'qu-initial-5-%' AND db='tmvbt' AND op='op_buffer_read'" />
+          <property name="title" ref="tmvbt-name" />
+          <property name="linestyle" value="linespoints ls 9" />
+        </bean>
+      </list>
+    </property>
+  </bean>
+  <bean name="graphCMInitial5Time" class="fi.tuska.util.db.graph.GraphDefinition">
+    <property name="name" value="cm-initial-5-time.pdf" />
+    <property name="lines">
+      <list>
+        <bean class="fi.tuska.util.db.graph.LineDefinition">
+          <property name="dataFetchSQL"
+            value="SELECT CAST (extra AS DECIMAL(3,0)) AS extranum, elapsed FROM test_info WHERE test LIKE 'qu-initial-5-%' AND db='cmvbt-1'" />
+          <property name="title" ref="cmvbt-1-name" />
+        </bean>
+        <bean class="fi.tuska.util.db.graph.LineDefinition">
+          <property name="dataFetchSQL"
+            value="SELECT CAST (extra AS DECIMAL(3,0)) AS extranum, elapsed FROM test_info WHERE test LIKE 'qu-initial-5-%' AND db='cmvbt-5'" />
+          <property name="title" ref="cmvbt-5-name" />
+        </bean>
+        <bean class="fi.tuska.util.db.graph.LineDefinition">
+          <property name="dataFetchSQL"
+            value="SELECT CAST (extra AS DECIMAL(3,0)) AS extranum, elapsed FROM test_info WHERE test LIKE 'qu-initial-5-%' AND db='cmvbt-10'" />
+          <property name="title" ref="cmvbt-10-name" />
+        </bean>
+        <bean class="fi.tuska.util.db.graph.LineDefinition">
+          <property name="dataFetchSQL"
+            value="SELECT CAST (extra AS DECIMAL(3,0)) AS extranum, elapsed FROM test_info WHERE test LIKE 'qu-initial-5-%' AND db='cmvbt-50'" />
+          <property name="title" ref="cmvbt-50-name" />
+        </bean>
+        <bean class="fi.tuska.util.db.graph.LineDefinition">
+          <property name="dataFetchSQL"
+            value="SELECT CAST (extra AS DECIMAL(3,0)) AS extranum, elapsed FROM test_info WHERE test LIKE 'qu-initial-5-%' AND db='tmvbt'" />
+          <property name="title" ref="tmvbt-name" />
+          <property name="linestyle" value="linespoints ls 9" />
+        </bean>
+      </list>
+    </property>
+  </bean>
+  
+  
+
+  <!-- General definitions -->
+  <bean name="gnuplotDefinitions" class="java.lang.String">
+    <constructor-arg>
+      <value><![CDATA[
+set pointsize 0.8
+set size ratio 0.4
+
+set style data lines
+set style fill solid 0.1
+
+set style line 1 lt 1 lw 2 pt 1
+set style line 2 lt 5 lw 2 pt 5
+set style line 3 lt 6 lw 2 pt 6
+set style line 4 lt 7 lw 2 pt 7
+set style line 5 lt 2 lw 2 pt 2
+set style line 6 lt 3 lw 2 pt 3
+set style line 7 lt 4 lw 2 pt 4
+set style line 8 lt 8 lw 2 pt 8
+set style line 9 lt 9 lw 2 pt 9
+
+set xrange [0:100]
+set yrange [0:*]
+set key right bottom
+      ]]></value>
+    </constructor-arg>
+  </bean>
+
+</beans>

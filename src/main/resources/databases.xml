@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd">
+
+  <!-- Key prototypes -->
+  <bean id="intKeyPrototype" class="fi.hut.cs.treelib.common.IntegerKey" />
+  <bean id="versionedKeyPrototype" class="fi.hut.cs.treelib.common.VersionedKey">
+    <constructor-arg ref="intKeyPrototype" />
+    <constructor-arg value="1" />
+  </bean>
+  <bean id="floatKeyPrototype" class="fi.hut.cs.treelib.common.FloatKey" />
+  <bean id="floatMBRKeyPrototype" class="fi.hut.cs.treelib.MBR">
+    <!-- Number of dimensions -->
+    <constructor-arg index="0" value="2" />
+    <!-- MBR key type -->
+    <constructor-arg index="1" ref="floatKeyPrototype" />
+    <!-- Paired key order: false (not paired, but minimums first, then maximums) -->
+    <constructor-arg index="2" value="false" />
+  </bean>
+
+  <!-- Value prototypes -->
+  <bean id="stringValuePrototype" class="fi.hut.cs.treelib.common.StringValue" depends-on="configuration">
+    <constructor-arg index="0" value="" />
+  </bean>
+  <bean id="intValuePrototype" class="fi.hut.cs.treelib.common.IntegerValue" depends-on="configuration">
+    <constructor-arg index="0" value="0" />
+  </bean>
+  <alias alias="valuePrototype" name="stringValuePrototype" />
+
+  <!-- Creates a normal B-tree for showing. -->
+  <bean id="bTreePageSize" class="java.lang.Integer">
+    <constructor-arg value="500" />
+  </bean>
+  <bean id="bTreeDB" name="db2" class="fi.hut.cs.treelib.btree.BTreeDatabase" lazy-init="true">
+    <!-- Buffer size (pages) -->
+    <constructor-arg index="0" ref="pageBufferSize" />
+    <!-- SMO policy -->
+    <constructor-arg index="1" ref="nonThrashingPolicy" />
+    <!-- Key prototype -->
+    <constructor-arg index="2" ref="intKeyPrototype" />
+    <!-- Value prototype -->
+    <constructor-arg index="3" ref="valuePrototype" />
+    <!-- Page storage -->
+    <constructor-arg index="4">
+      <bean class="fi.hut.cs.treelib.storage.MemoryPageStorage">
+        <constructor-arg ref="bTreePageSize" />
+      </bean>
+    </constructor-arg>
+  </bean>
+
+  <!-- Creates an MVB-tree for showing. -->
+  <bean id="mvbtPageSize" class="java.lang.Integer">
+    <constructor-arg value="450" />
+  </bean>
+  <bean id="mvbtDB" name="db3" class="fi.hut.cs.treelib.mvbt.MVBTDatabase" lazy-init="true">
+    <!-- Buffer size (pages) -->
+    <constructor-arg index="0" ref="pageBufferSize" />
+    <!-- SMO policy -->
+    <constructor-arg index="1" ref="nonThrashingPolicy" />
+    <!-- Key prototype -->
+    <constructor-arg index="2" ref="intKeyPrototype" />
+    <!-- Value prototype -->
+    <constructor-arg index="3" ref="valuePrototype" />
+    <!-- Page storage -->
+    <constructor-arg index="4">
+      <bean class="fi.hut.cs.treelib.storage.MemoryPageStorage">
+        <constructor-arg ref="mvbtPageSize" />
+      </bean>
+    </constructor-arg>
+  </bean>
+
+  <!-- TMVBT page storages -->
+  <bean id="tmvbtFile" class="fi.hut.cs.treelib.storage.FilePageStorage">
+    <constructor-arg ref="mvbtPageSize" />
+    <constructor-arg value="db/tmvbt.db" />
+  </bean>
+  <bean id="tmvbtMemory" class="fi.hut.cs.treelib.storage.MemoryPageStorage" lazy-init="true">
+    <constructor-arg ref="mvbtPageSize" />
+  </bean>
+
+  <!-- Creates a transactional MVBT for showing. -->
+  <bean id="tmvbtDB" name="db4" class="fi.hut.cs.treelib.mvbt.TMVBTDatabase" lazy-init="true">
+    <!-- Buffer size (pages) -->
+    <constructor-arg index="0" ref="pageBufferSize" />
+    <!-- SMO policy -->
+    <constructor-arg index="1" ref="nonThrashingPolicy" />
+    <!-- Key prototype -->
+    <constructor-arg index="2" ref="intKeyPrototype" />
+    <!-- Value prototype -->
+    <constructor-arg index="3" ref="valuePrototype" />
+    <!-- Page storage -->
+    <constructor-arg index="4" ref="tmvbtMemory" />
+    <property name="statisticsLogger" ref="statisticsLogger" />
+  </bean>
+
+
+  <!-- CMVBT page storages -->
+  <bean id="cmvbtMemory" class="fi.hut.cs.treelib.storage.MemoryPageStorage" lazy-init="true">
+    <constructor-arg ref="mvbtPageSize" />
+  </bean>
+
+  <!-- Creates a concurrent MVBT for showing. -->
+  <bean id="cmvbtDB" name="db9" class="fi.hut.cs.treelib.mvbt.CMVBTDatabase" lazy-init="true">
+    <!-- Buffer size (pages) -->
+    <constructor-arg index="0" ref="pageBufferSize" />
+    <!-- VBT buffer size (pages) -->
+    <constructor-arg index="1" ref="tempPageBufferSize" />
+    <!-- SMO policy for TMVBT -->
+    <constructor-arg index="2" ref="nonThrashingPolicy" />
+    <!-- SMO policy for VBT -->
+    <constructor-arg index="3" ref="nonThrashingPolicy" />
+    <!-- Key prototype -->
+    <constructor-arg index="4" ref="intKeyPrototype" />
+    <!-- Value prototype -->
+    <constructor-arg index="5" ref="valuePrototype" />
+    <!-- Page storage for TMVBT -->
+    <constructor-arg index="6" ref="cmvbtMemory" />
+    <!-- Page storage for VBT -->
+    <constructor-arg index="7" ref="cmvbtMemory" />
+    <property name="statisticsLogger" ref="statisticsLogger" />
+  </bean>
+
+  <!-- Creates a J-tree for showing. -->
+  <bean id="jTreePageSize" class="java.lang.Integer">
+    <constructor-arg value="350" />
+  </bean>
+  <bean id="jTreeDB" name="db5" class="fi.hut.cs.treelib.mdtree.JTreeDatabase" lazy-init="true">
+    <!-- Buffer size (pages) -->
+    <constructor-arg index="0" ref="pageBufferSize" />
+    <!-- SMO policy -->
+    <constructor-arg index="1" ref="mdSMOPolicy" />
+    <!-- Key prototype -->
+    <constructor-arg index="2" ref="floatMBRKeyPrototype" />
+    <!-- Value prototype -->
+    <constructor-arg index="3" ref="valuePrototype" />
+    <!-- Page storage -->
+    <constructor-arg index="4">
+      <bean class="fi.hut.cs.treelib.storage.MemoryPageStorage">
+        <constructor-arg ref="jTreePageSize" />
+      </bean>
+    </constructor-arg>
+  </bean>
+
+  <!-- Creates a R-tree for showing. -->
+  <bean id="rTreePageSize" class="java.lang.Integer">
+    <constructor-arg value="350" />
+  </bean>
+  <bean id="rTreeDB" name="db6" class="fi.hut.cs.treelib.rtree.RTreeDatabase" lazy-init="true">
+    <!-- Buffer size (pages) -->
+    <constructor-arg index="0" ref="pageBufferSize" />
+    <!-- SMO policy -->
+    <constructor-arg index="1" ref="mdSMOPolicy" />
+    <!-- Key prototype -->
+    <constructor-arg index="2" ref="floatMBRKeyPrototype" />
+    <!-- Value prototype -->
+    <constructor-arg index="3" ref="valuePrototype" />
+    <!-- Page storage -->
+    <constructor-arg index="4">
+      <bean class="fi.hut.cs.treelib.storage.MemoryPageStorage">
+        <constructor-arg ref="rTreePageSize" />
+      </bean>
+    </constructor-arg>
+  </bean>
+
+  <!-- Creates a Hilbert R-tree for showing. -->
+  <bean id="hTreePageSize" class="java.lang.Integer">
+    <constructor-arg value="350" />
+  </bean>
+  <bean id="hTreeDB" name="db7" class="fi.hut.cs.treelib.mdtree.HTreeDatabase" lazy-init="true">
+    <!-- Buffer size (pages) -->
+    <constructor-arg index="0" ref="pageBufferSize" />
+    <!-- SMO policy -->
+    <constructor-arg index="1" ref="mdSMOPolicy" />
+    <!-- Key prototype -->
+    <constructor-arg index="2" ref="floatMBRKeyPrototype" />
+    <!-- Value prototype -->
+    <constructor-arg index="3" ref="valuePrototype" />
+    <!-- Page storage -->
+    <constructor-arg index="4">
+      <bean class="fi.hut.cs.treelib.storage.MemoryPageStorage">
+        <constructor-arg ref="hTreePageSize" />
+      </bean>
+    </constructor-arg>
+  </bean>
+
+  <!-- Creates a TSB for showing. -->
+  <bean id="tsbPageSize" class="java.lang.Integer">
+    <constructor-arg value="400" />
+  </bean>
+  <bean id="tsbDB" name="db8" class="fi.hut.cs.treelib.tsb.TSBDatabase" lazy-init="true">
+    <!-- Buffer size (pages) -->
+    <constructor-arg index="0" ref="pageBufferSize" />
+    <!-- Key prototype -->
+    <constructor-arg index="1" ref="intKeyPrototype" />
+    <!-- Value prototype -->
+    <constructor-arg index="2" ref="valuePrototype" />
+    <!-- Split policy -->
+    <constructor-arg index="3" value="Deferred" />
+    <!-- Batch update of PTT -->
+    <constructor-arg index="4" value="true" />    
+    <!-- Page storage -->
+    <constructor-arg index="5">
+      <bean class="fi.hut.cs.treelib.storage.MemoryPageStorage">
+        <constructor-arg ref="tsbPageSize" />
+      </bean>
+    </constructor-arg>
+  </bean>
+</beans>

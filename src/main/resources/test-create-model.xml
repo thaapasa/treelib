@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="
+    http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd">
+
+  <bean class="org.springframework.beans.factory.annotation.RequiredAnnotationBeanPostProcessor" />
+
+  <bean id="distribution" class="java.lang.String">
+    <constructor-arg value="Uniform" />
+    <!-- 
+    <constructor-arg value="Gaussian" />
+    -->
+  </bean>
+
+  <!-- Import tested databases -->
+  <import resource="exec-cmvbt.xml" />
+
+  <!-- Directory to place workloads -->
+  <bean id="workloadDir" class="java.lang.String" autowire-candidate="true">
+    <constructor-arg value="material/workloads" />
+  </bean>
+
+  <!-- Directory to place different database states -->
+  <bean id="dbDir" class="java.lang.String" autowire-candidate="true">
+    <constructor-arg value="db" />
+  </bean>
+
+  <bean id="dbList" class="java.util.HashMap">
+    <constructor-arg>
+      <map>
+        <entry key="cmvbt" value-ref="cmvbtdb" />
+      </map>
+    </constructor-arg>
+  </bean>
+
+  <!-- Select test sets that are run -->
+  <bean id="testset" class="java.util.ArrayList">
+    <constructor-arg>
+      <list>
+        <ref local="dummyTests" />
+      </list>
+    </constructor-arg>
+  </bean>
+
+  <!-- Query update tests -->
+  <bean id="dummyTests" class="fi.hut.cs.treelib.test.TestSet">
+    <property name="databases" ref="dbList" />
+    <property name="databaseSettings" ref="dbSettings" />
+    <property name="states">
+      <list>
+        <ref bean="stateInitial" />
+      </list>
+    </property>
+    <property name="tests">
+      <list>
+        <ref bean="testDummy1" />
+      </list>
+    </property>
+  </bean>
+
+  <bean id="dbSettings" class="java.util.HashMap">
+    <constructor-arg>
+      <map>
+        <entry key="cmvbt" value="maintenanceFrequency=1" />
+      </map>
+    </constructor-arg>
+  </bean>
+
+  <!-- General key bounds for the database -->
+  <bean id="keyBounds" class="fi.hut.cs.treelib.test.KeyBounds">
+    <property name="minLimit" value="0" />
+    <property name="maxLimit" value="1000" />
+  </bean>
+
+
+  <!-- States -->
+
+  <bean id="stateInitial" class="fi.hut.cs.treelib.test.TestState">
+    <property name="name" value="initial" />
+    <property name="workload">
+      <bean class="fi.hut.cs.treelib.test.Workload" autowire="byName">
+        <property name="distribution" ref="distribution" />
+        <property name="filename" value="create-initial.wl" />
+        <property name="numTransactions" value="150" />
+        <property name="transactionLength" value="10" />
+        <property name="insertAmount" value="0.60" />
+        <property name="deleteAmount" value="0.40" />
+        <property name="exactAmounts" value="false" />
+      </bean>
+    </property>
+  </bean>
+
+  <!-- Tests -->
+
+  <bean id="testDummy1" class="fi.hut.cs.treelib.test.Test">
+    <property name="name" value="dummy1" />
+    <property name="extra" value="0" />
+    <property name="workload">
+      <bean class="fi.hut.cs.treelib.test.Workload" autowire="byName">
+        <property name="distribution" value="Uniform" />
+        <property name="numTransactions" value="10" />
+        <property name="transactionLength" value="10" />
+        <property name="basedOnState" ref="stateInitial" />
+        <property name="exactAmounts" value="false" />
+        <property name="filename" value="dummy.wl" />
+      </bean>
+    </property>
+  </bean>
+
+</beans>

@@ -1,0 +1,111 @@
+------------------------------------------------------------
+CMVBT database (m = 1), buffers: 168, 32
+
+initial: version 100000
+CMVBT database (m = 1), buffers: 168, 32
+Last page ID: PageID 16062
+Total page count: 16063
+Leaf pages: 15848
+Parent pages: 209
+Entries: 1000000 alive / 4394695 total
+
+del-50: version 150000
+CMVBT database (m = 1), buffers: 168, 32
+Last page ID: PageID 19669
+Total page count: 19670
+Leaf pages: 19416
+Parent pages: 247
+Entries: 500000 alive / 5056263 total
+
+del-100: version 200000
+CMVBT database (m = 1), buffers: 168, 32
+Last page ID: PageID 24983
+Total page count: 24983
+Leaf pages: 24656
+Parent pages: 320
+Entries: 0 alive / 6003226 total
+
+
+------------------------------------------------------------
+TSB database (Deferred split)
+
+initial: version 100000
+TSB database
+Last page ID: PageID 13103
+Total page count: 13104
+Leaf pages: 12793
+Parent pages: 301
+Entries: 1000000 alive / 3396196 total
+
+del-50: version 150000
+TSB database
+Last page ID: PageID 16437
+Total page count: 16438
+Leaf pages: 16070
+Parent pages: 358
+Entries: 500000 alive / 3746547 total
+
+del-100: version 200000
+TSB database
+Last page ID: PageID 18577
+Total page count: 18578
+Leaf pages: 18169
+Parent pages: 397
+Entries: 0 alive / 3844617 total
+
+
+------------------------------------------------------------
+TSB database (WOB split)
+
+initial: version 100000
+TSB database
+Last page ID: PageID 14175
+Total page count: 14176
+Leaf pages: 13894
+Parent pages: 272
+Entries: 1000000 alive / 3404358 total
+
+del-50: version 150000
+TSB database
+Last page ID: PageID 16333
+Total page count: 16334
+Leaf pages: 16005
+Parent pages: 317
+Entries: 500000 alive / 3715423 total
+
+del-100: version 200000
+TSB database
+Last page ID: PageID 18586
+Total page count: 18587
+Leaf pages: 18195
+Parent pages: 377
+Entries: 0 alive / 3820102 total
+
+
+------------------------------------------------------------
+TSB database (IKS split)
+
+initial: version 100000
+TSB database
+Last page ID: PageID 10857
+Total page count: 10858
+Leaf pages: 10609
+Parent pages: 241
+Entries: 1000000 alive / 2502629 total
+
+del-50: version 150000
+TSB database
+Last page ID: PageID 13386
+Total page count: 13387
+Leaf pages: 13072
+Parent pages: 307
+Entries: 500000 alive / 2834108 total
+
+del-100: version 200000
+TSB database
+Last page ID: PageID 16206
+Total page count: 16207
+Leaf pages: 15827
+Parent pages: 368
+Entries: 0 alive / 2958763 total
+

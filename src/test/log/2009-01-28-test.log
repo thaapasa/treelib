@@ -1,0 +1,325 @@
+--- exec-pjtree.xml;bulk-load;mbr-large-initial.txt --------------------------------
+time:2009-01-27 19:45:11
+database:packed-jtree
+buffer-size:200
+page-size:4096
+operation-count:2000100
+time-measurement:87,625000
+action_insert            	count:2000100
+op_spacemap_allocate     	avg:0,005052	min:0	max:2
+op_buffer_fix            	avg:0,010402	min:0	max:104
+op_buffer_read           	avg:0,000001	min:0	max:1
+op_buffer_write          	avg:0,004954	min:0	max:2
+
+--- exec-pjtree.xml;insert;mbr-large-insert.txt --------------------------------
+time:2009-01-27 19:46:39
+database:packed-jtree
+buffer-size:200
+page-size:4096
+operation-count:10000
+time-measurement:31,418000
+action_insert            	count:10000
+op_spacemap_allocate     	avg:0,569100	min:0	max:3
+op_buffer_fix            	avg:6,809100	min:5	max:11
+op_buffer_read           	avg:2,243800	min:0	max:5
+op_buffer_write          	avg:1,946700	min:0	max:6
+op_page_split            	avg:0,559900	min:0	max:2
+op_subtree_traversed     	avg:1,000000	min:0	max:2
+val_split_ratio          	avg:0,513582	min:0,295567	max:0,704433	count:5599,000000
+val_split_overlap_area   	avg:0,000724	min:0,000000	max:0,020817	count:5599,000000
+val_split_overlap_ratio  	avg:0,196401	min:0,000000	max:0,909213	count:5599,000000
+
+--- exec-pjtree.xml;delete;mbr-large-delete.txt --------------------------------
+time:2009-01-27 19:47:12
+database:packed-jtree
+buffer-size:200
+page-size:4096
+operation-count:10000
+time-measurement:26,473000
+action_delete            	count:10000
+op_buffer_fix            	avg:5,924900	min:3	max:9
+op_buffer_read           	avg:2,764000	min:0	max:6
+op_buffer_write          	avg:1,005500	min:0	max:4
+op_subtree_traversed     	avg:1,000000	min:0	max:2
+
+--- exec-pjtree.xml;exact-query;mbr-large-exact.txt --------------------------------
+time:2009-01-27 19:47:39
+database:packed-jtree
+buffer-size:200
+page-size:4096
+operation-count:10000
+time-measurement:28,064000
+action_query_exact       	count:10000
+op_buffer_fix            	avg:5,915000	min:3	max:9
+op_buffer_read           	avg:2,735600	min:0	max:6
+op_query_found_object    	avg:1,027900	min:0	max:8
+op_subtree_traversed     	avg:1,000000	min:0	max:2
+
+--- exec-pjtree.xml;overlap-query;mbr-large-window-1.txt --------------------------------
+time:2009-01-27 19:48:08
+database:packed-jtree
+buffer-size:200
+page-size:4096
+operation-count:10000
+time-measurement:56,893000
+action_query_overlaps    	count:10000
+op_buffer_fix            	avg:11,925300	min:2	max:163
+op_buffer_read           	avg:6,737800	min:0	max:147
+op_query_found_object    	avg:216,909100	min:0	max:12775
+op_subtree_traversed     	avg:1,137500	min:0	max:9
+
+--- exec-pjtree.xml;overlap-query;mbr-large-window-5.txt --------------------------------
+time:2009-01-27 19:49:05
+database:packed-jtree
+buffer-size:200
+page-size:4096
+operation-count:10000
+time-measurement:683,362000
+action_query_overlaps    	count:10000
+op_buffer_fix            	avg:70,550300	min:2	max:1625
+op_buffer_read           	avg:60,447500	min:0	max:1575
+op_query_found_object    	avg:5320,898900	min:0	max:191947
+op_subtree_traversed     	avg:3,377700	min:0	max:25
+
+--- exec-pjtree.xml;overlap-query;mbr-large-window-10.txt --------------------------------
+time:2009-01-27 20:00:29
+database:packed-jtree
+buffer-size:200
+page-size:4096
+operation-count:10000
+time-measurement:2360,383000
+action_query_overlaps    	count:10000
+op_buffer_fix            	avg:240,153600	min:2	max:3060
+op_buffer_read           	avg:222,606000	min:0	max:2994
+op_query_found_object    	avg:23487,174500	min:0	max:369493
+op_subtree_traversed     	avg:6,898800	min:0	max:32
+
+--- exec-pjtree.xml;overlap-query;mbr-large-window-20.txt --------------------------------
+time:2009-01-27 20:39:50
+database:packed-jtree
+buffer-size:200
+page-size:4096
+operation-count:10000
+time-measurement:9822,571000
+action_query_overlaps    	count:10000
+op_buffer_fix            	avg:912,298400	min:2	max:5098
+op_buffer_read           	avg:876,760200	min:0	max:5018
+op_query_found_object    	avg:101390,698300	min:0	max:630385
+op_subtree_traversed     	avg:15,611000	min:0	max:41
+
+--- exec-htree.xml;insert;mbr-large-initial.txt --------------------------------
+time:2009-01-27 23:23:34
+database:htree-31
+buffer-size:200
+page-size:4096
+operation-count:2000000
+time-measurement:3913,588000
+action_insert            	count:2000000
+op_spacemap_allocate     	avg:0,007255	min:0	max:3
+op_buffer_fix            	avg:3,996389	min:2	max:8
+op_buffer_read           	avg:1,100572	min:0	max:3
+op_buffer_write          	avg:0,957832	min:0	max:5
+op_page_split            	avg:0,007254	min:0	max:2
+val_split_ratio          	avg:0,497584	min:0,496552	max:0,517241	count:14507,000000
+val_split_overlap_area   	avg:0,016258	min:0,000000	max:21,229605	count:14507,000000
+val_split_overlap_ratio  	avg:0,130473	min:0,000000	max:0,677838	count:14507,000000
+
+--- exec-htree.xml;insert;mbr-large-insert.txt --------------------------------
+time:2009-01-28 00:29:31
+database:htree-31
+buffer-size:200
+page-size:4096
+operation-count:10000
+time-measurement:25,974000
+action_insert            	count:10000
+op_spacemap_allocate     	avg:0,005500	min:0	max:1
+op_buffer_fix            	avg:4,005500	min:4	max:5
+op_buffer_read           	avg:1,387800	min:0	max:3
+op_buffer_write          	avg:1,007600	min:0	max:4
+op_page_split            	avg:0,005500	min:0	max:1
+val_split_ratio          	avg:0,497537	min:0,497537	max:0,497537	count:55,000000
+val_split_overlap_area   	avg:0,000855	min:0,000000	max:0,012322	count:55,000000
+val_split_overlap_ratio  	avg:0,139291	min:0,000000	max:0,453030	count:55,000000
+
+--- exec-htree.xml;delete;mbr-large-delete.txt --------------------------------
+time:2009-01-28 00:30:44
+database:htree-31
+buffer-size:200
+page-size:4096
+operation-count:10000
+time-measurement:25,007000
+action_delete            	count:10000
+op_buffer_fix            	avg:3,000000	min:3	max:3
+op_buffer_read           	avg:1,382100	min:0	max:2
+op_buffer_write          	avg:0,996200	min:0	max:2
+
+--- exec-htree.xml;exact-query;mbr-large-exact.txt --------------------------------
+time:2009-01-28 00:31:54
+database:htree-31
+buffer-size:200
+page-size:4096
+operation-count:10000
+time-measurement:26,520000
+action_query_exact       	count:10000
+op_buffer_fix            	avg:3,000000	min:3	max:3
+op_buffer_read           	avg:1,378500	min:0	max:2
+op_query_found_object    	avg:1,027900	min:0	max:8
+
+--- exec-htree.xml;overlap-query;mbr-large-window-1.txt --------------------------------
+time:2009-01-28 00:33:12
+database:htree-31
+buffer-size:200
+page-size:4096
+operation-count:10000
+time-measurement:69,248000
+action_query_overlaps    	count:10000
+op_buffer_fix            	avg:6,634600	min:1	max:132
+op_buffer_read           	avg:4,169200	min:0	max:129
+op_query_found_object    	avg:216,909100	min:0	max:12775
+
+--- exec-htree.xml;overlap-query;mbr-large-window-5.txt --------------------------------
+time:2009-01-28 00:35:08
+database:htree-31
+buffer-size:200
+page-size:4096
+operation-count:10000
+time-measurement:683,608000
+action_query_overlaps    	count:10000
+op_buffer_fix            	avg:50,641300	min:1	max:1550
+op_buffer_read           	avg:48,250400	min:0	max:1549
+op_query_found_object    	avg:5320,898900	min:0	max:191947
+
+--- exec-htree.xml;overlap-query;mbr-large-window-10.txt --------------------------------
+time:2009-01-28 00:47:15
+database:htree-31
+buffer-size:200
+page-size:4096
+operation-count:10000
+time-measurement:2676,523000
+action_query_overlaps    	count:10000
+op_buffer_fix            	avg:192,944000	min:1	max:2858
+op_buffer_read           	avg:190,296400	min:0	max:2857
+op_query_found_object    	avg:23487,174500	min:0	max:369493
+
+--- exec-htree.xml;overlap-query;mbr-large-window-20.txt --------------------------------
+time:2009-01-28 01:32:33
+database:htree-31
+buffer-size:200
+page-size:4096
+operation-count:10000
+time-measurement:13155,277000
+action_query_overlaps    	count:10000
+op_buffer_fix            	avg:778,863900	min:1	max:4755
+op_buffer_read           	avg:775,962800	min:0	max:4754
+op_query_found_object    	avg:101390,698300	min:0	max:630385
+
+--- exec-rtree.xml;insert;mbr-large-initial.txt --------------------------------
+time:2009-01-28 05:12:39
+database:rtree-r_star
+buffer-size:200
+page-size:4096
+operation-count:2000000
+time-measurement:5907,221000
+action_insert            	count:2000000
+op_spacemap_allocate     	avg:0,009901	min:0	max:3
+op_buffer_fix            	avg:4,000946	min:2	max:8
+op_buffer_read           	avg:1,100715	min:0	max:3
+op_buffer_write          	avg:0,961891	min:0	max:4
+op_page_split            	avg:0,009899	min:0	max:2
+op_split_by_x            	avg:0,005538	min:0	max:2
+op_split_by_y            	avg:0,004361	min:0	max:2
+val_split_ratio          	avg:0,737874	min:0,147059	max:0,848039	count:19798,000000
+val_split_overlap_area   	avg:0,000974	min:0,000000	max:2,709470	count:19798,000000
+val_split_overlap_ratio  	avg:0,001265	min:0,000000	max:0,603187	count:19798,000000
+
+--- exec-rtree.xml;insert;mbr-large-insert.txt --------------------------------
+time:2009-01-28 06:51:24
+database:rtree-r_star
+buffer-size:200
+page-size:4096
+operation-count:10000
+time-measurement:38,142000
+action_insert            	count:10000
+op_spacemap_allocate     	avg:0,009300	min:0	max:2
+op_buffer_fix            	avg:4,009300	min:4	max:6
+op_buffer_read           	avg:1,376200	min:0	max:3
+op_buffer_write          	avg:1,018600	min:0	max:4
+op_page_split            	avg:0,009300	min:0	max:2
+op_split_by_x            	avg:0,005000	min:0	max:2
+op_split_by_y            	avg:0,004300	min:0	max:1
+val_split_ratio          	avg:0,604153	min:0,147059	max:0,848039	count:93,000000
+val_split_overlap_area   	avg:0,001728	min:0,000000	max:0,150122	count:93,000000
+val_split_overlap_ratio  	avg:0,006707	min:0,000000	max:0,314841	count:93,000000
+
+--- exec-rtree.xml;delete;mbr-large-delete.txt --------------------------------
+time:2009-01-28 06:52:21
+database:rtree-r_star
+buffer-size:200
+page-size:4096
+operation-count:10000
+time-measurement:47,081000
+action_delete            	count:10000
+op_buffer_fix            	avg:4,713400	min:4	max:19
+op_buffer_read           	avg:2,080000	min:0	max:14
+op_buffer_write          	avg:1,526900	min:0	max:12
+
+--- exec-rtree.xml;exact-query;mbr-large-exact.txt --------------------------------
+time:2009-01-28 06:53:26
+database:rtree-r_star
+buffer-size:200
+page-size:4096
+operation-count:10000
+time-measurement:33,915000
+action_query_exact       	count:10000
+op_buffer_fix            	avg:5,622800	min:3	max:22
+op_buffer_read           	avg:2,815300	min:0	max:17
+op_query_found_object    	avg:1,027900	min:0	max:8
+
+--- exec-rtree.xml;overlap-query;mbr-large-window-1.txt --------------------------------
+time:2009-01-28 06:54:19
+database:rtree-r_star
+buffer-size:200
+page-size:4096
+operation-count:10000
+time-measurement:47,268000
+action_query_overlaps    	count:10000
+op_buffer_fix            	avg:7,470000	min:2	max:180
+op_buffer_read           	avg:5,117800	min:0	max:178
+op_query_found_object    	avg:216,909100	min:0	max:12775
+
+--- exec-rtree.xml;overlap-query;mbr-large-window-5.txt --------------------------------
+time:2009-01-28 06:55:24
+database:rtree-r_star
+buffer-size:200
+page-size:4096
+operation-count:10000
+time-measurement:570,757000
+action_query_overlaps    	count:10000
+op_buffer_fix            	avg:66,466000	min:2	max:2078
+op_buffer_read           	avg:63,908000	min:0	max:2076
+op_query_found_object    	avg:5320,898900	min:0	max:191947
+
+--- exec-rtree.xml;overlap-query;mbr-large-window-10.txt --------------------------------
+time:2009-01-28 07:05:13
+database:rtree-r_star
+buffer-size:200
+page-size:4096
+operation-count:10000
+time-measurement:2227,992000
+action_query_overlaps    	count:10000
+op_buffer_fix            	avg:260,031800	min:2	max:3951
+op_buffer_read           	avg:257,076300	min:0	max:3949
+op_query_found_object    	avg:23487,174500	min:0	max:369493
+
+--- exec-rtree.xml;overlap-query;mbr-large-window-20.txt --------------------------------
+time:2009-01-28 07:42:39
+database:rtree-r_star
+buffer-size:200
+page-size:4096
+operation-count:10000
+time-measurement:8721,910000
+action_query_overlaps    	count:10000
+op_buffer_fix            	avg:1065,822300	min:2	max:6506
+op_buffer_read           	avg:1062,491100	min:0	max:6504
+op_query_found_object    	avg:101390,698300	min:0	max:630385
+

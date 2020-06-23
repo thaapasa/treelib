@@ -1,0 +1,66 @@
+--- exec-cmvbt.xml;simulate;simulator --------------------------------
+title: initial-insert
+start-time:2009-06-05 17:01:27
+end-time:2009-06-05 17:02:20
+database:cmvbt
+buffer-size:200
+page-size:4096
+database-size:820
+operation-count:102142
+time-measurement:52,434000
+go_new_transaction       	100
+go_maintenance_tx        	100
+action_insert            	count:102142
+op_object_inserted       	avg:1,000000	min:1	max:1
+op_spacemap_allocate     	avg:0,012571	min:0	max:99
+op_spacemap_free         	avg:0,004582	min:0	max:33
+op_buffer_fix            	avg:2,257906	min:1	max:2551
+op_buffer_read           	avg:0,151544	min:0	max:1692
+op_buffer_write          	avg:0,161775	min:0	max:1727
+op_traverse_path         	avg:1,003015	min:1	max:19
+op_retraverse_path       	avg:0,000010	min:0	max:1
+op_backtrack_path        	avg:0,194641	min:0	max:1661
+op_maintenance_tx        	avg:0,000979	min:0	max:5
+
+title: mix
+start-time:2009-06-05 17:02:20
+end-time:2009-06-05 17:04:33
+database:cmvbt
+buffer-size:200
+page-size:4096
+database-size:904
+operation-count:71637
+time-measurement:133,083000
+go_new_transaction       	1000
+go_maintenance_tx        	179
+action_insert            	count:5478
+action_delete            	count:4015
+action_query             	count:61950
+action_range_query       	count:194
+op_query_found_object    	avg:277,629772	min:0	max:103014
+op_object_deleted        	avg:0,056046	min:0	max:1
+op_object_inserted       	avg:0,076469	min:0	max:1
+op_spacemap_allocate     	avg:0,003322	min:0	max:5
+op_spacemap_free         	avg:0,002150	min:0	max:3
+op_buffer_fix            	avg:4,508159	min:1	max:524
+op_buffer_read           	avg:1,479445	min:0	max:447
+op_buffer_write          	avg:0,079358	min:0	max:197
+op_traverse_path         	avg:0,140319	min:0	max:13
+op_retraverse_path       	avg:0,000028	min:0	max:1
+op_backtrack_path        	avg:0,069015	min:0	max:238
+op_keys_processed        	avg:8,407834	min:0	max:102222
+op_version_stable        	avg:0,587587	min:0	max:1
+op_version_transient     	avg:0,279897	min:0	max:1
+op_maintenance_tx        	avg:0,002499	min:0	max:4
+
+title: simulator
+start-time:2009-06-05 17:04:33
+end-time:2009-06-05 17:04:33
+database:cmvbt
+buffer-size:200
+page-size:4096
+database-size:904
+operation-count:0
+time-measurement:0,000000
+
+

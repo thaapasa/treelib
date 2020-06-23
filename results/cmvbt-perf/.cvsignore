@@ -1,0 +1,5 @@
+*.log
+cmvbt-summary.eps
+*.pdf
+*.eps
+_current.plt

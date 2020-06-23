@@ -1,0 +1,250 @@
+SELECT test FROM test_info GROUP BY test ORDER BY test;
+SELECT * FROM test_info;
+
+----------------------------------------------------------
+-- Database creation time --
+SELECT SUBSTR(test, 14) AS state, db, elapsed FROM test_info WHERE test LIKE 'create-state-%' ORDER BY state, db;
+SELECT db, avgval, deviation FROM test_vals WHERE test='create-state-initial' and op='op_buffer_write' ORDER BY db;
+SELECT db, avgval, deviation FROM test_vals WHERE test='create-state-initial' and op='op_buffer_fix' ORDER BY db;
+
+SELECT UPPER(db) || ' & ' 
+  || TRIM(CAST(CAST((elapsed / 60) AS DECIMAL(10,4)) AS CHAR(20))) 
+  || '\\' FROM test_info WHERE test='create-state-initial' ORDER BY db;
+
+SELECT MIN(db), SUM((elapsed / 60)), MIN(CAST(SUBSTR(test, 18) AS INT)), MAX(CAST(SUBSTR(test, 18) AS INT))
+  FROM test_info 
+  WHERE test LIKE 'create-state-del-%' AND CAST(SUBSTR(test, 18) AS INT) <= 50  
+  GROUP BY db;
+  
+SELECT MIN(db), SUM((elapsed / 60)), MIN(CAST(SUBSTR(test, 18) AS INT)), MAX(CAST(SUBSTR(test, 18) AS INT))
+  FROM test_info 
+  WHERE test LIKE 'create-state-del-%' AND CAST(SUBSTR(test, 18) AS INT) > 50  
+  GROUP BY db;
+
+
+----------------------------------------------------------
+-- Range tests --
+SELECT * FROM test_vals WHERE test='range-del-0' and op='op_query_found_object' ORDER BY db;
+SELECT * FROM test_vals WHERE test='range-del-40' and op='op_query_found_object' ORDER BY db;
+SELECT * FROM test_vals WHERE test='range-del-70' and op='op_query_found_object' ORDER BY db;
+SELECT * FROM test_vals WHERE test='range-del-10' ORDER BY db;
+SELECT * FROM test_vals WHERE test='range-del-20' ORDER BY db;
+
+SELECT * FROM test_ops WHERE test='range-del-0' ORDER BY db;
+SELECT * FROM test_ops WHERE test='range-del-10' ORDER BY db;
+SELECT * FROM test_ops WHERE test='range-del-20' ORDER BY db;
+
+SELECT * FROM test_vals WHERE test='range-del-0' and op='op_buffer_fix' ORDER BY db;
+SELECT * FROM test_vals WHERE test='range-del-0' and op='op_buffer_read' ORDER BY db;
+SELECT * FROM test_vals WHERE test='range-del-80' and op='op_buffer_fix' ORDER BY db;
+SELECT * FROM test_vals WHERE test='range-del-80' and op='op_buffer_read' ORDER BY db;
+SELECT * FROM test_info WHERE test='range-del-0' ORDER BY db;
+
+SELECT * FROM test_vals WHERE test like 'qu-initial-%' and op='op_buffer_fix' ORDER BY test, db;
+
+SELECT db, avgval, deviation FROM test_vals WHERE test='range-del-100' and op='op_buffer_fix' ORDER BY db;
+SELECT db, avgval, deviation FROM test_vals WHERE test='range-del-100' and op='op_buffer_read' ORDER BY db;
+SELECT db, elapsed FROM test_info WHERE test='range-del-100' ORDER BY db;
+
+SELECT db, avgval, deviation FROM test_vals WHERE test='range-del-90' and op='op_buffer_fix' ORDER BY db;
+
+-- Does not round the values:
+SELECT db, avgval, CAST (avgval AS DECIMAL (10,2)), CAST (deviation AS DECIMAL (10,2)) FROM test_vals WHERE test='range-del-0' and op='op_buffer_fix' ORDER BY db;
+
+SELECT MAX(maxval) FROM test_vals WHERE test LIKE 'range-del-%' AND op = 'op_buffer_read';
+SELECT MAX(maxval) FROM test_vals WHERE test LIKE 'range-del-%' AND op = 'op_buffer_fix';
+SELECT test, MAX(maxval), AVG(maxval) FROM test_vals WHERE test LIKE 'range-del-%' AND op = 'op_query_found_object' GROUP BY test;
+SELECT * FROM test_vals WHERE test LIKE 'range-del-%' AND op = 'op_query_found_object';
+
+----------------------------------------------------------
+-- Range test images --
+SELECT CAST(SUBSTR(test, 15, LENGTH(test) - (15 + 4)) AS INTEGER) AS statenum, avgval FROM test_vals WHERE test LIKE 'range-005-del-%' AND db='cmvbt-1' AND op='op_buffer_fix' ORDER BY statenum;
+SELECT CAST(SUBSTR(test, 15, LENGTH(test) - (15 + 4)) AS INTEGER) AS statenum, CAST(SUBSTR(test, 7, LENGTH(test) - (15+4)) AS INTEGER) AS rangesize, avgval FROM test_vals WHERE test LIKE 'range-001-del-%' AND db='cmvbt-1' AND op='op_buffer_fix' ORDER BY rangesize, statenum;
+
+SELECT SUBSTR(test, 11), avgval FROM test_vals WHERE test LIKE 'range-5-del-%' AND db='tsb-iks' AND op='op_buffer_fix';
+SELECT SUBSTR(test, 11), avgval FROM test_vals WHERE test LIKE 'range-5-del-%' AND db='tsb-immortaldb' AND op='op_buffer_fix';
+
+SELECT SUBSTR(test, 11), avgval FROM test_vals WHERE test LIKE 'range-5-del-%' AND db='cmvbt-1' AND op='op_buffer_read';
+
+SELECT SUBSTR(test, 11), elapsed FROM test_info WHERE test LIKE 'range-5-del-%' AND db='tsb-immortaldb';
+
+-- 3D range plot
+SELECT * FROM test_vals WHERE test LIKE 'range-%-del-%' AND db='cmvbt-1' AND op='op_buffer_fix';
+SELECT CAST('050' AS INTEGER) FROM test_vals WHERE test LIKE 'range-5-del-100%' AND db='cmvbt-1' AND op='op_buffer_fix';
+
+
+----------------------------------------------------------
+-- Query-update tests --
+
+SELECT CAST (extra AS DECIMAL(3,0)) AS extranum, MIN(avgval), MAX(avgval) FROM test_vals WHERE test LIKE 'qu-initial-100-%' AND db LIKE 'cmvbt-%' AND op='op_buffer_fix' GROUP BY extra ORDER BY extranum;
+
+SELECT test, db, avgval FROM test_vals WHERE op='op_buffer_fix' AND db='tsb-iks' ORDER BY test; 
+
+SELECT * FROM test_vals WHERE test='qu-initial-5-40' ORDER BY db;
+SELECT * FROM test_vals WHERE test='qu-del-50-5-80' ORDER BY db;
+
+SELECT * FROM test_ops WHERE test='qu-initial-5-10' ORDER BY db;
+SELECT * FROM test_vals WHERE test='qu-initial-5-40' AND op='op_query_found_object' ORDER BY db;
+SELECT * FROM test_vals WHERE test='qu-del-50-5-0' AND op='op_query_found_object' ORDER BY db;
+SELECT * FROM test_vals WHERE test='qu-del-50-5-80' AND op='op_object_inserted' ORDER BY db;
+SELECT * FROM test_vals WHERE test='qu-del-50-5-100' AND op='op_object_deleted' ORDER BY db;
+SELECT * FROM test_vals WHERE test='qu-initial-5-90' AND op='op_query_found_object' ORDER BY db;
+SELECT * FROM test_vals WHERE test='qu-initial-5-90' AND op='op_object_deleted' ORDER BY db;
+
+SELECT extra, avgval, deviation FROM test_vals WHERE test LIKE 'qu-initial-5-%' AND db='cmvbt-1' AND op='op_buffer_fix';
+SELECT extra, avgval, deviation  FROM test_vals WHERE test LIKE 'qu-initial-5-%' AND db='cmvbt-1' AND op='op_buffer_read';
+
+SELECT extra, elapsed FROM test_info WHERE test LIKE 'qu-initial-5-%' AND db='cmvbt-1';
+
+SELECT extra, avgval FROM test_vals WHERE test LIKE 'qu-initial-100-%' AND db='cmvbt-1' AND op='op_buffer_fix';
+SELECT extra, avgval FROM test_vals WHERE test LIKE 'qu-initial-100-%' AND db='cmvbt-1' AND op='op_buffer_read';
+
+SELECT extra, elapsed FROM test_info WHERE test LIKE 'qu-initial-100-%' AND db='cmvbt-1';
+
+SELECT db || ' & ' || TRIM(CAST (CAST (avgval AS DECIMAL(10,4)) AS CHAR(20))) || ' (' || TRIM(CAST (CAST(deviation AS DECIMAL(10,4)) AS CHAR(20))) || ')' FROM test_vals WHERE test='qu-initial-5-0' and op='op_buffer_fix' ORDER BY db;
+SELECT db || ' & ' || TRIM(CAST (CAST (avgval AS DECIMAL(10,4)) AS CHAR(20))) || ' (' || TRIM(CAST (CAST(deviation AS DECIMAL(10,4)) AS CHAR(20))) || ')' FROM test_vals WHERE test='qu-initial-5-0' and op='op_buffer_read' ORDER BY db;
+SELECT db || ' & ' || TRIM(CAST (CAST (elapsed AS DECIMAL(10,4)) AS CHAR(20))) FROM test_info WHERE test='qu-initial-5-0' ORDER BY db;
+
+SELECT db || ' & ' || TRIM(CAST (CAST (avgval AS DECIMAL(10,4)) AS CHAR(20))) FROM test_vals WHERE test='qu-initial-5-100' and op='op_buffer_fix' ORDER BY db;
+SELECT db || ' & ' || TRIM(CAST (CAST (avgval AS DECIMAL(10,4)) AS CHAR(20))) FROM test_vals WHERE test='qu-initial-5-100' and op='op_buffer_read' ORDER BY db;
+SELECT db || ' & ' || TRIM(CAST (CAST (avgval AS DECIMAL(10,4)) AS CHAR(20))) FROM test_vals WHERE test='qu-initial-5-100' and op='op_buffer_write' ORDER BY db;
+SELECT db || ' & ' || TRIM(CAST (CAST (elapsed AS DECIMAL(10,4)) AS CHAR(20))) FROM test_info WHERE test='qu-initial-5-100' ORDER BY db;
+
+SELECT db || ' & ' || TRIM(CAST (CAST (avgval AS DECIMAL(10,4)) AS CHAR(20))) FROM test_vals WHERE test='range-del-100' and op='op_buffer_fix' ORDER BY db;
+SELECT db || ' & ' || TRIM(CAST (CAST (avgval AS DECIMAL(10,4)) AS CHAR(20))) FROM test_vals WHERE test='range-del-100' and op='op_buffer_read' ORDER BY db;
+SELECT db || ' & ' || TRIM(CAST (CAST (avgval AS DECIMAL(10,4)) AS CHAR(20))) FROM test_vals WHERE test='range-del-100' and op='op_buffer_write' ORDER BY db;
+SELECT db || ' & ' || TRIM(CAST (CAST (elapsed AS DECIMAL(10,4)) AS CHAR(20))) FROM test_info WHERE test='range-del-100' ORDER BY db;
+
+
+----------------------------------------------------------
+-- For the raport --
+
+
+-- Range query results at state del-0 -- 
+SELECT UPPER(db) 
+  || ' & ' || (SELECT TRIM(CAST (CAST (avgval AS DECIMAL(10,4)) AS CHAR(20))) FROM test_vals AS tv WHERE tv.test=ti.test AND tv.db=ti.db AND tv.op='op_buffer_fix')  
+  || ' & ' || (SELECT TRIM(CAST (CAST (avgval AS DECIMAL(10,4)) AS CHAR(20))) FROM test_vals AS tv WHERE tv.test=ti.test AND tv.db=ti.db AND tv.op='op_buffer_read')  
+  || ' & ' || (SELECT TRIM(CAST (CAST (avgval AS DECIMAL(10,4)) AS CHAR(20))) FROM test_vals AS tv WHERE tv.test=ti.test AND tv.db=ti.db AND tv.op='op_buffer_write')
+  || ' & ' || TRIM(CAST (CAST (elapsed AS DECIMAL(10,4)) AS CHAR(20)))  
+  || '\\' FROM test_info AS ti WHERE test='range-del-0' ORDER BY db;
+
+-- Range query results at state del-50 -- 
+SELECT UPPER(db) 
+  || ' & ' || (SELECT TRIM(CAST (CAST (avgval AS DECIMAL(10,4)) AS CHAR(20))) FROM test_vals AS tv WHERE tv.test=ti.test AND tv.db=ti.db AND tv.op='op_buffer_fix')  
+  || ' & ' || (SELECT TRIM(CAST (CAST (avgval AS DECIMAL(10,4)) AS CHAR(20))) FROM test_vals AS tv WHERE tv.test=ti.test AND tv.db=ti.db AND tv.op='op_buffer_read')  
+  || ' & ' || (SELECT TRIM(CAST (CAST (avgval AS DECIMAL(10,4)) AS CHAR(20))) FROM test_vals AS tv WHERE tv.test=ti.test AND tv.db=ti.db AND tv.op='op_buffer_write')  
+  || ' & ' || TRIM(CAST (CAST (elapsed AS DECIMAL(10,4)) AS CHAR(20)))  
+  || '\\' FROM test_info AS ti WHERE test='range-del-50' ORDER BY db;
+
+-- Range query results at state del-100 -- 
+SELECT UPPER(db) 
+  || ' & ' || (SELECT TRIM(CAST (CAST (avgval AS DECIMAL(10,4)) AS CHAR(20))) FROM test_vals AS tv WHERE tv.test=ti.test AND tv.db=ti.db AND tv.op='op_buffer_fix')  
+  || ' & ' || (SELECT TRIM(CAST (CAST (avgval AS DECIMAL(10,4)) AS CHAR(20))) FROM test_vals AS tv WHERE tv.test=ti.test AND tv.db=ti.db AND tv.op='op_buffer_read')  
+  || ' & ' || (SELECT TRIM(CAST (CAST (avgval AS DECIMAL(10,4)) AS CHAR(20))) FROM test_vals AS tv WHERE tv.test=ti.test AND tv.db=ti.db AND tv.op='op_buffer_write')  
+  || ' & ' || TRIM(CAST (CAST (elapsed AS DECIMAL(10,4)) AS CHAR(20)))  
+  || '\\' FROM test_info AS ti WHERE test='range-del-100' ORDER BY db;
+
+
+
+-- Query-update tests for short transactions with 0 % updates, at initial state -- 
+SELECT UPPER(db)
+  || ' & ' || (SELECT TRIM(CAST (CAST (avgval AS DECIMAL(10,4)) AS CHAR(20))) FROM test_vals AS tv WHERE tv.test=ti.test AND tv.db=ti.db AND tv.op='op_buffer_fix')  
+  || ' & ' || (SELECT TRIM(CAST (CAST (avgval AS DECIMAL(10,4)) AS CHAR(20))) FROM test_vals AS tv WHERE tv.test=ti.test AND tv.db=ti.db AND tv.op='op_buffer_read')  
+  || ' & ' || (SELECT TRIM(CAST (CAST (avgval AS DECIMAL(10,4)) AS CHAR(20))) FROM test_vals AS tv WHERE tv.test=ti.test AND tv.db=ti.db AND tv.op='op_buffer_write')
+  || ' & ' || TRIM(CAST (CAST (elapsed AS DECIMAL(10,4)) AS CHAR(20)))  
+  || '\\' FROM test_info AS ti WHERE test='qu-initial-5-0' ORDER BY db;
+
+-- Query-update tests for short transactions with 50 % updates, at initial state -- 
+SELECT UPPER(db)
+  || ' & ' || (SELECT TRIM(CAST (CAST (avgval AS DECIMAL(10,4)) AS CHAR(20))) FROM test_vals AS tv WHERE tv.test=ti.test AND tv.db=ti.db AND tv.op='op_buffer_fix')  
+  || ' & ' || (SELECT TRIM(CAST (CAST (avgval AS DECIMAL(10,4)) AS CHAR(20))) FROM test_vals AS tv WHERE tv.test=ti.test AND tv.db=ti.db AND tv.op='op_buffer_read')  
+  || ' & ' || (SELECT TRIM(CAST (CAST (avgval AS DECIMAL(10,4)) AS CHAR(20))) FROM test_vals AS tv WHERE tv.test=ti.test AND tv.db=ti.db AND tv.op='op_buffer_write')
+  || ' & ' || TRIM(CAST (CAST (elapsed AS DECIMAL(10,4)) AS CHAR(20)))  
+  || '\\' FROM test_info AS ti WHERE test='qu-initial-5-50' ORDER BY db;
+
+-- Query-update tests for short transactions with 100 % updates, at initial state -- 
+SELECT UPPER(db)
+  || ' & ' || (SELECT TRIM(CAST (CAST (avgval AS DECIMAL(10,4)) AS CHAR(20))) FROM test_vals AS tv WHERE tv.test=ti.test AND tv.db=ti.db AND tv.op='op_buffer_fix')  
+  || ' & ' || (SELECT TRIM(CAST (CAST (avgval AS DECIMAL(10,4)) AS CHAR(20))) FROM test_vals AS tv WHERE tv.test=ti.test AND tv.db=ti.db AND tv.op='op_buffer_read')  
+  || ' & ' || (SELECT TRIM(CAST (CAST (avgval AS DECIMAL(10,4)) AS CHAR(20))) FROM test_vals AS tv WHERE tv.test=ti.test AND tv.db=ti.db AND tv.op='op_buffer_write')
+  || ' & ' || TRIM(CAST (CAST (elapsed AS DECIMAL(10,4)) AS CHAR(20)))  
+  || '\\' FROM test_info AS ti WHERE test='qu-initial-5-100' ORDER BY db;
+
+
+-- Query-update tests for long transactions with 0 % updates, at initial state -- 
+SELECT UPPER(db)
+  || ' & ' || (SELECT TRIM(CAST (CAST (avgval AS DECIMAL(10,4)) AS CHAR(20))) FROM test_vals AS tv WHERE tv.test=ti.test AND tv.db=ti.db AND tv.op='op_buffer_fix')  
+  || ' & ' || (SELECT TRIM(CAST (CAST (avgval AS DECIMAL(10,4)) AS CHAR(20))) FROM test_vals AS tv WHERE tv.test=ti.test AND tv.db=ti.db AND tv.op='op_buffer_read')  
+  || ' & ' || (SELECT TRIM(CAST (CAST (avgval AS DECIMAL(10,4)) AS CHAR(20))) FROM test_vals AS tv WHERE tv.test=ti.test AND tv.db=ti.db AND tv.op='op_buffer_write')
+  || ' & ' || TRIM(CAST (CAST (elapsed AS DECIMAL(10,4)) AS CHAR(20)))  
+  || '\\' FROM test_info AS ti WHERE test='qu-initial-100-0' ORDER BY db;
+
+-- Query-update tests for long transactions with 50 % updates, at initial state -- 
+SELECT UPPER(db)
+  || ' & ' || (SELECT TRIM(CAST (CAST (avgval AS DECIMAL(10,4)) AS CHAR(20))) FROM test_vals AS tv WHERE tv.test=ti.test AND tv.db=ti.db AND tv.op='op_buffer_fix')  
+  || ' & ' || (SELECT TRIM(CAST (CAST (avgval AS DECIMAL(10,4)) AS CHAR(20))) FROM test_vals AS tv WHERE tv.test=ti.test AND tv.db=ti.db AND tv.op='op_buffer_read')  
+  || ' & ' || (SELECT TRIM(CAST (CAST (avgval AS DECIMAL(10,4)) AS CHAR(20))) FROM test_vals AS tv WHERE tv.test=ti.test AND tv.db=ti.db AND tv.op='op_buffer_write')
+  || ' & ' || TRIM(CAST (CAST (elapsed AS DECIMAL(10,4)) AS CHAR(20)))  
+  || '\\' FROM test_info AS ti WHERE test='qu-initial-100-50' ORDER BY db;
+
+-- Query-update tests for long transactions with 100 % updates, at initial state -- 
+SELECT UPPER(db)
+  || ' & ' || (SELECT TRIM(CAST (CAST (avgval AS DECIMAL(10,4)) AS CHAR(20))) FROM test_vals AS tv WHERE tv.test=ti.test AND tv.db=ti.db AND tv.op='op_buffer_fix')  
+  || ' & ' || (SELECT TRIM(CAST (CAST (avgval AS DECIMAL(10,4)) AS CHAR(20))) FROM test_vals AS tv WHERE tv.test=ti.test AND tv.db=ti.db AND tv.op='op_buffer_read')  
+  || ' & ' || (SELECT TRIM(CAST (CAST (avgval AS DECIMAL(10,4)) AS CHAR(20))) FROM test_vals AS tv WHERE tv.test=ti.test AND tv.db=ti.db AND tv.op='op_buffer_write')
+  || ' & ' || TRIM(CAST (CAST (elapsed AS DECIMAL(10,4)) AS CHAR(20)))  
+  || '\\' FROM test_info AS ti WHERE test='qu-initial-100-100' ORDER BY db;
+
+
+
+-- Query-update tests for short transactions with 0 % updates, at del-50 state -- 
+SELECT UPPER(db)
+  || ' & ' || (SELECT TRIM(CAST (CAST (avgval AS DECIMAL(10,4)) AS CHAR(20))) FROM test_vals AS tv WHERE tv.test=ti.test AND tv.db=ti.db AND tv.op='op_buffer_fix')  
+  || ' & ' || (SELECT TRIM(CAST (CAST (avgval AS DECIMAL(10,4)) AS CHAR(20))) FROM test_vals AS tv WHERE tv.test=ti.test AND tv.db=ti.db AND tv.op='op_buffer_read')  
+  || ' & ' || (SELECT TRIM(CAST (CAST (avgval AS DECIMAL(10,4)) AS CHAR(20))) FROM test_vals AS tv WHERE tv.test=ti.test AND tv.db=ti.db AND tv.op='op_buffer_write')
+  || ' & ' || TRIM(CAST (CAST (elapsed AS DECIMAL(10,4)) AS CHAR(20)))  
+  || '\\' FROM test_info AS ti WHERE test='qu-del-50-5-0' ORDER BY db;
+
+-- Query-update tests for short transactions with 50 % updates, at del-50 state -- 
+SELECT UPPER(db)
+  || ' & ' || (SELECT TRIM(CAST (CAST (avgval AS DECIMAL(10,4)) AS CHAR(20))) FROM test_vals AS tv WHERE tv.test=ti.test AND tv.db=ti.db AND tv.op='op_buffer_fix')  
+  || ' & ' || (SELECT TRIM(CAST (CAST (avgval AS DECIMAL(10,4)) AS CHAR(20))) FROM test_vals AS tv WHERE tv.test=ti.test AND tv.db=ti.db AND tv.op='op_buffer_read')  
+  || ' & ' || (SELECT TRIM(CAST (CAST (avgval AS DECIMAL(10,4)) AS CHAR(20))) FROM test_vals AS tv WHERE tv.test=ti.test AND tv.db=ti.db AND tv.op='op_buffer_write')
+  || ' & ' || TRIM(CAST (CAST (elapsed AS DECIMAL(10,4)) AS CHAR(20)))  
+  || '\\' FROM test_info AS ti WHERE test='qu-del-50-5-50' ORDER BY db;
+
+-- Query-update tests for short transactions with 100 % updates, at del-50 state -- 
+SELECT UPPER(db)
+  || ' & ' || (SELECT TRIM(CAST (CAST (avgval AS DECIMAL(10,4)) AS CHAR(20))) FROM test_vals AS tv WHERE tv.test=ti.test AND tv.db=ti.db AND tv.op='op_buffer_fix')  
+  || ' & ' || (SELECT TRIM(CAST (CAST (avgval AS DECIMAL(10,4)) AS CHAR(20))) FROM test_vals AS tv WHERE tv.test=ti.test AND tv.db=ti.db AND tv.op='op_buffer_read')  
+  || ' & ' || (SELECT TRIM(CAST (CAST (avgval AS DECIMAL(10,4)) AS CHAR(20))) FROM test_vals AS tv WHERE tv.test=ti.test AND tv.db=ti.db AND tv.op='op_buffer_write')
+  || ' & ' || TRIM(CAST (CAST (elapsed AS DECIMAL(10,4)) AS CHAR(20)))  
+  || '\\' FROM test_info AS ti WHERE test='qu-del-50-5-100' ORDER BY db;
+
+
+-- Query-update tests for long transactions with 0 % updates, at del-50 state -- 
+SELECT UPPER(db)
+  || ' & ' || (SELECT TRIM(CAST (CAST (avgval AS DECIMAL(10,4)) AS CHAR(20))) FROM test_vals AS tv WHERE tv.test=ti.test AND tv.db=ti.db AND tv.op='op_buffer_fix')  
+  || ' & ' || (SELECT TRIM(CAST (CAST (avgval AS DECIMAL(10,4)) AS CHAR(20))) FROM test_vals AS tv WHERE tv.test=ti.test AND tv.db=ti.db AND tv.op='op_buffer_read')  
+  || ' & ' || (SELECT TRIM(CAST (CAST (avgval AS DECIMAL(10,4)) AS CHAR(20))) FROM test_vals AS tv WHERE tv.test=ti.test AND tv.db=ti.db AND tv.op='op_buffer_write')
+  || ' & ' || TRIM(CAST (CAST (elapsed AS DECIMAL(10,4)) AS CHAR(20)))  
+  || '\\' FROM test_info AS ti WHERE test='qu-del-50-100-0' ORDER BY db;
+
+-- Query-update tests for long transactions with 50 % updates, at del-50 state -- 
+SELECT UPPER(db)
+  || ' & ' || (SELECT TRIM(CAST (CAST (avgval AS DECIMAL(10,4)) AS CHAR(20))) FROM test_vals AS tv WHERE tv.test=ti.test AND tv.db=ti.db AND tv.op='op_buffer_fix')  
+  || ' & ' || (SELECT TRIM(CAST (CAST (avgval AS DECIMAL(10,4)) AS CHAR(20))) FROM test_vals AS tv WHERE tv.test=ti.test AND tv.db=ti.db AND tv.op='op_buffer_read')  
+  || ' & ' || (SELECT TRIM(CAST (CAST (avgval AS DECIMAL(10,4)) AS CHAR(20))) FROM test_vals AS tv WHERE tv.test=ti.test AND tv.db=ti.db AND tv.op='op_buffer_write')
+  || ' & ' || TRIM(CAST (CAST (elapsed AS DECIMAL(10,4)) AS CHAR(20)))  
+  || '\\' FROM test_info AS ti WHERE test='qu-del-50-100-50' ORDER BY db;
+
+-- Query-update tests for long transactions with 100 % updates, at del-50 state -- 
+SELECT UPPER(db)
+  || ' & ' || (SELECT TRIM(CAST (CAST (avgval AS DECIMAL(10,4)) AS CHAR(20))) FROM test_vals AS tv WHERE tv.test=ti.test AND tv.db=ti.db AND tv.op='op_buffer_fix')  
+  || ' & ' || (SELECT TRIM(CAST (CAST (avgval AS DECIMAL(10,4)) AS CHAR(20))) FROM test_vals AS tv WHERE tv.test=ti.test AND tv.db=ti.db AND tv.op='op_buffer_read')  
+  || ' & ' || (SELECT TRIM(CAST (CAST (avgval AS DECIMAL(10,4)) AS CHAR(20))) FROM test_vals AS tv WHERE tv.test=ti.test AND tv.db=ti.db AND tv.op='op_buffer_write')
+  || ' & ' || TRIM(CAST (CAST (elapsed AS DECIMAL(10,4)) AS CHAR(20)))  
+  || '\\' FROM test_info AS ti WHERE test='qu-del-50-100-100' ORDER BY db;
+
+
+

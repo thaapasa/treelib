@@ -1,0 +1,63 @@
+--- exec-cmvbt.xml;simulate;simulator --------------------------------
+title: initial-insert
+start-time:2009-06-05 16:51:33
+end-time:2009-06-05 16:52:14
+database:cmvbt
+buffer-size:200
+page-size:4096
+database-size:820
+operation-count:102142
+time-measurement:41,659000
+go_new_transaction       	100
+go_maintenance_tx        	100
+action_insert            	count:102142
+op_object_inserted       	avg:1,000000	min:1	max:1
+op_spacemap_allocate     	avg:0,013471	min:0	max:36
+op_spacemap_free         	avg:0,005483	min:0	max:9
+op_buffer_fix            	avg:1,936099	min:1	max:487
+op_buffer_read           	avg:0,151544	min:0	max:399
+op_buffer_write          	avg:0,162675	min:0	max:417
+op_traverse_path         	avg:1,003015	min:1	max:7
+op_retraverse_path       	avg:0,000010	min:0	max:1
+op_backtrack_path        	avg:0,194641	min:0	max:393
+op_maintenance_tx        	avg:0,000979	min:0	max:1
+
+title: mix
+start-time:2009-06-05 16:52:14
+end-time:2009-06-05 16:54:21
+database:cmvbt
+buffer-size:200
+page-size:4096
+database-size:904
+operation-count:71637
+time-measurement:126,460000
+go_new_transaction       	1000
+go_maintenance_tx        	179
+action_insert            	count:5478
+action_delete            	count:4015
+action_query             	count:61950
+action_range_query       	count:194
+op_query_found_object    	avg:277,629772	min:0	max:103014
+op_object_deleted        	avg:0,056046	min:0	max:1
+op_object_inserted       	avg:0,076469	min:0	max:1
+op_spacemap_allocate     	avg:0,004034	min:0	max:4
+op_spacemap_free         	avg:0,002862	min:0	max:2
+op_buffer_fix            	avg:3,959225	min:1	max:413
+op_buffer_read           	avg:1,479375	min:0	max:411
+op_buffer_write          	avg:0,079568	min:0	max:154
+op_traverse_path         	avg:0,140011	min:0	max:4
+op_backtrack_path        	avg:0,069015	min:0	max:89
+op_version_stable        	avg:0,867485	min:0	max:1
+op_maintenance_tx        	avg:0,002499	min:0	max:1
+
+title: simulator
+start-time:2009-06-05 16:54:21
+end-time:2009-06-05 16:54:21
+database:cmvbt
+buffer-size:200
+page-size:4096
+database-size:904
+operation-count:0
+time-measurement:0,000000
+
+
